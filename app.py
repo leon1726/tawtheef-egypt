@@ -83,12 +83,10 @@ def index():
         AND salary != 'Confidential' 
         AND salary != '' 
         AND salary != 'Not specified'
-        AND salary NOT LIKE '%net%'
-        AND salary NOT LIKE '%kpi%'
-        AND salary NOT LIKE '%kpis%'
+        AND LOWER(salary) NOT LIKE %s
         ORDER BY scraped_at DESC 
         LIMIT 10
-    """)
+    """, ['%kpi%'])
     
     categories = query("SELECT category, COUNT(*) as count FROM jobs GROUP BY category ORDER BY count DESC")
     total = query_one("SELECT COUNT(*) as count FROM jobs")['count']
