@@ -535,9 +535,94 @@
             border-bottom: 1px solid var(--bg);
         }
 
+                /* Mobile Category Button */
+        .mobile-cat-btn {
+            display: none;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--r-sm);
+            font-family: var(--font);
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--navy);
+            cursor: pointer;
+            margin: 0 14px 14px;
+            width: calc(100% - 28px);
+            justify-content: center;
+            transition: all var(--t);
+        }
+
+        .mobile-cat-btn:hover {
+            border-color: var(--gold);
+            background: var(--gold-pale);
+        }
+
+        .cat-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 300;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .cat-overlay.show {
+            display: flex;
+        }
+
+        .cat-overlay-card {
+            background: var(--white);
+            border-radius: var(--r-lg);
+            width: 100%;
+            max-width: 400px;
+            max-height: 80vh;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .cat-overlay-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 20px;
+            background: var(--navy);
+            color: var(--gold);
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        .cat-overlay-close {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 4px 8px;
+        }
+
+        .cat-overlay-list {
+            overflow-y: auto;
+            max-height: calc(80vh - 56px);
+        }
+
+        .cat-overlay-item {
+            padding: 14px 20px;
+            border-bottom: 1px solid var(--bg);
+        }
+
+        .cat-overlay-item:last-child {
+            border-bottom: none;
+        }
+
         /* ── MOBILE ── */
 
         @media (max-width: 640px) {
+              .mobile-cat-btn { display: flex; }
             .nav-wrap { height: 52px; padding: 0 14px; gap: 10px; }
             .logo-icon { width: 30px; height: 30px; }
             .logo-symbol { width: 30px; height: 30px; }
@@ -597,25 +682,30 @@
     </div>
 </nav>
 
-<!-- Mobile Category Drawer -->
-<div class="mobile-cat-toggle" id="catToggle">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
-    <span>Categories</span>
-</div>
+<!-- Mobile Category Button -->
+<button class="mobile-cat-btn" id="catBtn">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 4h18M3 9h12M3 14h18M3 19h8"/></svg>
+    Browse Categories
+</button>
 
-<div class="mobile-cat-overlay" id="catOverlay"></div>
-<div class="mobile-cat-drawer" id="catDrawer">
-    <div class="mobile-cat-head">
-        <span>Categories</span>
-        <button class="mobile-cat-close" id="catClose">✕</button>
-    </div>
-    <div class="mobile-cat-list">
-        {% for cat in categories %}
-        <a href="/search?category={{ cat.category }}" class="cat-link">
-            <span>{{ cat.category }}</span>
-            <span class="cat-n">{{ cat.count }}</span>
-        </a>
-        {% endfor %}
+<!-- Category Overlay -->
+<div class="cat-overlay" id="catOverlay">
+    <div class="cat-overlay-card">
+        <div class="cat-overlay-head">
+            <span>Select a Category</span>
+            <button class="cat-overlay-close" id="catClose">✕</button>
+        </div>
+        <div class="cat-overlay-list">
+            <a href="/search" class="cat-link cat-overlay-item" onclick="closeOverlay()">
+                <span>All Categories</span>
+            </a>
+            {% for cat in categories %}
+            <a href="/search?category={{ cat.category }}" class="cat-link cat-overlay-item" onclick="closeOverlay()">
+                <span>{{ cat.category }}</span>
+                <span class="cat-n">{{ cat.count }}</span>
+            </a>
+            {% endfor %}
+        </div>
     </div>
 </div>
 
@@ -630,25 +720,27 @@
 </footer>
 
 <script>
-    const toggle = document.getElementById('catToggle');
-    const drawer = document.getElementById('catDrawer');
-    const overlay = document.getElementById('catOverlay');
-    const close = document.getElementById('catClose');
+    const catBtn = document.getElementById('catBtn');
+    const catOverlay = document.getElementById('catOverlay');
+    const catClose = document.getElementById('catClose');
 
-    toggle.addEventListener('click', () => {
-        drawer.classList.add('show');
-        overlay.classList.add('show');
+    catBtn.addEventListener('click', () => {
+        catOverlay.classList.add('show');
     });
 
-    close.addEventListener('click', () => {
-        drawer.classList.remove('show');
-        overlay.classList.remove('show');
+    catClose.addEventListener('click', () => {
+        catOverlay.classList.remove('show');
     });
 
-    overlay.addEventListener('click', () => {
-        drawer.classList.remove('show');
-        overlay.classList.remove('show');
+    catOverlay.addEventListener('click', (e) => {
+        if (e.target === catOverlay) {
+            catOverlay.classList.remove('show');
+        }
     });
+
+    function closeOverlay() {
+        catOverlay.classList.remove('show');
+    }
 </script>
 </body>
 </html>
