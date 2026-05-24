@@ -614,26 +614,7 @@
     </div>
 </nav>
 
-<!-- Category Overlay -->
-<div class="cat-overlay" id="catOverlay">
-    <div class="cat-overlay-card">
-        <div class="cat-overlay-head">
-            <span>Select a Category</span>
-            <button class="cat-overlay-close" id="catClose">✕</button>
-        </div>
-        <div class="cat-overlay-list">
-            <a href="/search" class="cat-link cat-overlay-item" onclick="closeOverlay()">
-                <span>All Categories</span>
-            </a>
-            {% for cat in categories %}
-            <a href="/search?category={{ cat.category }}" class="cat-link cat-overlay-item" onclick="closeOverlay()">
-                <span>{{ cat.category }}</span>
-                <span class="cat-n">{{ cat.count }}</span>
-            </a>
-            {% endfor %}
-        </div>
-    </div>
-</div>
+
 
 {% block hero %}{% endblock %}
 

@@ -1,6 +1,3 @@
-{% extends 'base.html' %}
-{% block title %}Tawtheef Egypt | توظيف مصر — Latest Jobs{% endblock %}
-
 {% block hero %}
 <div class="hero">
     <div class="hero-bg"></div>
@@ -17,6 +14,33 @@
             <div class="hstat"><strong>{{ total }}</strong>Jobs Listed</div>
             <div class="hstat"><strong>26</strong>Categories</div>
             <div class="hstat"><strong>🇪🇬</strong>Egypt Wide</div>
+        </div>
+    </div>
+</div>
+
+<!-- Mobile Category Button -->
+<button class="mobile-cat-btn" id="catBtn">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 4h18M3 9h12M3 14h18M3 19h8"/></svg>
+    Browse Categories
+</button>
+
+<!-- Category Overlay -->
+<div class="cat-overlay" id="catOverlay">
+    <div class="cat-overlay-card">
+        <div class="cat-overlay-head">
+            <span>Select a Category</span>
+            <button class="cat-overlay-close" id="catClose">✕</button>
+        </div>
+        <div class="cat-overlay-list">
+            <a href="/search" class="cat-link cat-overlay-item" onclick="closeOverlay()">
+                <span>All Categories</span>
+            </a>
+            {% for cat in categories %}
+            <a href="/search?category={{ cat.category }}" class="cat-link cat-overlay-item" onclick="closeOverlay()">
+                <span>{{ cat.category }}</span>
+                <span class="cat-n">{{ cat.count }}</span>
+            </a>
+            {% endfor %}
         </div>
     </div>
 </div>
