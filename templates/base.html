@@ -613,7 +613,7 @@
 
         .cat-overlay-item:last-child { border-bottom: none; }
 
-        
+
 
         /* ── MOBILE ── */
         @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } .sidebar-desktop { display: none; } .mobile-cat-btn { display: flex; } .mobile-ad { display: block !important; } }
@@ -724,8 +724,55 @@
     <span class="ar">توظيف مصر</span> · Tawtheef Egypt · Data from Wuzzuf.net
 </footer>
 
+
+
+
+<!-- Adblock Detector -->
+<script>
+    (function() {
+        let adBlockEnabled = false;
+        const testAd = document.createElement('div');
+        testAd.innerHTML = '&nbsp;';
+        testAd.className = 'adsbox';
+        testAd.style.cssText = 'position:absolute;left:-9999px;top:-9999px;height:1px;width:1px';
+        document.body.appendChild(testAd);
+        
+        window.setTimeout(function() {
+            if (testAd.offsetHeight === 0) {
+                adBlockEnabled = true;
+            }
+            testAd.remove();
+            
+            if (adBlockEnabled) {
+                const overlay = document.createElement('div');
+                overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;display:flex;align-items:center;justify-content:center;font-family:var(--font);';
+                overlay.innerHTML = `
+                    <div style="background:var(--white);border-radius:var(--r-lg);padding:40px 32px;max-width:460px;text-align:center;margin:20px;box-shadow:0 20px 60px rgba(0,0,0,0.3);">
+                        <div style="font-size:48px;margin-bottom:16px;">🔇</div>
+                        <h2 style="font-size:20px;font-weight:800;color:var(--head);margin-bottom:8px;">Ad Blocker Detected</h2>
+                        <p style="font-size:14px;color:var(--muted);margin-bottom:24px;line-height:1.6;">
+                            We noticed you're using an ad blocker.<br>
+                            Ads help keep Tawtheef Egypt free for everyone.<br>
+                            Please disable your ad blocker to continue.
+                        </p>
+                        <button onclick="this.parentElement.parentElement.remove()" style="background:var(--gold);color:var(--navy);border:none;padding:12px 28px;border-radius:var(--r-sm);font-family:var(--font);font-size:14px;font-weight:700;cursor:pointer;transition:all var(--t);">
+                            I've disabled my ad blocker →
+                        </button>
+                        <p style="font-size:11px;color:var(--muted);margin-top:14px;">Then refresh the page</p>
+                    </div>
+                `;
+                document.body.appendChild(overlay);
+            }
+        }, 200);
+    })();
+</script>
+
+
+
 <!-- Adsterra Social Bar -->
 <script src="https://pl29543683.effectivecpmnetwork.com/6c/ab/73/6cab73af5eaa34dde04da1d3b6fca514.js"></script>
+
+
 
 <script>
     const catBtn = document.getElementById('catBtn');
@@ -753,6 +800,8 @@
         catOverlay.classList.remove('show');
         document.body.style.overflow = '';
     }
+
+    
 </script>
 </body>
 </html>
