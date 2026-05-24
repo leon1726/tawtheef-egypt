@@ -1,7 +1,10 @@
 import os
 import math
 import sqlite3
+import logging
 from flask import Flask, render_template, request, redirect, g
+
+logging.basicConfig(level=logging.DEBUG)
 
 try:
     import psycopg2
@@ -63,61 +66,50 @@ def query_one(sql, params=None):
         return cur.fetchone()
 
 
+@app.route('/health')
+def health():
+    return "OK"
+
+
 @app.route('/')
 def index():
-    latest = query("SELECT * FROM jobs ORDER BY scraped_at DESC LIMIT 20")
-    
-    hot = query("""
-        SELECT * FROM jobs 
-        WHERE skills IS NOT NULL AND skills != '' 
-        ORDER BY LENGTH(skills) DESC 
-        LIMIT 10
-    """)
-    
-    top_paying = query("""
-        SELECT * FROM jobs 
-        WHERE salary IS NOT NULL 
-        AND salary != 'Confidential' 
-        AND salary != '' 
-        AND salary != 'Not specified'
-        AND LOWER(salary) NOT LIKE '%kpi%'
-        ORDER BY scraped_at DESC 
-        LIMIT 10
-    """)
-    
-    categories = query("SELECT category, COUNT(*) as count FROM jobs GROUP BY category ORDER BY count DESC")
-    total = query_one("SELECT COUNT(*) as count FROM jobs")['count']
-    
-    return render_template('index.html', 
-                         jobs=latest, 
-                         hot_jobs=hot, 
-                         top_paying=top_paying,
-                         categories=categories, 
-                         total=total)
+    try:
+        latest = query("SELECT * FROM jobs ORDER BY scraped_at DESC LIMIT 20")
+        hot = query("SELECT * FROM jobs WHERE skills IS NOT NULL AND skills != '' ORDER BY LENGTH(skills) DESC LIMIT 10")
+        top_paying = query("SELECT * FROM jobs WHERE salary IS NOT NULL AND salary != 'Confidential' AND salary != '' AND salary != 'Not specified' AND LOWER(salary) NOT LIKE '%kpi%' ORDER BY scraped_at DESC LIMIT 10")
+        categories = query("SELECT category, COUNT(*) as count FROM jobs GROUP BY category ORDER BY count DESC")
+        total = query_one("SELECT COUNT(*) as count FROM jobs")['count']
+    except Exception as e:
+        return f"Database error: {e}", 500
+
+    return render_template('index.html', jobs=latest, hot_jobs=hot, top_paying=top_paying, categories=categories, total=total)
 
 
 @app.route('/search')
 def search():
-    q = request.args.get('q', '').strip()
-    category = request.args.get('category', '').strip()
-    page = max(1, int(request.args.get('page', 1)))
-    per_page = 20
-    offset = (page - 1) * per_page
+    try:
+        q = request.args.get('q', '').strip()
+        category = request.args.get('category', '').strip()
+        page = max(1, int(request.args.get('page', 1)))
+        per_page = 20
+        offset = (page - 1) * per_page
 
-    where = "WHERE 1=1"
-    params = []
+        where = "WHERE 1=1"
+        params = []
 
-    if q:
-        where += " AND (title ILIKE %s OR company ILIKE %s OR skills ILIKE %s OR description ILIKE %s)"
-        params += [f'%{q}%', f'%{q}%', f'%{q}%', f'%{q}%']
-    if category:
-        where += " AND category = %s"
-        params.append(category)
+        if q:
+            where += " AND (title ILIKE %s OR company ILIKE %s OR skills ILIKE %s OR description ILIKE %s)"
+            params += [f'%{q}%', f'%{q}%', f'%{q}%', f'%{q}%']
+        if category:
+            where += " AND category = %s"
+            params.append(category)
 
-    total = query_one(f"SELECT COUNT(*) as count FROM jobs {where}", params)['count']
-    jobs = query(f"SELECT * FROM jobs {where} ORDER BY scraped_at DESC LIMIT %s OFFSET %s", params + [per_page, offset])
-    categories = query("SELECT category, COUNT(*) as count FROM jobs GROUP BY category ORDER BY count DESC")
-    total_pages = math.ceil(total / per_page) if total > 0 else 1
+        total = query_one(f"SELECT COUNT(*) as count FROM jobs {where}", params)['count']
+        jobs = query(f"SELECT * FROM jobs {where} ORDER BY scraped_at DESC LIMIT %s OFFSET %s", params + [per_page, offset])
+        categories = query("SELECT category, COUNT(*) as count FROM jobs GROUP BY category ORDER BY count DESC")
+        total_pages = math.ceil(total / per_page) if total > 0 else 1
+    except Exception as e:
+        return f"Search error: {e}", 500
 
     return render_template('search.html', jobs=jobs, q=q, category=category,
                            page=page, total=total, total_pages=total_pages,
