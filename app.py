@@ -3,6 +3,13 @@ import math
 import sqlite3
 from flask import Flask, render_template, request, redirect, g
 
+# Auto-migrate on first deploy
+if os.environ.get('DATABASE_URL') and not os.environ.get('MIGRATED'):
+    import subprocess
+    import sys
+    subprocess.run([sys.executable, 'scrapper.py', '--init-db', '--migrate', '--sqlite-path', 'jobs.db'])
+    os.environ['MIGRATED'] = '1'
+
 try:
     import psycopg2
     import psycopg2.extras
