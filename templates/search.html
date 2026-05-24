@@ -1,100 +1,106 @@
 {% extends 'base.html' %}
-{% block title %}{{ q or category or 'All Jobs' }} — Tawtheef Egypt{% endblock %}
+{% block meta_desc %}{% if q %}{{ q }} jobs in Egypt{% elif category %}{{ category }} jobs in Egypt{% else %}Browse all jobs in Egypt{% endif %}. Find your next career on Tawtheef Egypt.{% endblock %}
+{% block og_title %}{% if q %}{{ q }}{% elif category %}{{ category }}{% else %}All Jobs{% endif %} — Tawtheef Egypt{% endblock %}
+{% block og_desc %}Browse {% if q %}{{ q }}{% elif category %}{{ category }}{% else %}all{% endif %} jobs in Egypt. {{ total }} positions available.{% endblock %}
+{% block title %}{% if q %}{{ q }}{% elif category %}{{ category }}{% else %}All Jobs{% endif %} — Tawtheef Egypt{% endblock %}
 
 {% block content %}
-<div class="grid">
+<div class="layout">
     <aside class="sidebar sidebar-desktop">
-        <div class="sidebar-head">Categories <span class="ar">التصنيفات</span></div>
+        <div class="sidebar-header">Filter by Category <span>تصفية حسب التصنيف</span></div>
         <div class="cat-list">
-            <a href="/search?q={{ q }}" class="cat-link {% if not category %}on{% endif %}">
-                <span>All · الكل</span>
+            <a href="/search?q={{ q }}" class="cat-item {% if not category %}active{% endif %}">
+                <span>All Categories</span>
             </a>
             {% for cat in categories %}
-            <a href="/search?q={{ q }}&category={{ cat.category }}" class="cat-link {% if category == cat.category %}on{% endif %}">
+            <a href="/search?q={{ q }}&category={{ cat.category }}" class="cat-item {% if category == cat.category %}active{% endif %}">
                 <span>{{ cat.category }}</span>
-                <span class="cat-n">{{ cat.count }}</span>
+                <span class="cat-count">{{ cat.count }}</span>
             </a>
             {% endfor %}
         </div>
     </aside>
 
     <div>
-        <form class="sbar" action="/search" method="get">
+        <form class="search-bar" action="/search" method="get">
             {% if category %}<input type="hidden" name="category" value="{{ category }}">{% endif %}
-            <input type="text" name="q" value="{{ q }}" placeholder="Search jobs, skills, companies...">
-            <button type="submit" class="btn btn-gold">Search</button>
+            <input type="text" name="q" value="{{ q }}" placeholder="Search jobs...">
+            <button type="submit" class="btn btn-primary">Search</button>
             {% if q or category %}
-            <a href="/search" class="btn btn-outline">Clear</a>
+            <a href="/search" class="btn btn-secondary">Clear</a>
             {% endif %}
         </form>
 
-        <div class="rmeta">
-            <span>
-                <strong>{{ total }}</strong> results
-                {% if q %}for "<strong>{{ q }}</strong>"{% endif %}
-                {% if category %}in <strong>{{ category }}</strong>{% endif %}
-            </span>
-            <span>Page {{ page }} / {{ total_pages }}</span>
+        <div class="results-info">
+            <span><strong>{{ total }}</strong> job{{ 's' if total != 1 }} found{% if q %} for "<strong>{{ q }}</strong>"{% endif %}{% if category %} in <strong>{{ category }}</strong>{% endif %}</span>
+            {% if total_pages > 1 %}<span>Page {{ page }} of {{ total_pages }}</span>{% endif %}
         </div>
 
-        <div class="ad"><strong>Advertisement · إعلان</strong>Your ad here</div>
+        <div class="ad-placeholder">
+            <strong>Advertisement</strong>
+            Your ad could be here
+        </div>
 
         {% if jobs %}
             {% for job in jobs %}
-            <div class="job-card">
-                <div class="jc-top">
+            <a href="/job/{{ job.id }}" class="job-card">
+                <div class="job-card-header">
                     <div>
-                        <div class="jc-title"><a href="/job/{{ job.id }}">{{ job.title }}</a></div>
-                        <div class="jc-company">{{ job.company }}</div>
+                        <div class="job-card-title">{{ job.title }}</div>
+                        <div class="job-card-company">{{ job.company }}</div>
                     </div>
-                    <a href="/apply/{{ job.id }}" class="apply-pill" target="_blank">Apply · قدّم ↗</a>
+                    <span class="apply-btn" onclick="event.stopPropagation(); window.open('/apply/{{ job.id }}', '_blank')">
+                        Apply <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+                    </span>
                 </div>
-                <div class="jc-meta">
-                    <span class="jc-meta-item">
+                <div class="job-card-meta">
+                    <span>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
                         {{ job.location }}
                     </span>
-                    {% if job.experience and job.experience|trim != '' and job.experience != 'N/A' %}
-                    <span class="jc-meta-item">
+                    {% if job.experience and job.experience != '' and job.experience != 'N/A' %}
+                    <span>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
                         {{ job.experience }}
                     </span>
                     {% endif %}
                 </div>
-                <div class="jc-tags">
-                    <span class="tag t-cat">{{ job.category }}</span>
+                <div class="job-card-tags">
+                    <span class="tag tag-category">{{ job.category }}</span>
                     {% if job.salary and job.salary != 'Confidential' and job.salary|trim != '' %}
-                    <span class="tag t-sal">{{ job.salary }}</span>
-                    {% endif %}
-                    {% if job.job_type and job.job_type|trim != '' and job.job_type != 'N/A' %}
-                    <span class="tag t-type">{{ job.job_type }}</span>
+                    <span class="tag tag-salary">{{ job.salary }}</span>
                     {% endif %}
                     {% if job.posted_date %}
-                    <span class="tag t-date">{{ job.posted_date }}</span>
+                    <span class="tag tag-date">{{ job.posted_date }}</span>
                     {% endif %}
                 </div>
+            </a>
+            {% if loop.index == 5 or loop.index == 10 or loop.index == 15 %}
+            <div class="ad-placeholder" style="margin: 12px 0;">
+                <strong>Advertisement</strong>
+                Your ad could be here
             </div>
+            {% endif %}
             {% endfor %}
 
             {% if total_pages > 1 %}
-            <div class="pages">
+            <div class="pagination">
                 {% if page > 1 %}
-                <a href="/search?q={{ q }}&category={{ category }}&page={{ page - 1 }}" class="pg">←</a>
+                <a href="/search?q={{ q }}&category={{ category }}&page={{ page - 1 }}" class="page-link">← Prev</a>
                 {% endif %}
                 {% for p in range([1, page - 2]|max, [total_pages + 1, page + 3]|min) %}
-                <a href="/search?q={{ q }}&category={{ category }}&page={{ p }}" class="pg {% if p == page %}on{% endif %}">{{ p }}</a>
+                <a href="/search?q={{ q }}&category={{ category }}&page={{ p }}" class="page-link {% if p == page %}active{% endif %}">{{ p }}</a>
                 {% endfor %}
                 {% if page < total_pages %}
-                <a href="/search?q={{ q }}&category={{ category }}&page={{ page + 1 }}" class="pg">→</a>
+                <a href="/search?q={{ q }}&category={{ category }}&page={{ page + 1 }}" class="page-link">Next →</a>
                 {% endif %}
             </div>
             {% endif %}
-
         {% else %}
-        <div class="empty">
+        <div class="empty-state">
             <h3>No jobs found</h3>
-            <p>لا توجد وظائف مطابقة — try different keywords</p>
-            <a href="/" class="btn btn-gold" style="margin-top:16px; display:inline-flex;">Browse All Jobs</a>
+            <p>Try different keywords or browse by category</p>
+            <a href="/" class="btn btn-primary" style="margin-top: 16px;">Browse All Jobs</a>
         </div>
         {% endif %}
     </div>
