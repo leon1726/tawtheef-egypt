@@ -142,6 +142,9 @@ def apply(job_id):
         return redirect(job['link'])
     return "Not found", 404
 
+@app.route('/sitemap.xml')
+def sitemap():
+    return app.send_static_file('sitemap.xml')
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
