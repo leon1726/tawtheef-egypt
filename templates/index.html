@@ -1,215 +1,83 @@
 {% extends 'base.html' %}
-{% block title %}Tawtheef Egypt — Find Your Next Job in Egypt | توظيف مصر{% endblock %}
+{% block title %}Tawtheef Egypt | توظيف مصر — Latest Jobs{% endblock %}
 
 {% block hero %}
-<section class="hero">
-    <div class="hero-pattern"></div>
+<div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-glow"></div>
     <div class="hero-inner">
-        <div class="hero-badge">🇪🇬 Egypt's Premium Job Board</div>
-        <h1>Find Your Next <em>Career Move</em></h1>
-        <p class="hero-sub">اكتشف فرصتك المهنية القادمة في مصر</p>
+        <div class="hero-badge">Egypt's #1 Job Board · لوحة وظائف مصر</div>
+        <h1>Find Your Next Job<br>in <em>Egypt</em></h1>
+        <p class="hero-ar">ابحث عن فرصتك القادمة في مصر</p>
         <form class="hero-search" action="/search" method="get">
-            <input type="text" name="q" placeholder="Job title, company, or keyword...">
-            <button type="submit">Search Jobs →</button>
+            <input type="text" name="q" placeholder="Job title, skill, or company...">
+            <button type="submit">Search →</button>
         </form>
         <div class="hero-stats">
-            <div class="hero-stat"><strong>{{ total }}+</strong>Active Jobs</div>
-            <div class="hero-stat"><strong>26</strong>Categories</div>
-            <div class="hero-stat"><strong>Daily</strong>Updated</div>
+            <div class="hstat"><strong>{{ total }}</strong>Jobs Listed</div>
+            <div class="hstat"><strong>26</strong>Categories</div>
+            <div class="hstat"><strong>🇪🇬</strong>Egypt Wide</div>
         </div>
     </div>
-</section>
+</div>
 {% endblock %}
 
 {% block content %}
-<div class="layout">
+<div class="grid">
     <aside class="sidebar sidebar-desktop">
-        <div class="sidebar-header">Browse by Category <span>تصفح حسب التصنيف</span></div>
+        <div class="sidebar-head">Categories <span class="ar">التصنيفات</span></div>
         <div class="cat-list">
             {% for cat in categories %}
-            <a href="/search?category={{ cat.category }}" class="cat-item">
+            <a href="/search?category={{ cat.category }}" class="cat-link">
                 <span>{{ cat.category }}</span>
-                <span class="cat-count">{{ cat.count }}</span>
+                <span class="cat-n">{{ cat.count }}</span>
             </a>
             {% endfor %}
         </div>
     </aside>
 
     <div>
-        <!-- Featured Positions -->
-        <div class="page-header">
-            <h1>Featured Positions</h1>
-            <p>Most in-demand roles with comprehensive requirements</p>
-        </div>
-        {% if hot_jobs %}
-            {% for job in hot_jobs %}
-            <a href="/job/{{ job.id }}" class="job-card">
-                <div class="job-card-header">
-                    <div>
-                        <div class="job-card-title">{{ job.title }}</div>
-                        <div class="job-card-company">{{ job.company }}</div>
-                    </div>
-                    <span class="apply-btn" onclick="event.stopPropagation(); window.open('/apply/{{ job.id }}', '_blank')">
-                        Apply <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
-                    </span>
-                </div>
-                <div class="job-card-meta">
-                    <span>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-                        {{ job.location }}
-                    </span>
-                    {% if job.experience and job.experience != '' and job.experience != 'N/A' %}
-                    <span>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-                        {{ job.experience }}
-                    </span>
-                    {% endif %}
-                </div>
-                <div class="job-card-tags">
-                    <span class="tag tag-category">{{ job.category }}</span>
-                    {% if job.salary and job.salary|trim != '' and 'kpi' not in job.salary.lower() %}
-                        {% if 'EGP' in job.salary or 'L.E' in job.salary or 'LE' in job.salary %}
-                            <span class="tag tag-salary">{{ job.salary }}</span>
-                        {% elif job.salary.replace(',','').replace(' ','').isdigit() %}
-                            <span class="tag tag-salary">{{ job.salary }} EGP</span>
-                        {% else %}
-                            <span class="tag tag-salary">{{ job.salary }}</span>
-                        {% endif %}
-                    {% endif %}
-                    <span class="tag tag-date">{{ job.posted_date }}</span>
-                </div>
-            </a>
-            {% if loop.index == 5 %}
-            <div class="ad-placeholder" style="margin: 12px 0;">
-                <strong>Advertisement</strong>
-                Your ad could be here
-            </div>
-            {% endif %}
-            {% endfor %}
-        {% else %}
-            <div class="empty-state">
-                <p>No featured positions right now. Check back soon.</p>
-            </div>
-        {% endif %}
-
-        <!-- Top Compensation -->
-        <div class="page-header" style="margin-top: 32px;">
-            <h1>Top Compensation</h1>
-            <p>Positions with disclosed salary ranges</p>
-        </div>
-        {% if top_paying %}
-            {% for job in top_paying %}
-            <a href="/job/{{ job.id }}" class="job-card">
-                <div class="job-card-header">
-                    <div>
-                        <div class="job-card-title">{{ job.title }}</div>
-                        <div class="job-card-company">{{ job.company }}</div>
-                    </div>
-                    <span class="apply-btn" onclick="event.stopPropagation(); window.open('/apply/{{ job.id }}', '_blank')">
-                        Apply <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
-                    </span>
-                </div>
-                <div class="job-card-meta">
-                    <span>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-                        {{ job.location }}
-                    </span>
-                    {% if job.salary and job.salary|trim != '' and 'kpi' not in job.salary.lower() %}
-                    <span>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
-                        {% if 'EGP' in job.salary or 'L.E' in job.salary or 'LE' in job.salary %}
-                            {{ job.salary }}
-                        {% elif job.salary.replace(',','').replace(' ','').isdigit() %}
-                            {{ job.salary }} EGP
-                        {% else %}
-                            {{ job.salary }}
-                        {% endif %}
-                    </span>
-                    {% endif %}
-                </div>
-                <div class="job-card-tags">
-                    <span class="tag tag-category">{{ job.category }}</span>
-                    {% if job.salary and job.salary|trim != '' and 'kpi' not in job.salary.lower() %}
-                        {% if 'EGP' in job.salary or 'L.E' in job.salary or 'LE' in job.salary %}
-                            <span class="tag tag-salary">{{ job.salary }}</span>
-                        {% elif job.salary.replace(',','').replace(' ','').isdigit() %}
-                            <span class="tag tag-salary">{{ job.salary }} EGP</span>
-                        {% else %}
-                            <span class="tag tag-salary">{{ job.salary }}</span>
-                        {% endif %}
-                    {% endif %}
-                    <span class="tag tag-date">{{ job.posted_date }}</span>
-                </div>
-            </a>
-            {% if loop.index == 5 %}
-            <div class="ad-placeholder" style="margin: 12px 0;">
-                <strong>Advertisement</strong>
-                Your ad could be here
-            </div>
-            {% endif %}
-            {% endfor %}
-        {% else %}
-            <div class="empty-state">
-                <p>No salary data available yet.</p>
-            </div>
-        {% endif %}
-
-        <!-- Advertisement -->
-        <div class="ad-placeholder" style="margin-top: 32px;">
-            <strong>Advertisement</strong>
-            Your ad could be here
+        <div class="ph">
+            <h1>Latest Jobs</h1>
+            <p>{{ total }} positions across all categories · {{ total }} وظيفة متاحة</p>
         </div>
 
-        <!-- Latest Openings -->
-        <div class="page-header" style="margin-top: 32px;">
-            <h1>Latest Openings</h1>
-            <p>{{ total }}+ jobs from top companies across Egypt — updated daily</p>
-        </div>
+        <div class="ad"><strong>Advertisement · إعلان</strong>Your ad here</div>
+
         {% for job in jobs %}
-        <a href="/job/{{ job.id }}" class="job-card">
-            <div class="job-card-header">
+        <div class="job-card">
+            <div class="jc-top">
                 <div>
-                    <div class="job-card-title">{{ job.title }}</div>
-                    <div class="job-card-company">{{ job.company }}</div>
+                    <div class="jc-title"><a href="/job/{{ job.id }}">{{ job.title }}</a></div>
+                    <div class="jc-company">{{ job.company }}</div>
                 </div>
-                <span class="apply-btn" onclick="event.stopPropagation(); window.open('/apply/{{ job.id }}', '_blank')">
-                    Apply <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
-                </span>
+                <a href="/apply/{{ job.id }}" class="apply-pill" target="_blank">Apply · قدّم ↗</a>
             </div>
-            <div class="job-card-meta">
-                <span>
+            <div class="jc-meta">
+                <span class="jc-meta-item">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
                     {{ job.location }}
                 </span>
-                {% if job.experience and job.experience != '' and job.experience != 'N/A' %}
-                <span>
+                {% if job.experience and job.experience|trim != '' and job.experience != 'N/A' %}
+                <span class="jc-meta-item">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
                     {{ job.experience }}
                 </span>
                 {% endif %}
             </div>
-            <div class="job-card-tags">
-                <span class="tag tag-category">{{ job.category }}</span>
-                {% if job.salary and job.salary|trim != '' and 'kpi' not in job.salary.lower() %}
-                    {% if 'EGP' in job.salary or 'L.E' in job.salary or 'LE' in job.salary %}
-                        <span class="tag tag-salary">{{ job.salary }}</span>
-                    {% elif job.salary.replace(',','').replace(' ','').isdigit() %}
-                        <span class="tag tag-salary">{{ job.salary }} EGP</span>
-                    {% else %}
-                        <span class="tag tag-salary">{{ job.salary }}</span>
-                    {% endif %}
+            <div class="jc-tags">
+                <span class="tag t-cat">{{ job.category }}</span>
+                {% if job.salary and job.salary != 'Confidential' and job.salary|trim != '' %}
+                <span class="tag t-sal">{{ job.salary }}</span>
+                {% endif %}
+                {% if job.job_type and job.job_type|trim != '' and job.job_type != 'N/A' %}
+                <span class="tag t-type">{{ job.job_type }}</span>
                 {% endif %}
                 {% if job.posted_date %}
-                <span class="tag tag-date">{{ job.posted_date }}</span>
+                <span class="tag t-date">{{ job.posted_date }}</span>
                 {% endif %}
             </div>
-        </a>
-        {% if loop.index == 5 or loop.index == 10 or loop.index == 15 %}
-        <div class="ad-placeholder" style="margin: 12px 0;">
-            <strong>Advertisement</strong>
-            Your ad could be here
         </div>
-        {% endif %}
         {% endfor %}
     </div>
 </div>

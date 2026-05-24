@@ -1,438 +1,301 @@
 {% extends 'base.html' %}
-{% block meta_desc %}{{ job.title }} at {{ job.company }} in {{ job.location }}. Apply now on Tawtheef Egypt. {{ job.category }} jobs in Egypt.{% endblock %}
-{% block og_title %}{{ job.title }} at {{ job.company }} — Tawtheef Egypt{% endblock %}
-{% block og_desc %}{{ job.title }} at {{ job.company }} in {{ job.location }}. {{ job.experience or '' }} {{ job.career_level or '' }}. Apply now!{% endblock %}
-{% block title %}{{ job.title }} at {{ job.company }} — Tawtheef Egypt{% endblock %}
+{% block title %}{{ job.title }} — Tawtheef Egypt{% endblock %}
+{% block meta_desc %}{{ job.title }} at {{ job.company }} in {{ job.location }}. Apply now on Tawtheef Egypt.{% endblock %}
 
 {% block extra_css %}
 <style>
-    .job-detail-layout {
+    .jd-wrap {
         display: grid;
-        grid-template-columns: 1fr 300px;
-        gap: 24px;
+        grid-template-columns: 1fr 268px;
+        gap: 20px;
         align-items: start;
     }
 
-    @media (max-width: 860px) {
-        .job-detail-layout { grid-template-columns: 1fr; }
-    }
-
-    .detail-card {
+    /* Main card */
+    .jd-card {
         background: var(--white);
-        border-radius: var(--radius);
-        border: 1px solid var(--gray-200);
-        padding: 28px 32px;
-        margin-bottom: 16px;
-        box-shadow: var(--shadow-sm);
+        border-radius: var(--r-lg);
+        border: 1px solid var(--border);
+        padding: 26px 28px;
+        box-shadow: var(--sh);
+        margin-bottom: 14px;
     }
 
-    .detail-card-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        gap: 16px;
-        margin-bottom: 20px;
-        padding-bottom: 20px;
-        border-bottom: 1px solid var(--gray-100);
+    .jd-title {
+        font-size: 22px; font-weight: 800;
+        color: var(--head); line-height: 1.25;
+        letter-spacing: -0.4px; margin-bottom: 8px;
     }
 
-    .detail-title {
-        font-size: 24px;
-        font-weight: 800;
-        color: var(--navy);
-        line-height: 1.3;
-        letter-spacing: -0.4px;
-        margin-bottom: 6px;
+    .jd-company {
+        font-size: 14px; font-weight: 700;
+        color: var(--body); margin-bottom: 4px;
     }
 
-    .detail-company {
-        font-size: 15px;
-        color: var(--gray-800);
-        font-weight: 700;
+    .jd-loc {
+        font-size: 13px; color: var(--muted);
+        margin-bottom: 16px; font-weight: 500;
+        display: flex; align-items: center; gap: 4px;
     }
 
-    .detail-company-location {
-        font-size: 14px;
-        color: var(--gray-600);
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        margin-top: 4px;
-        font-weight: 500;
-    }
+    .jd-loc svg { width: 13px; height: 13px; }
 
-    .detail-company-location svg { width: 14px; height: 14px; opacity: 1; color: var(--gray-700); }
+    .jd-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
 
-    .detail-apply-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        padding: 10px 22px;
-        background: var(--gold);
-        color: var(--navy);
-        border-radius: 20px;
-        font-weight: 700;
-        font-size: 13.5px;
-        text-decoration: none;
-        transition: all var(--transition);
-        flex-shrink: 0;
-        box-shadow: 0 2px 8px rgba(201,168,76,0.25);
-    }
-
-    .detail-apply-btn:hover {
-        background: var(--gold-hover);
-        box-shadow: 0 6px 20px rgba(201,168,76,0.4);
-        transform: translateY(-1px);
-    }
-
-    .detail-apply-btn svg { width: 13px; height: 13px; }
-
+    /* Info grid */
     .info-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        grid-template-columns: repeat(2, 1fr);
         gap: 10px;
-        margin-bottom: 20px;
+        margin-top: 18px;
+        padding-top: 18px;
+        border-top: 1px solid var(--border);
     }
 
-    .info-item {
-        background: var(--gray-50);
-        border-radius: var(--radius-sm);
-        padding: 13px 15px;
-        border: 1px solid var(--gray-100);
+    .info-box {
+        background: var(--bg);
+        border-radius: var(--r-sm);
+        padding: 12px 14px;
+        border: 1px solid var(--border);
     }
 
     .info-label {
-        font-size: 10px;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.6px;
-        color: var(--gray-500);
-        margin-bottom: 5px;
-        display: flex;
-        justify-content: space-between;
+        font-size: 10px; font-weight: 700;
+        text-transform: uppercase; letter-spacing: 0.8px;
+        color: var(--muted); margin-bottom: 5px;
+        display: flex; justify-content: space-between;
     }
 
-    .info-label span {
-        font-family: var(--font-ar);
-        text-transform: none;
-        letter-spacing: 0;
-        font-weight: 600;
-        color: var(--gray-500);
-    }
+    .info-label span { font-family: var(--font-ar); text-transform: none; letter-spacing: 0; font-size: 10px; }
+    .info-value { font-size: 13.5px; font-weight: 700; color: var(--head); line-height: 1.3; }
 
-    .info-value {
-        font-size: 13.5px;
-        font-weight: 600;
-        color: var(--navy);
-    }
-
-    .section-title {
-        font-size: 14px;
-        font-weight: 700;
-        color: var(--navy);
-        margin-bottom: 14px;
-        padding-bottom: 10px;
-        border-bottom: 1px solid var(--gray-100);
-        display: flex;
-        justify-content: space-between;
-        letter-spacing: -0.2px;
-    }
-
-    .section-title span {
-        font-family: var(--font-ar);
-        font-weight: 500;
-        color: var(--gray-500);
-        font-size: 12.5px;
-        letter-spacing: 0;
-    }
-
-    .skills-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 7px;
-    }
-
-    .skill-tag {
-        background: var(--gray-50);
-        border: 1.5px solid var(--gray-200);
-        color: var(--gray-600);
-        font-size: 12.5px;
-        font-weight: 600;
-        padding: 5px 13px;
-        border-radius: 20px;
-        transition: all var(--transition);
-    }
-
-    .skill-tag:hover {
-        border-color: var(--gold);
-        color: var(--navy);
-        background: var(--gold-dim);
-    }
-
-    .description-text {
-        font-size: 14px;
-        line-height: 1.8;
-        color: var(--gray-600);
-        white-space: pre-line;
-    }
-
-    .sidebar-sticky { 
-        position: sticky; 
-        top: 86px; 
-        padding-bottom: 40px;
-    }
-
-    .sidebar-card {
+    /* Section card */
+    .sec-card {
         background: var(--white);
-        border-radius: var(--radius);
-        border: 1px solid var(--gray-200);
+        border-radius: var(--r);
+        border: 1px solid var(--border);
+        padding: 22px 26px;
+        box-shadow: var(--sh);
+        margin-bottom: 12px;
+    }
+
+    .sec-title {
+        font-size: 13px; font-weight: 800;
+        color: var(--head); text-transform: uppercase;
+        letter-spacing: 0.5px; margin-bottom: 14px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid var(--border);
+        display: flex; justify-content: space-between; align-items: center;
+    }
+
+    .sec-title .ar { font-family: var(--font-ar); text-transform: none; letter-spacing: 0; font-size: 12px; color: var(--muted); font-weight: 600; }
+
+    /* Skills */
+    .skills { display: flex; flex-wrap: wrap; gap: 7px; }
+
+    .skill {
+        background: var(--bg);
+        border: 1px solid var(--border);
+        color: var(--body);
+        font-size: 12.5px; font-weight: 600;
+        padding: 5px 12px; border-radius: 20px;
+        transition: all var(--t);
+    }
+
+    .skill:hover { border-color: var(--gold); color: var(--navy); background: var(--gold-pale); }
+
+    /* Description */
+    .desc {
+        font-size: 13.5px; line-height: 1.85;
+        color: var(--body); white-space: pre-line;
+    }
+
+    /* Apply sidebar */
+    .aside-sticky { position: sticky; top: 78px; }
+
+    .apply-card {
+        background: var(--navy);
+        border-radius: var(--r-lg);
         padding: 22px;
         margin-bottom: 14px;
-        box-shadow: var(--shadow-sm);
+        text-align: center;
     }
 
-    .sidebar-card-header {
-        font-size: 12px;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.6px;
-        color: var(--gray-600);
-        margin-bottom: 14px;
-        padding-bottom: 10px;
-        border-bottom: 1px solid var(--gray-100);
+    .apply-card h3 { font-size: 15px; font-weight: 800; color: #fff; margin-bottom: 4px; }
+    .apply-card p { font-size: 12px; color: rgba(255,255,255,0.4); font-weight: 500; margin-bottom: 16px; }
+    .apply-card p span { font-family: var(--font-ar); }
+
+    .apply-main {
+        display: block; width: 100%;
+        padding: 13px; text-align: center;
+        background: var(--gold); color: var(--navy);
+        border-radius: var(--r-sm);
+        font-weight: 800; font-size: 14px;
+        transition: all var(--t);
     }
 
-    .sidebar-row {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+    .apply-main:hover { background: var(--gold-h); box-shadow: 0 6px 20px rgba(200,168,75,0.3); }
+
+    .sum-card {
+        background: var(--white);
+        border-radius: var(--r);
+        border: 1px solid var(--border);
+        padding: 18px 20px;
+        margin-bottom: 12px;
+        box-shadow: var(--sh);
+    }
+
+    .sum-title {
+        font-size: 11px; font-weight: 700;
+        text-transform: uppercase; letter-spacing: 0.8px;
+        color: var(--muted); margin-bottom: 12px;
+        padding-bottom: 9px; border-bottom: 1px solid var(--border);
+    }
+
+    .sum-row {
+        display: flex; justify-content: space-between;
+        align-items: flex-start; gap: 10px;
         padding: 7px 0;
-        font-size: 13px;
-        border-bottom: 1px solid var(--gray-50);
+        border-bottom: 1px solid var(--bg);
+        font-size: 12.5px;
     }
 
-    .sidebar-row:last-child { border-bottom: none; }
-    .sidebar-row-label { color: var(--gray-600); font-weight: 500; }
-    .sidebar-row-value { color: var(--navy); font-weight: 600; text-align: right; max-width: 160px; }
+    .sum-row:last-child { border-bottom: none; }
+    .sum-label { color: var(--muted); font-weight: 500; flex-shrink: 0; }
+    .sum-val { color: var(--head); font-weight: 700; text-align: right; }
 
-    .related-link {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        padding: 9px 10px;
-        font-size: 13px;
-        color: var(--gray-700);
-        text-decoration: none;
-        font-weight: 500;
-        border-radius: var(--radius-sm);
-        transition: all var(--transition);
+    /* Mobile */
+    @media (max-width: 860px) {
+        .jd-wrap { grid-template-columns: 1fr; }
+        .aside-sticky { position: static; }
     }
 
-    .related-link:hover {
-        background: var(--gold-dim);
-        color: var(--navy);
+    @media (max-width: 640px) {
+        .jd-card { padding: 18px 16px; }
+        .jd-title { font-size: 18px; }
+        .sec-card { padding: 16px 16px; }
+        .apply-card { padding: 18px 16px; }
+        .info-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
     }
 
-    .related-link svg {
-        width: 14px;
-        height: 14px;
-        flex-shrink: 0;
-        opacity: 1;
-        color: var(--gray-700);
-    }
-
-    .related-link:hover svg {
-        color: var(--gold);
+    @media (max-width: 400px) {
+        .info-grid { grid-template-columns: 1fr; }
     }
 </style>
 {% endblock %}
 
 {% block content %}
-<div class="breadcrumb">
+<div class="bc">
     <a href="/">Home</a> ›
     <a href="/search?category={{ job.category }}">{{ job.category }}</a> ›
-    <span style="color: var(--navy); font-weight: 600;">{{ job.title[:50] }}{% if job.title|length > 50 %}...{% endif %}</span>
+    <span>{{ job.title[:50] }}{% if job.title|length > 50 %}...{% endif %}</span>
 </div>
 
-<div class="job-detail-layout">
+<div class="jd-wrap">
+    <!-- LEFT -->
     <div>
-        <div class="detail-card">
-            <div class="detail-card-header">
-                <div>
-                    <h1 class="detail-title">{{ job.title }}</h1>
-                    <div class="detail-company">{{ job.company }}</div>
-                    <div class="detail-company-location">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-                        {{ job.location }}
-                    </div>
-                </div>
-                <a href="/apply/{{ job.id }}" class="detail-apply-btn" target="_blank">
-                    Apply Now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
-                </a>
+        <!-- Header -->
+        <div class="jd-card">
+            <div class="jd-title">{{ job.title }}</div>
+            <div class="jd-company">{{ job.company }}</div>
+            <div class="jd-loc">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                {{ job.location }}
             </div>
-
-            <div class="job-card-tags" style="margin-bottom: 18px;">
-                <span class="tag tag-category">{{ job.category }}</span>
-                {% if job.salary and job.salary|trim != '' and 'kpi' not in job.salary.lower() %}
-                    {% if 'EGP' in job.salary or 'L.E' in job.salary or 'LE' in job.salary %}
-                        <span class="tag tag-salary">{{ job.salary }}</span>
-                    {% elif job.salary.replace(',','').replace(' ','').isdigit() %}
-                        <span class="tag tag-salary">{{ job.salary }} EGP</span>
-                    {% else %}
-                        <span class="tag tag-salary">{{ job.salary }}</span>
-                    {% endif %}
-                {% elif job.salary and 'confidential' in job.salary.lower() %}
-                    <span class="tag tag-salary">Confidential</span>
+            <div class="jd-tags">
+                <span class="tag t-cat">{{ job.category }}</span>
+                {% if job.salary and job.salary != 'Confidential' and job.salary|trim != '' %}
+                <span class="tag t-sal">{{ job.salary }}</span>
                 {% endif %}
                 {% if job.job_type and job.job_type|trim != '' and job.job_type != 'N/A' %}
-                <span class="tag tag-type">{{ job.job_type }}</span>
+                <span class="tag t-type">{{ job.job_type }}</span>
                 {% endif %}
                 {% if job.posted_date %}
-                <span class="tag tag-date">{{ job.posted_date }}</span>
+                <span class="tag t-date">{{ job.posted_date }}</span>
                 {% endif %}
             </div>
 
+            <!-- Mobile apply button -->
+            <a href="/apply/{{ job.id }}" class="apply-main" target="_blank" style="display:none;" id="mobile-apply">Apply Now on Wuzzuf →</a>
+
             <div class="info-grid">
-                <div class="info-item">
+                <div class="info-box">
                     <div class="info-label">Experience <span>الخبرة</span></div>
                     <div class="info-value">{{ job.experience or 'Not specified' }}</div>
                 </div>
-                <div class="info-item">
+                <div class="info-box">
                     <div class="info-label">Career Level <span>المستوى</span></div>
                     <div class="info-value">{{ job.career_level or 'Not specified' }}</div>
                 </div>
-                <div class="info-item">
+                <div class="info-box">
                     <div class="info-label">Education <span>التعليم</span></div>
                     <div class="info-value">{{ job.education or 'Not specified' }}</div>
                 </div>
-                <div class="info-item">
+                <div class="info-box">
                     <div class="info-label">Salary <span>الراتب</span></div>
-                    <div class="info-value">
-                        {% if job.salary and job.salary|trim != '' and 'kpi' not in job.salary.lower() %}
-                            {% if 'EGP' in job.salary or 'L.E' in job.salary or 'LE' in job.salary %}
-                                {{ job.salary }}
-                            {% elif job.salary.replace(',','').replace(' ','').isdigit() %}
-                                {{ job.salary }} EGP
-                            {% else %}
-                                {{ job.salary }}
-                            {% endif %}
-                        {% elif job.salary and 'confidential' in job.salary.lower() %}
-                            Confidential
-                        {% else %}
-                            Not specified
-                        {% endif %}
-                    </div>
+                    <div class="info-value">{{ job.salary or 'Not specified' }}</div>
                 </div>
             </div>
         </div>
 
+        <!-- Skills -->
         {% if job.skills and job.skills|trim != '' %}
-        <div class="detail-card">
-            <div class="section-title">Skills & Requirements <span>المهارات والمتطلبات</span></div>
-            <div class="skills-container">
+        <div class="sec-card">
+            <div class="sec-title">Skills Required <span class="ar">المهارات المطلوبة</span></div>
+            <div class="skills">
                 {% for skill in job.skills.split(',') %}
                 {% if skill.strip() %}
-                <span class="skill-tag">{{ skill.strip() }}</span>
+                <span class="skill">{{ skill.strip() }}</span>
                 {% endif %}
                 {% endfor %}
             </div>
         </div>
         {% endif %}
 
+        <!-- Description -->
         {% if job.description and job.description|trim != '' %}
-        <div class="detail-card">
-            <div class="section-title">Job Description <span>الوصف الوظيفي</span></div>
-            <div class="description-text">{{ job.description }}</div>
+        <div class="sec-card">
+            <div class="sec-title">Job Requirements <span class="ar">متطلبات الوظيفة</span></div>
+            <div class="desc">{{ job.description }}</div>
         </div>
         {% endif %}
 
-        <div class="ad-placeholder" style="margin-bottom: 16px;">
-            <strong>Advertisement</strong>
-            Your ad could be here
-        </div>
-
-        {% if job.description and job.description|trim != '' %}
-        <div class="ad-placeholder" style="margin-top: 0;">
-            <strong>Advertisement</strong>
-            Your ad could be here — after job description
-        </div>
-        {% endif %}
+        <div class="ad"><strong>Advertisement · إعلان</strong>Your ad here</div>
     </div>
 
-    <div class="sidebar-sticky">
-        <div class="sidebar-card" style="background: var(--navy); color: white; text-align: center;">
-            <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 4px; color: white;">Interested?</h3>
-            <p style="font-size: 12.5px; color: var(--gray-400); margin-bottom: 16px;">Apply directly on Wuzzuf</p>
-            <a href="/apply/{{ job.id }}" class="detail-apply-btn" target="_blank" style="display: block; text-align: center;">
-                Apply on Wuzzuf →
-            </a>
+    <!-- RIGHT -->
+    <div class="aside-sticky">
+        <div class="apply-card">
+            <h3>Ready to apply?</h3>
+            <p><span>هل أنت مستعد للتقديم؟</span></p>
+            <a href="/apply/{{ job.id }}" class="apply-main" target="_blank">Apply Now on Wuzzuf →</a>
         </div>
 
-        <div class="sidebar-card">
-            <div class="sidebar-card-header">Find Related Jobs</div>
-            <div>
-                <a href="/search?category={{ job.category }}" class="related-link">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
-                    All {{ job.category }} jobs
-                </a>
-                {% if job.location %}
-                <a href="/search?q={{ job.title.split(' ')[:3]|join(' ') }}&location={{ job.location.split(',')[0].strip() }}" class="related-link">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-                    {{ job.title.split(' ')[:3]|join(' ') }} in {{ job.location.split(',')[0].strip() }}
-                </a>
-                <a href="/search?q={{ job.title.split(' ')[:2]|join(' ') }}" class="related-link">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-                    {{ job.title.split(' ')[:3]|join(' ') }} in Egypt
-                </a>
-                {% endif %}
-                <a href="/search?q={{ job.category.split('/')[0].strip() }}" class="related-link">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-                    {{ job.category.split('/')[0].strip() }} jobs in Egypt
-                </a>
-                <a href="/search" class="related-link">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-                    All jobs in Egypt
-                </a>
-            </div>
-        </div>
-
-        <div class="sidebar-card">
-            <div class="sidebar-card-header">Job Overview</div>
-            <div class="sidebar-row">
-                <span class="sidebar-row-label">Category</span>
-                <span class="sidebar-row-value">{{ job.category }}</span>
-            </div>
-            <div class="sidebar-row">
-                <span class="sidebar-row-label">Location</span>
-                <span class="sidebar-row-value">{{ job.location }}</span>
-            </div>
-            {% if job.experience and job.experience|trim != '' and job.experience != 'N/A' %}
-            <div class="sidebar-row">
-                <span class="sidebar-row-label">Experience</span>
-                <span class="sidebar-row-value">{{ job.experience }}</span>
-            </div>
+        <div class="sum-card">
+            <div class="sum-title">Job Summary</div>
+            <div class="sum-row"><span class="sum-label">Category</span><span class="sum-val">{{ job.category }}</span></div>
+            <div class="sum-row"><span class="sum-label">Location</span><span class="sum-val">{{ job.location }}</span></div>
+            {% if job.experience and job.experience|trim != '' %}
+            <div class="sum-row"><span class="sum-label">Experience</span><span class="sum-val">{{ job.experience }}</span></div>
             {% endif %}
-            {% if job.career_level and job.career_level|trim != '' and job.career_level != 'N/A' %}
-            <div class="sidebar-row">
-                <span class="sidebar-row-label">Career Level</span>
-                <span class="sidebar-row-value">{{ job.career_level }}</span>
-            </div>
-            {% endif %}
-            {% if job.education and job.education|trim != '' and job.education != 'N/A' %}
-            <div class="sidebar-row">
-                <span class="sidebar-row-label">Education</span>
-                <span class="sidebar-row-value">{{ job.education }}</span>
-            </div>
+            {% if job.education and job.education|trim != '' %}
+            <div class="sum-row"><span class="sum-label">Education</span><span class="sum-val">{{ job.education }}</span></div>
             {% endif %}
             {% if job.posted_date %}
-            <div class="sidebar-row">
-                <span class="sidebar-row-label">Posted</span>
-                <span class="sidebar-row-value">{{ job.posted_date }}</span>
-            </div>
+            <div class="sum-row"><span class="sum-label">Posted</span><span class="sum-val">{{ job.posted_date }}</span></div>
             {% endif %}
         </div>
 
-        <a href="/" class="btn btn-secondary" style="width: 100%;">← Back to all jobs</a>
+        <a href="/search?category={{ job.category }}" class="btn btn-outline" style="width:100%; margin-bottom:8px;">More {{ job.category }} Jobs →</a>
+        <a href="/" class="btn btn-outline" style="width:100%;">← Back to Home</a>
     </div>
 </div>
+
+<script>
+    // Show mobile apply button inside header on small screens
+    if (window.innerWidth <= 860) {
+        document.getElementById('mobile-apply').style.display = 'block';
+        document.getElementById('mobile-apply').style.marginTop = '16px';
+    }
+</script>
 {% endblock %}
