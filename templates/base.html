@@ -613,8 +613,7 @@
 
         .cat-overlay-item:last-child { border-bottom: none; }
 
-        /* ── MOBILE AD ── */
-        .mobile-ad { display: none; text-align: center; margin: 10px 0; }
+        
 
         /* ── MOBILE ── */
         @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } .sidebar-desktop { display: none; } .mobile-cat-btn { display: flex; } .mobile-ad { display: block !important; } }
@@ -713,8 +712,8 @@
     {% block content %}{% endblock %}
 </div>
 
-<!-- Adsterra Mobile Banner -->
-<div class="mobile-ad">
+<!-- Adsterra Banner 320x50 -->
+<div style="text-align:center; margin:10px 0;">
     <script>
       atOptions = {'key':'397822ac95e63c1a331926eb353a041a','format':'iframe','height':50,'width':320,'params':{}};
     </script>
