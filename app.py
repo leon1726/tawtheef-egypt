@@ -3,13 +3,6 @@ import math
 import sqlite3
 from flask import Flask, render_template, request, redirect, g
 
-# Auto-migrate on first deploy
-if os.environ.get('DATABASE_URL') and not os.environ.get('MIGRATED'):
-    import subprocess
-    import sys
-    subprocess.run([sys.executable, 'scrapper.py', '--init-db', '--migrate', '--sqlite-path', 'jobs.db'])
-    os.environ['MIGRATED'] = '1'
-
 try:
     import psycopg2
     import psycopg2.extras
@@ -72,10 +65,8 @@ def query_one(sql, params=None):
 
 @app.route('/')
 def index():
-    # Latest jobs
     latest = query("SELECT * FROM jobs ORDER BY scraped_at DESC LIMIT 20")
     
-    # Hot jobs (most skills = most requirements = hotter roles)
     hot = query("""
         SELECT * FROM jobs 
         WHERE skills IS NOT NULL AND skills != '' 
@@ -83,16 +74,13 @@ def index():
         LIMIT 10
     """)
     
-    # Top paying (anything with salary not 'Confidential')
     top_paying = query("""
         SELECT * FROM jobs 
         WHERE salary IS NOT NULL 
         AND salary != 'Confidential' 
         AND salary != '' 
         AND salary != 'Not specified'
-        AND salary NOT LIKE '%net%'
-        AND salary NOT LIKE '%kpi%'
-        AND salary NOT LIKE '%kpis%'
+        AND LOWER(salary) NOT LIKE '%kpi%'
         ORDER BY scraped_at DESC 
         LIMIT 10
     """)
