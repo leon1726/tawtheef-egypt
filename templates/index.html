@@ -5,18 +5,93 @@
 <div class="hero">
     <div class="hero-bg"></div>
     <div class="hero-glow"></div>
+    <div class="hero-glow-left"></div>
+    <div class="hero-glow-right"></div>
+
+    <!-- Egypt skyline SVG silhouette -->
+    <svg class="hero-skyline" viewBox="0 0 1440 180" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" fill="white">
+        <!-- Pyramids -->
+        <polygon points="120,180 200,60 280,180"/>
+        <polygon points="260,180 320,90 380,180"/>
+        <polygon points="350,180 395,110 440,180"/>
+        <!-- Sphinx outline -->
+        <rect x="430" y="155" width="60" height="25" rx="4"/>
+        <rect x="480" y="140" width="25" height="40"/>
+        <!-- Minaret left -->
+        <rect x="580" y="100" width="18" height="80"/>
+        <rect x="575" y="95" width="28" height="12" rx="2"/>
+        <rect x="582" y="84" width="14" height="14" rx="7"/>
+        <!-- City buildings -->
+        <rect x="630" y="120" width="40" height="60"/>
+        <rect x="680" y="105" width="35" height="75"/>
+        <rect x="725" y="115" width="30" height="65"/>
+        <rect x="765" y="90" width="45" height="90"/>
+        <rect x="820" y="110" width="38" height="70"/>
+        <rect x="868" y="125" width="30" height="55"/>
+        <rect x="908" y="100" width="42" height="80"/>
+        <!-- Minaret right -->
+        <rect x="970" y="95" width="18" height="85"/>
+        <rect x="965" y="90" width="28" height="12" rx="2"/>
+        <rect x="972" y="78" width="14" height="14" rx="7"/>
+        <!-- More buildings -->
+        <rect x="1010" y="115" width="36" height="65"/>
+        <rect x="1056" y="105" width="30" height="75"/>
+        <rect x="1096" y="120" width="40" height="60"/>
+        <rect x="1146" y="95" width="35" height="85"/>
+        <rect x="1191" y="110" width="28" height="70"/>
+        <rect x="1229" y="130" width="50" height="50"/>
+        <rect x="1289" y="115" width="40" height="65"/>
+        <rect x="1339" y="100" width="35" height="80"/>
+    </svg>
+
     <div class="hero-inner">
         <div class="hero-badge">Egypt's #1 Job Board · لوحة وظائف مصر</div>
-        <h1>Find Your Next Job<br>in <em>Egypt</em></h1>
+        <h1>Find Your Next<br>Job in <em>Egypt</em></h1>
         <p class="hero-ar">ابحث عن فرصتك القادمة في مصر</p>
-        <form class="hero-search" action="/search" method="get">
-            <input type="text" name="q" placeholder="Job title, skill, or company...">
-            <button type="submit">Search →</button>
+        <p class="hero-sub">Thousands of opportunities. Find the right fit for your career.</p>
+
+        <form action="/search" method="get">
+            <div class="hero-search-wrap">
+                <div class="hero-search-field">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                    <input type="text" name="q" placeholder="Job title, skill, or company...">
+                </div>
+                <div class="hero-search-field">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                    <input type="text" name="location" placeholder="All Egypt">
+                </div>
+                <button type="submit" class="hero-search-btn">
+                    Search Jobs →
+                </button>
+            </div>
         </form>
-        <div class="hero-stats">
-            <div class="hstat"><strong>{{ total }}</strong>Jobs Listed</div>
-            <div class="hstat"><strong>26</strong>Categories</div>
-            <div class="hstat"><strong>🇪🇬</strong>Egypt Wide</div>
+
+        <div class="hero-chips">
+            <span class="hero-chips-label">Popular:</span>
+            <a href="/search?q=Software+Engineer" class="hero-chip">Software Engineer</a>
+            <a href="/search?q=Marketing" class="hero-chip">Marketing</a>
+            <a href="/search?q=Data+Analyst" class="hero-chip">Data Analyst</a>
+            <a href="/search?q=Design" class="hero-chip">Design</a>
+            <a href="/search?q=Financial+Analyst" class="hero-chip">Financial Analyst</a>
+            <a href="/search?q=Civil+Engineer" class="hero-chip">Civil Engineer</a>
+        </div>
+
+        <div class="hero-stats-bar">
+            <div class="hstat">
+                <div class="hstat-icon">💼</div>
+                <strong>{{ total }}</strong>
+                <span>Jobs Listed</span>
+            </div>
+            <div class="hstat">
+                <div class="hstat-icon">📂</div>
+                <strong>26</strong>
+                <span>Categories</span>
+            </div>
+            <div class="hstat">
+                <div class="hstat-icon">🇪🇬</div>
+                <strong>Egypt Wide</strong>
+                <span>Opportunities</span>
+            </div>
         </div>
     </div>
 </div>
@@ -51,7 +126,8 @@
             {% for job in hot_jobs %}
             <div class="job-card">
                 <div class="jc-top">
-                    <div>
+                    <div class="jc-logo">{{ job.company[0]|upper if job.company else '?' }}</div>
+                    <div class="jc-info">
                         <div class="jc-title"><a href="/job/{{ job.id }}">{{ job.title }}</a></div>
                         <div class="jc-company">{{ job.company }}</div>
                     </div>
@@ -103,7 +179,8 @@
             {% for job in top_paying %}
             <div class="job-card">
                 <div class="jc-top">
-                    <div>
+                    <div class="jc-logo">{{ job.company[0]|upper if job.company else '?' }}</div>
+                    <div class="jc-info">
                         <div class="jc-title"><a href="/job/{{ job.id }}">{{ job.title }}</a></div>
                         <div class="jc-company">{{ job.company }}</div>
                     </div>
@@ -152,8 +229,45 @@
             <div class="empty"><p>No salary data available yet.</p></div>
         {% endif %}
 
+        <!-- Top Companies Hiring -->
+        <div class="companies-section">
+            <div class="companies-header">
+                <div>
+                    <h2>Top Companies Hiring</h2>
+                    <p>Leading employers currently recruiting in Egypt</p>
+                </div>
+                <a href="/search" class="companies-viewall">View all companies →</a>
+            </div>
+            <div class="companies-row">
+                <a href="/search?q=talabat" class="company-chip">
+                    <span class="company-initial" style="background:#FF6600; color:#fff;">T</span>
+                    <span>talabat</span>
+                </a>
+                <a href="/search?q=etisalat" class="company-chip">
+                    <span class="company-initial" style="background:#00A651; color:#fff;">e&</span>
+                    <span>Etisalat e&</span>
+                </a>
+                <a href="/search?q=CIB" class="company-chip">
+                    <span class="company-initial" style="background:#003087; color:#fff;">CIB</span>
+                    <span>CIB Egypt</span>
+                </a>
+                <a href="/search?q=careem" class="company-chip">
+                    <span class="company-initial" style="background:#1DBF73; color:#fff;">C</span>
+                    <span>Careem</span>
+                </a>
+                <a href="/search?q=orange" class="company-chip">
+                    <span class="company-initial" style="background:#FF7900; color:#fff;">O</span>
+                    <span>Orange</span>
+                </a>
+                <a href="/search?q=concentrix" class="company-chip">
+                    <span class="company-initial" style="background:#6B21A8; color:#fff;">Cx</span>
+                    <span>Concentrix</span>
+                </a>
+            </div>
+        </div>
+
         <!-- Leaderboard Ad -->
-        <div class="ad" style="margin-top: 32px;">
+        <div class="ad" style="margin-top: 8px;">
             <script>atOptions={'key':'cc432909594119547953a02597dab708','format':'iframe','height':90,'width':728,'params':{}};</script>
             <script src="https://www.highperformanceformat.com/cc432909594119547953a02597dab708/invoke.js"></script>
         </div>
@@ -166,7 +280,8 @@
         {% for job in jobs %}
         <div class="job-card">
             <div class="jc-top">
-                <div>
+                <div class="jc-logo">{{ job.company[0]|upper if job.company else '?' }}</div>
+                <div class="jc-info">
                     <div class="jc-title"><a href="/job/{{ job.id }}">{{ job.title }}</a></div>
                     <div class="jc-company">{{ job.company }}</div>
                 </div>
@@ -209,4 +324,77 @@
         {% endfor %}
     </div>
 </div>
+
+<style>
+/* Companies section */
+.companies-section {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    padding: 22px 24px;
+    margin-top: 32px;
+    margin-bottom: 10px;
+    box-shadow: var(--sh);
+}
+
+.companies-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 18px;
+}
+
+.companies-header h2 {
+    font-size: 18px; font-weight: 800;
+    color: var(--head); letter-spacing: -0.3px;
+}
+
+.companies-header p {
+    font-size: 12.5px; color: var(--muted);
+    font-weight: 500; margin-top: 2px;
+}
+
+.companies-viewall {
+    font-size: 12.5px; font-weight: 700;
+    color: var(--gold);
+    white-space: nowrap;
+    transition: opacity var(--t);
+}
+
+.companies-viewall:hover { opacity: 0.7; }
+
+.companies-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.company-chip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    background: var(--bg);
+    border: 1.5px solid var(--border);
+    border-radius: var(--r-sm);
+    font-size: 13px; font-weight: 700;
+    color: var(--head);
+    transition: all var(--t);
+}
+
+.company-chip:hover {
+    border-color: var(--gold);
+    background: rgba(212,169,77,0.05);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.company-initial {
+    width: 30px; height: 30px;
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 900;
+    flex-shrink: 0;
+}
+</style>
 {% endblock %}
