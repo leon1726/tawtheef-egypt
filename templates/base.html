@@ -69,13 +69,12 @@
 
         /* ── NAVBAR ── */
         .nav {
-            background: rgba(7, 17, 32, 0.88);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            background: #ffffff;
             position: sticky;
             top: 0;
             z-index: 200;
-            border-bottom: 1px solid rgba(212,169,77,0.12);
+            border-bottom: 1px solid #e2e8f0;
+            box-shadow: 0 1px 8px rgba(0,0,0,0.06);
         }
 
         .nav-wrap {
@@ -103,9 +102,9 @@
         }
 
         .logo-words { line-height: 1.15; min-width: 0; }
-        .logo-en { font-size: 17px; font-weight: 800; color: #fff; letter-spacing: -0.3px; display: block; white-space: nowrap; }
+        .logo-en { font-size: 17px; font-weight: 800; color: var(--navy); letter-spacing: -0.3px; display: block; white-space: nowrap; }
         .logo-en span { color: var(--gold); }
-        .logo-ar { font-family: var(--font-ar); font-size: 11px; color: rgba(255,255,255,0.35); font-weight: 600; display: block; white-space: nowrap; }
+        .logo-ar { font-family: var(--font-ar); font-size: 11px; color: var(--muted); font-weight: 600; display: block; white-space: nowrap; }
 
         /* Nav links */
         .nav-links {
@@ -119,14 +118,14 @@
             padding: 8px 14px;
             font-size: 13.5px;
             font-weight: 600;
-            color: rgba(255,255,255,0.65);
+            color: var(--body);
             border-radius: var(--r-sm);
             transition: all var(--t);
             white-space: nowrap;
         }
 
-        .nav-link:hover { color: #fff; background: rgba(255,255,255,0.07); }
-        .nav-link.active { color: var(--gold); }
+        .nav-link:hover { color: var(--navy); background: var(--bg); }
+        .nav-link.active { color: var(--gold); font-weight: 700; }
 
         /* Nav right */
         .nav-right {
@@ -137,51 +136,11 @@
             flex-shrink: 0;
         }
 
-        .nav-post-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 8px 16px;
-            background: transparent;
-            color: rgba(255,255,255,0.8);
-            border: 1.5px solid rgba(255,255,255,0.2);
-            border-radius: var(--r-sm);
-            font-family: var(--font);
-            font-size: 13px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all var(--t);
-            white-space: nowrap;
-        }
+        .nav-post-btn { display: none !important; }
+        .nav-login { display: none !important; }
+        .nav-signup { display: none !important; }
 
-        .nav-post-btn:hover { border-color: var(--gold); color: var(--gold); }
-
-        .nav-login {
-            padding: 8px 14px;
-            font-size: 13px;
-            font-weight: 600;
-            color: rgba(255,255,255,0.65);
-            transition: color var(--t);
-            white-space: nowrap;
-        }
-
-        .nav-login:hover { color: #fff; }
-
-        .nav-signup {
-            padding: 9px 20px;
-            background: var(--gold);
-            color: var(--navy);
-            border-radius: var(--r-sm);
-            font-family: var(--font);
-            font-size: 13px;
-            font-weight: 800;
-            transition: all var(--t);
-            white-space: nowrap;
-        }
-
-        .nav-signup:hover { background: var(--gold-h); box-shadow: var(--sh-gold); }
-
-        /* Mobile nav search fallback */
+        /* Mobile nav search */
         .nav-form { display: none; }
 
         /* ── LAYOUT ── */
@@ -457,203 +416,7 @@
         .bc a { color: var(--body); font-weight: 600; }
         .bc a:hover { color: var(--gold); }
 
-        /* ── HERO ── */
-        .hero {
-            background: var(--navy);
-            padding: 72px 20px 60px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Dot grid texture */
-        .hero-bg {
-            position: absolute; inset: 0;
-            background-image: radial-gradient(rgba(212,169,77,0.06) 1px, transparent 1px);
-            background-size: 28px 28px;
-            pointer-events: none;
-        }
-
-        /* Egypt skyline silhouette */
-        .hero-skyline {
-            position: absolute;
-            bottom: 0; left: 0; right: 0;
-            height: 180px;
-            pointer-events: none;
-            opacity: 0.07;
-        }
-
-        /* Ambient glow effects */
-        .hero-glow {
-            position: absolute;
-            width: 600px; height: 350px;
-            background: radial-gradient(ellipse, rgba(212,169,77,0.09) 0%, transparent 65%);
-            top: 50%; left: 50%;
-            transform: translate(-50%, -60%);
-            pointer-events: none;
-        }
-
-        .hero-glow-left {
-            position: absolute;
-            width: 400px; height: 400px;
-            background: radial-gradient(ellipse, rgba(212,169,77,0.04) 0%, transparent 70%);
-            top: -100px; left: -100px;
-            pointer-events: none;
-        }
-
-        .hero-glow-right {
-            position: absolute;
-            width: 400px; height: 400px;
-            background: radial-gradient(ellipse, rgba(100,149,237,0.05) 0%, transparent 70%);
-            bottom: -80px; right: -80px;
-            pointer-events: none;
-        }
-
-        .hero-inner { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; }
-
-        .hero-badge {
-            display: inline-block;
-            font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;
-            color: var(--gold);
-            border: 1px solid rgba(212,169,77,0.3);
-            padding: 6px 16px; border-radius: 20px;
-            margin-bottom: 22px;
-            background: rgba(212,169,77,0.06);
-            backdrop-filter: blur(10px);
-        }
-
-        .hero h1 {
-            font-size: 48px; font-weight: 900;
-            color: #F8FAFC; line-height: 1.1; letter-spacing: -1.5px;
-            margin-bottom: 10px;
-        }
-
-        .hero h1 em { color: var(--gold); font-style: normal; }
-
-        .hero-ar {
-            font-family: var(--font-ar);
-            font-size: 16px; color: rgba(255,255,255,0.35);
-            font-weight: 600; margin-bottom: 10px;
-        }
-
-        .hero-sub {
-            font-size: 16px;
-            color: rgba(255,255,255,0.5);
-            font-weight: 500;
-            margin-bottom: 36px;
-            line-height: 1.6;
-        }
-
-        /* Hero search — glassmorphism floating bar */
-        .hero-search-wrap {
-            background: rgba(255,255,255,0.06);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: var(--r-xl);
-            padding: 8px;
-            max-width: 740px;
-            margin: 0 auto 16px;
-            display: flex;
-            gap: 0;
-        }
-
-        .hero-search-field {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px 16px;
-            border-right: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .hero-search-field:last-of-type { border-right: none; }
-
-        .hero-search-field svg {
-            width: 16px; height: 16px;
-            color: var(--muted); flex-shrink: 0;
-        }
-
-        .hero-search-field input {
-            flex: 1; min-width: 0;
-            background: transparent;
-            border: none;
-            font-family: var(--font);
-            font-size: 14px;
-            color: #fff;
-            outline: none;
-        }
-
-        .hero-search-field input::placeholder { color: rgba(255,255,255,0.35); }
-
-        .hero-search-btn {
-            padding: 12px 28px;
-            background: var(--gold); color: var(--navy);
-            border: none; border-radius: var(--r-lg);
-            font-family: var(--font); font-size: 14px; font-weight: 800;
-            cursor: pointer; flex-shrink: 0;
-            transition: all var(--t);
-            display: flex; align-items: center; gap: 6px;
-            white-space: nowrap;
-        }
-
-        .hero-search-btn:hover { background: var(--gold-h); box-shadow: var(--sh-gold); }
-
-        /* Popular chips */
-        .hero-chips {
-            display: flex; align-items: center; flex-wrap: wrap;
-            gap: 8px; justify-content: center;
-            margin-bottom: 40px;
-            font-size: 13px;
-        }
-
-        .hero-chips-label { color: rgba(255,255,255,0.35); font-weight: 500; font-size: 12px; }
-
-        .hero-chip {
-            padding: 5px 14px;
-            border: 1px solid rgba(255,255,255,0.12);
-            border-radius: 20px;
-            font-size: 12.5px; font-weight: 600;
-            color: rgba(255,255,255,0.6);
-            background: rgba(255,255,255,0.05);
-            transition: all var(--t);
-            cursor: pointer;
-        }
-
-        .hero-chip:hover { border-color: var(--gold-border); color: var(--gold); background: var(--gold-pale); }
-
-        /* Stats bar */
-        .hero-stats-bar {
-            background: rgba(255,255,255,0.04);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: var(--r-lg);
-            max-width: 600px;
-            margin: 0 auto;
-            display: flex;
-        }
-
-        .hstat {
-            flex: 1;
-            text-align: center;
-            padding: 16px 20px;
-            border-right: 1px solid rgba(255,255,255,0.08);
-        }
-
-        .hstat:last-child { border-right: none; }
-
-        .hstat-icon {
-            font-size: 20px; margin-bottom: 4px;
-        }
-
-        .hstat strong {
-            display: block;
-            color: var(--gold);
-            font-size: 22px; font-weight: 900; letter-spacing: -0.5px;
-            line-height: 1;
-            margin-bottom: 3px;
-        }
-
-        .hstat span { color: rgba(255,255,255,0.4); font-size: 11.5px; font-weight: 500; }
+        /* ── HERO — defined per-page in index.html ── */
 
         /* ── FOOTER ── */
         footer {
@@ -777,17 +540,17 @@
             }
             .nav-form input {
                 flex: 1; min-width: 0;
-                background: rgba(255,255,255,0.08);
-                border: 1.5px solid rgba(255,255,255,0.15);
+                background: var(--bg);
+                border: 1.5px solid var(--border);
                 border-radius: var(--r-sm);
                 padding: 8px 12px;
                 font-family: var(--font);
                 font-size: 13px;
-                color: #fff;
+                color: var(--head);
                 outline: none;
                 transition: border-color var(--t);
             }
-            .nav-form input::placeholder { color: rgba(255,255,255,0.3); }
+            .nav-form input::placeholder { color: var(--muted); }
             .nav-form input:focus { border-color: var(--gold); }
             .nav-btn {
                 padding: 8px 14px;
@@ -809,18 +572,6 @@
 
         /* ── MOBILE ── */
         @media (max-width: 640px) {
-            .hero { padding: 48px 16px 40px; }
-            .hero h1 { font-size: 30px; letter-spacing: -0.8px; }
-            .hero-ar { font-size: 14px; }
-            .hero-sub { font-size: 14px; }
-            .hero-search-wrap { flex-direction: column; border-radius: var(--r-lg); gap: 4px; padding: 10px; }
-            .hero-search-field { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); padding: 8px 10px; }
-            .hero-search-field:last-of-type { border-bottom: none; }
-            .hero-search-btn { width: 100%; justify-content: center; padding: 12px; }
-            .hero-stats-bar { flex-direction: column; }
-            .hstat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 12px; }
-            .hstat:last-child { border-bottom: none; }
-            .hero-chips { display: none; }
             .page { padding: 16px 0 60px; }
             .ph h1 { font-size: 19px; }
             .job-card { padding: 14px 16px; }
