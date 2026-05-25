@@ -1,4 +1,9 @@
 {% extends 'base.html' %}
+{% block extra_css %}
+<style>
+/* Paste Claude's entire <style> block here — everything from the CSS section he gave you */
+</style>
+{% endblock %}
 {% block title %}Tawtheef Egypt | توظيف مصر — Latest Jobs{% endblock %}
 
 {% block hero %}
@@ -7,21 +12,454 @@
     <div class="hero-glow"></div>
     <div class="hero-glow-right"></div>
 
-    <svg class="hero-skyline" viewBox="0 0 800 260" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <polygon points="50,260 120,80 190,260" fill="rgba(255,255,255,0.05)"/>
-        <polygon points="80,260 140,100 200,260" fill="rgba(255,255,255,0.04)"/>
-        <polygon points="200,260 260,110 320,260" fill="rgba(255,255,255,0.05)"/>
-        <rect x="400" y="90" width="12" height="170" fill="rgba(255,255,255,0.05)" rx="3"/>
-        <ellipse cx="406" cy="80" rx="12" ry="9" fill="rgba(255,255,255,0.06)"/>
-        <rect x="390" y="120" width="20" height="3" fill="rgba(255,255,255,0.05)"/>
-        <rect x="390" y="155" width="20" height="3" fill="rgba(255,255,255,0.05)"/>
-        <rect x="460" y="130" width="40" height="130" fill="rgba(255,255,255,0.04)" rx="2"/>
-        <rect x="510" y="110" width="35" height="150" fill="rgba(255,255,255,0.05)" rx="2"/>
-        <rect x="560" y="140" width="30" height="120" fill="rgba(255,255,255,0.04)" rx="2"/>
-        <rect x="600" y="100" width="45" height="160" fill="rgba(255,255,255,0.05)" rx="2"/>
-        <rect x="660" y="120" width="35" height="140" fill="rgba(255,255,255,0.04)" rx="2"/>
-        <rect x="720" y="95" width="40" height="165" fill="rgba(255,255,255,0.05)" rx="2"/>
-    </svg>
+<!--
+  ═══════════════════════════════════════════════
+  1. REPLACE THE OLD <svg class="hero-skyline">
+     BLOCK IN index.html WITH THIS:
+  ═══════════════════════════════════════════════
+-->
+
+<svg class="hero-skyline" viewBox="0 0 900 420" preserveAspectRatio="xMaxYMax meet" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Fade mask: right side solid, left side fades to transparent -->
+    <linearGradient id="skyFade" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#0b1724;stop-opacity:1"/>
+      <stop offset="35%" style="stop-color:#0b1724;stop-opacity:0.3"/>
+      <stop offset="60%" style="stop-color:#0b1724;stop-opacity:0"/>
+    </linearGradient>
+    <mask id="skyMask">
+      <rect width="900" height="420" fill="url(#skyFade)"/>
+    </mask>
+  </defs>
+
+  <g mask="url(#skyMask)" fill="rgba(255,255,255,0.85)">
+
+    <!-- ═══ GIZA PYRAMIDS (right-center area) ═══ -->
+    <!-- Great Pyramid of Giza (largest, leftmost of trio) -->
+    <polygon points="310,420 490,160 670,420" />
+    <!-- Pyramid of Khafre (slightly smaller, middle) -->
+    <polygon points="490,420 635,205 780,420" />
+    <!-- Pyramid of Menkaure (smallest, rightmost) -->
+    <polygon points="630,420 730,260 830,420" />
+
+    <!-- Desert base plateau -->
+    <rect x="280" y="415" width="620" height="10" rx="2"/>
+
+    <!-- ═══ CAIRO TOWER (right side, foreground) ═══ -->
+    <!-- Tower base/pedestal -->
+    <path d="M745,420 L745,385 L735,375 L735,365 L755,365 L755,375 L765,385 L765,420 Z"/>
+
+    <!-- Tower shaft — tapered lotus-lattice column -->
+    <!-- Main shaft body -->
+    <path d="
+      M738,368
+      C736,340 730,300 728,250
+      C726,200 724,160 726,130
+      C727,115 730,105 740,100
+      C750,105 753,115 754,130
+      C756,160 754,200 752,250
+      C750,300 744,340 742,368
+      Z
+    "/>
+
+    <!-- Lattice cross-hatching on shaft -->
+    <line x1="730" y1="340" x2="750" y2="340" stroke="rgba(0,0,0,0.3)" stroke-width="1.5"/>
+    <line x1="729" y1="310" x2="751" y2="310" stroke="rgba(0,0,0,0.3)" stroke-width="1.5"/>
+    <line x1="728" y1="280" x2="752" y2="280" stroke="rgba(0,0,0,0.3)" stroke-width="1.5"/>
+    <line x1="727" y1="250" x2="753" y2="250" stroke="rgba(0,0,0,0.3)" stroke-width="1.5"/>
+    <line x1="727" y1="220" x2="753" y2="220" stroke="rgba(0,0,0,0.3)" stroke-width="1.5"/>
+    <line x1="728" y1="190" x2="752" y2="190" stroke="rgba(0,0,0,0.3)" stroke-width="1.5"/>
+    <line x1="729" y1="162" x2="751" y2="162" stroke="rgba(0,0,0,0.3)" stroke-width="1.5"/>
+    <line x1="730" y1="138" x2="750" y2="138" stroke="rgba(0,0,0,0.3)" stroke-width="1.5"/>
+
+    <!-- Diagonal lattice lines -->
+    <line x1="729" y1="368" x2="752" y2="100" stroke="rgba(0,0,0,0.2)" stroke-width="1"/>
+    <line x1="752" y1="368" x2="729" y2="100" stroke="rgba(0,0,0,0.2)" stroke-width="1"/>
+
+    <!-- Observation deck neck (narrow connector) -->
+    <rect x="737" y="92" width="6" height="20" rx="2"/>
+
+    <!-- Observation deck — flared circular platform (Cairo Tower's iconic crown) -->
+    <!-- Bottom flare of deck -->
+    <path d="M710,95 C710,88 720,82 740,80 C760,82 770,88 770,95 L770,98 C770,104 760,108 740,108 C720,108 710,104 710,98 Z"/>
+
+    <!-- Main observation ring -->
+    <ellipse cx="740" cy="80" rx="34" ry="10"/>
+
+    <!-- Upper observation level -->
+    <path d="M718,75 C718,68 728,63 740,62 C752,63 762,68 762,75 L762,78 C762,84 752,87 740,87 C728,87 718,84 718,78 Z"/>
+
+    <!-- Top antenna -->
+    <rect x="739" y="40" width="2" height="24" rx="1"/>
+    <!-- Antenna tip ball -->
+    <circle cx="740" cy="38" r="3"/>
+
+    <!-- Lotus petal details on deck (decorative) -->
+    <path d="M710,96 C705,90 708,82 712,80" stroke="rgba(0,0,0,0.2)" stroke-width="1" fill="none"/>
+    <path d="M770,96 C775,90 772,82 768,80" stroke="rgba(0,0,0,0.2)" stroke-width="1" fill="none"/>
+
+    <!-- ═══ CITY BUILDINGS (background, left of tower) ═══ -->
+    <!-- Building cluster background -->
+    <rect x="560" y="310" width="28" height="110" rx="2"/>
+    <rect x="592" y="290" width="22" height="130" rx="2"/>
+    <rect x="618" y="320" width="18" height="100" rx="2"/>
+    <rect x="640" y="300" width="24" height="120" rx="2"/>
+    <rect x="668" y="330" width="20" height="90" rx="2"/>
+    <rect x="692" y="315" width="22" height="105" rx="2"/>
+    <rect x="718" y="340" width="16" height="80" rx="2"/>
+
+    <!-- Window details on buildings -->
+    <rect x="565" y="320" width="4" height="4" rx="0.5" fill="rgba(0,0,0,0.2)"/>
+    <rect x="573" y="320" width="4" height="4" rx="0.5" fill="rgba(0,0,0,0.2)"/>
+    <rect x="565" y="330" width="4" height="4" rx="0.5" fill="rgba(0,0,0,0.2)"/>
+    <rect x="573" y="330" width="4" height="4" rx="0.5" fill="rgba(0,0,0,0.2)"/>
+    <rect x="596" y="300" width="4" height="4" rx="0.5" fill="rgba(0,0,0,0.2)"/>
+    <rect x="604" y="300" width="4" height="4" rx="0.5" fill="rgba(0,0,0,0.2)"/>
+    <rect x="596" y="312" width="4" height="4" rx="0.5" fill="rgba(0,0,0,0.2)"/>
+    <rect x="604" y="312" width="4" height="4" rx="0.5" fill="rgba(0,0,0,0.2)"/>
+    <rect x="645" y="310" width="4" height="4" rx="0.5" fill="rgba(0,0,0,0.2)"/>
+    <rect x="653" y="310" width="4" height="4" rx="0.5" fill="rgba(0,0,0,0.2)"/>
+    <rect x="645" y="322" width="4" height="4" rx="0.5" fill="rgba(0,0,0,0.2)"/>
+    <rect x="653" y="322" width="4" height="4" rx="0.5" fill="rgba(0,0,0,0.2)"/>
+
+    <!-- Far background buildings (very subtle) -->
+    <rect x="480" y="340" width="16" height="80" rx="1" fill-opacity="0.4"/>
+    <rect x="500" y="325" width="20" height="95" rx="1" fill-opacity="0.4"/>
+    <rect x="524" y="335" width="14" height="85" rx="1" fill-opacity="0.4"/>
+    <rect x="542" y="315" width="18" height="105" rx="1" fill-opacity="0.4"/>
+
+    <!-- Nile River (thin reflective strip) -->
+    <path d="M280,400 C350,397 420,403 490,400 C560,397 630,403 700,400 L900,402 L900,410 L280,410 Z" fill-opacity="0.15"/>
+
+  </g>
+</svg>
+
+
+<!--
+  ═══════════════════════════════════════════════
+  2. ADD THIS CSS to your index.html {% block extra_css %}
+     (or paste into base.html <style> block)
+  ═══════════════════════════════════════════════
+-->
+
+<style>
+/* ── Hero overrides ── */
+.hero {
+    background: linear-gradient(135deg, #0b1724 0%, #0f1f38 60%, #0d1a2e 100%);
+    padding: 56px 24px 48px;
+    text-align: left;
+    overflow: hidden;
+    position: relative;
+}
+
+.hero-skyline {
+    position: absolute !important;
+    bottom: 0 !important;
+    right: 0 !important;
+    width: 55vw !important;
+    height: auto !important;
+    max-height: 95% !important;
+    pointer-events: none !important;
+    z-index: 0 !important;
+    opacity: 0.18 !important;
+}
+
+/* Gold glow blob */
+.hero-glow {
+    position: absolute;
+    width: 420px; height: 320px;
+    background: radial-gradient(ellipse, rgba(200,168,75,0.18) 0%, transparent 70%);
+    top: 20%; left: -60px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Right side warm glow (behind pyramids) */
+.hero-glow-right {
+    position: absolute;
+    width: 300px; height: 300px;
+    background: radial-gradient(ellipse, rgba(200,140,40,0.12) 0%, transparent 70%);
+    bottom: 0; right: 15%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    margin: 0;
+    text-align: left;
+}
+
+.hero h1 {
+    font-size: 44px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.hero h1 em { color: var(--gold); font-style: normal; }
+
+.hero-sub {
+    font-size: 15px;
+    color: rgba(255,255,255,0.55);
+    font-weight: 400;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.hero-ar {
+    font-family: var(--font-ar);
+    font-size: 14px;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 6px;
+    text-align: left;
+}
+
+/* Feature badges row */
+.hero-feature-badges {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.hero-feature-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.7);
+}
+
+.hero-feature-badge span { color: var(--gold); font-size: 8px; }
+
+/* ── GLASSMORPHIC SEARCH CAPSULE ── */
+.hero-search-wrap {
+    display: flex;
+    align-items: center;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(56, 189, 248, 0.18);
+    border-radius: 14px;
+    padding: 6px 6px 6px 6px;
+    gap: 0;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.04) inset;
+    margin-bottom: 18px;
+    max-width: 780px;
+}
+
+.hero-search-field {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    padding: 10px 16px;
+    background: rgba(15, 23, 42, 0.5);
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.06);
+    margin: 2px;
+}
+
+.hero-search-field svg {
+    width: 15px;
+    height: 15px;
+    color: rgba(255,255,255,0.4);
+    flex-shrink: 0;
+}
+
+.hero-search-field input,
+.hero-search-field select {
+    background: none;
+    border: none;
+    outline: none;
+    font-family: var(--font);
+    font-size: 13.5px;
+    color: #fff;
+    width: 100%;
+    cursor: pointer;
+}
+
+.hero-search-field input::placeholder { color: rgba(255,255,255,0.35); }
+
+.hero-search-field select option { background: #0f1f38; color: #fff; }
+
+.hero-search-divider {
+    width: 1px;
+    height: 36px;
+    background: rgba(255,255,255,0.08);
+    flex-shrink: 0;
+    margin: 0 2px;
+}
+
+.hero-search-btn {
+    padding: 11px 22px;
+    background: var(--gold);
+    color: var(--navy);
+    border: none;
+    border-radius: 10px;
+    font-family: var(--font);
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all 0.18s ease;
+    letter-spacing: -0.2px;
+    margin: 2px;
+    white-space: nowrap;
+}
+
+.hero-search-btn:hover {
+    background: var(--gold-h);
+    box-shadow: 0 4px 20px rgba(200,168,75,0.4);
+}
+
+/* Popular chips */
+.hero-chips {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+}
+
+.hero-chips-label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+    font-weight: 500;
+    flex-shrink: 0;
+}
+
+.hero-chip {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 4px 13px;
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.65);
+    transition: all 0.15s;
+    cursor: pointer;
+}
+
+.hero-chip:hover {
+    background: rgba(200,168,75,0.15);
+    border-color: rgba(200,168,75,0.3);
+    color: var(--gold);
+}
+
+/* ── STATS BAR ── */
+.hero-stats-bar {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 12px;
+    overflow: hidden;
+    max-width: 560px;
+}
+
+.hstat {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 24px;
+    flex: 1;
+    border-right: 1px solid rgba(255,255,255,0.07);
+    text-align: left;
+}
+
+.hstat:last-child { border-right: none; }
+
+.hstat svg { color: var(--gold); flex-shrink: 0; }
+
+.hstat strong {
+    display: block;
+    font-size: 18px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.5px;
+    line-height: 1;
+}
+
+.hstat span {
+    display: block;
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+    font-weight: 500;
+    margin-top: 2px;
+}
+
+/* ── MOBILE HERO ── */
+@media (max-width: 640px) {
+    .hero { padding: 32px 16px 28px; text-align: center; }
+    .hero-inner { text-align: center; }
+    .hero h1 { font-size: 26px; letter-spacing: -0.5px; text-align: center; }
+    .hero-sub, .hero-ar { text-align: center; }
+    .hero-feature-badges { justify-content: center; }
+    .hero-search-wrap {
+        flex-direction: column;
+        border-radius: 12px;
+        padding: 8px;
+        gap: 4px;
+    }
+    .hero-search-field { width: 100%; margin: 0; }
+    .hero-search-divider { display: none; }
+    .hero-search-btn { width: 100%; margin: 2px 0 0; padding: 13px; border-radius: 8px; }
+    .hero-chips { justify-content: center; }
+    .hero-chips-label { width: 100%; text-align: center; }
+    .hero-stats-bar { flex-direction: row; max-width: 100%; }
+    .hstat { padding: 10px 14px; }
+    .hstat strong { font-size: 15px; }
+    .hstat svg { width: 16px; height: 16px; }
+    .hero-skyline { opacity: 0.08 !important; }
+
+    /* job card logo on mobile */
+    .jc-logo { width: 34px; height: 34px; font-size: 13px; }
+}
+
+@media (max-width: 400px) {
+    .hero-stats-bar { flex-direction: column; }
+    .hstat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); width: 100%; }
+    .hstat:last-child { border-bottom: none; }
+}
+
+/* ── JOB CARD LOGO ── */
+.jc-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-3) 100%);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 15px;
+    color: var(--gold);
+    flex-shrink: 0;
+}
+
+.jc-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 7px;
+}
+
+.jc-info { flex: 1; min-width: 0; }
+</style>
 
     <div class="hero-inner">
         <div class="hero-badge">Egypt's #1 Job Board · لوحة وظائف مصر</div>
