@@ -420,7 +420,11 @@
         /* ── HERO ── */
         .hero {
             background: var(--navy);
-            padding: 70px 20px 80;
+            background-image: url("{{ url_for('static', filename='cairo-skyline.png') }}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 100px 20px 120px;
             text-align: center;
             position: relative;
             overflow: hidden;
