@@ -439,15 +439,15 @@
         }
 
         .hero-glow-right {
-            position: absolute;
-            top: 50%;
-            right: 0;
-            transform: translateY(-50%);
-            width: 45vw;
-            height: 100%;
-            background: radial-gradient(circle at right center, rgba(212,169,77,0.15) 0%, transparent 70%);
-            pointer-events: none;
-            z-index: 1;
+            position: absolute !important;
+            bottom: -10% !important;
+            right: -10% !important;
+            width: 55vw !important;
+            height: 65vh !important;
+            background: radial-gradient(circle, rgba(234, 179, 8, 0.12) 0%, rgba(234, 179, 8, 0.04) 45%, rgba(234, 179, 8, 0) 70%) !important;
+            filter: blur(90px) !important;
+            z-index: 0 !important;
+            pointer-events: none !important;
         }
 
         .hero-skyline {
