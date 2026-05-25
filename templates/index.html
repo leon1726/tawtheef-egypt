@@ -2,322 +2,95 @@
 {% block title %}Tawtheef Egypt | توظيف مصر — Latest Jobs{% endblock %}
 
 {% block hero %}
-<style>
-.hero {
-    background: #071120;
-    padding: 0;
-    text-align: left;
-    position: relative;
-    overflow: hidden;
-    min-height: 420px;
-    display: flex;
-    align-items: stretch;
-}
-
-/* Subtle dot grid */
-.hero-bg {
-    position: absolute; inset: 0;
-    background-image: radial-gradient(rgba(212,169,77,0.05) 1px, transparent 1px);
-    background-size: 30px 30px;
-    pointer-events: none;
-}
-
-/* Gold glow top-left */
-.hero-glow {
-    position: absolute;
-    width: 500px; height: 500px;
-    background: radial-gradient(ellipse, rgba(212,169,77,0.10) 0%, transparent 60%);
-    top: -150px; left: -100px;
-    pointer-events: none;
-}
-
-/* Subtle blue glow bottom-right */
-.hero-glow-right {
-    position: absolute;
-    width: 450px; height: 450px;
-    background: radial-gradient(ellipse, rgba(70,130,220,0.06) 0%, transparent 65%);
-    bottom: -150px; right: 200px;
-    pointer-events: none;
-}
-
-/* Egypt illustration — right side */
-.hero-illustration {
-    position: absolute;
-    right: 0; bottom: 0; top: 0;
-    width: 45%;
-    pointer-events: none;
-    overflow: hidden;
-}
-
-.hero-illustration svg {
-    position: absolute;
-    right: -20px; bottom: 0;
-    height: 100%;
-    width: auto;
-    opacity: 0.18;
-}
-
-/* Content */
-.hero-inner {
-    position: relative;
-    z-index: 2;
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 52px 28px 48px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.hero-content {
-    max-width: 620px;
-}
-
-.hero-badge {
-    display: inline-flex; align-items: center; gap: 6px;
-    font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
-    color: var(--gold);
-    border: 1px solid rgba(212,169,77,0.28);
-    padding: 5px 14px; border-radius: 20px;
-    margin-bottom: 18px;
-    background: rgba(212,169,77,0.06);
-}
-
-.hero h1 {
-    font-size: 40px; font-weight: 900;
-    color: #F8FAFC; line-height: 1.1; letter-spacing: -1.2px;
-    margin-bottom: 8px;
-}
-
-.hero h1 em { color: var(--gold); font-style: normal; }
-
-.hero-sub {
-    font-size: 15px;
-    color: rgba(255,255,255,0.45);
-    font-weight: 500;
-    margin-bottom: 4px;
-}
-
-.hero-ar {
-    font-family: var(--font-ar);
-    font-size: 14px; color: rgba(255,255,255,0.3);
-    font-weight: 600; margin-bottom: 28px;
-}
-
-/* Search bar */
-.hero-search-wrap {
-    background: rgba(255,255,255,0.07);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 12px;
-    padding: 6px;
-    max-width: 600px;
-    display: flex;
-    gap: 0;
-    margin-bottom: 14px;
-}
-
-.hero-search-field {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 14px;
-    border-right: 1px solid rgba(255,255,255,0.1);
-}
-
-.hero-search-field:last-of-type { border-right: none; }
-
-.hero-search-field svg {
-    width: 14px; height: 14px;
-    color: rgba(255,255,255,0.35); flex-shrink: 0;
-}
-
-.hero-search-field input {
-    flex: 1; min-width: 0;
-    background: transparent;
-    border: none;
-    font-family: var(--font);
-    font-size: 13px;
-    color: #fff;
-    outline: none;
-}
-
-.hero-search-field input::placeholder { color: rgba(255,255,255,0.3); }
-
-.hero-search-btn {
-    padding: 10px 22px;
-    background: var(--gold); color: var(--navy);
-    border: none; border-radius: 8px;
-    font-family: var(--font); font-size: 13px; font-weight: 800;
-    cursor: pointer; flex-shrink: 0;
-    transition: all var(--t);
-    white-space: nowrap;
-}
-
-.hero-search-btn:hover { background: var(--gold-h); box-shadow: var(--sh-gold); }
-
-/* Chips */
-.hero-chips {
-    display: flex; align-items: center; flex-wrap: wrap;
-    gap: 6px;
-    margin-bottom: 32px;
-    font-size: 12px;
-}
-
-.hero-chips-label { color: rgba(255,255,255,0.3); font-weight: 500; }
-
-.hero-chip {
-    padding: 4px 12px;
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 20px;
-    font-size: 12px; font-weight: 600;
-    color: rgba(255,255,255,0.55);
-    background: rgba(255,255,255,0.04);
-    transition: all var(--t);
-    cursor: pointer;
-}
-
-.hero-chip:hover { border-color: rgba(212,169,77,0.4); color: var(--gold); }
-
-/* Stats */
-.hero-stats-bar {
-    display: inline-flex;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 12px;
-    overflow: hidden;
-}
-
-.hstat {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 20px;
-    border-right: 1px solid rgba(255,255,255,0.08);
-}
-
-.hstat:last-child { border-right: none; }
-
-.hstat-icon { font-size: 18px; }
-
-.hstat strong {
-    display: block;
-    color: var(--gold);
-    font-size: 16px; font-weight: 900; letter-spacing: -0.3px;
-    line-height: 1;
-}
-
-.hstat span { color: rgba(255,255,255,0.4); font-size: 11px; font-weight: 500; }
-
-/* Mobile hero */
-@media (max-width: 640px) {
-    .hero { min-height: auto; }
-    .hero-inner { padding: 36px 16px 32px; }
-    .hero h1 { font-size: 26px; letter-spacing: -0.6px; }
-    .hero-sub { font-size: 13px; }
-    .hero-search-wrap { flex-direction: column; gap: 2px; padding: 8px; }
-    .hero-search-field { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 8px 10px; }
-    .hero-search-field:last-of-type { border-bottom: none; }
-    .hero-search-btn { width: 100%; justify-content: center; text-align: center; padding: 10px; }
-    .hero-stats-bar { flex-direction: column; width: 100%; }
-    .hstat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
-    .hstat:last-child { border-bottom: none; }
-    .hero-illustration { display: none; }
-    .hero-chips { display: none; }
-}
-</style>
-
 <div class="hero">
     <div class="hero-bg"></div>
     <div class="hero-glow"></div>
+    <div class="hero-glow-left"></div>
     <div class="hero-glow-right"></div>
 
-    <!-- Egypt illustration: pyramids + Cairo Tower on the right -->
-    <div class="hero-illustration">
-        <svg viewBox="0 0 600 500" xmlns="http://www.w3.org/2000/svg" fill="white">
-            <!-- Pyramid 1 (large) -->
-            <polygon points="80,480 250,120 420,480"/>
-            <!-- Pyramid 2 (medium) -->
-            <polygon points="340,480 470,200 600,480"/>
-            <!-- Pyramid 3 (small, front left) -->
-            <polygon points="10,480 90,320 170,480"/>
-            <!-- Sphinx body -->
-            <rect x="170" y="430" width="130" height="50" rx="8"/>
-            <rect x="270" y="395" width="50" height="85" rx="6"/>
-            <!-- Head of sphinx -->
-            <ellipse cx="300" cy="385" rx="32" ry="38"/>
-            <!-- Sphinx headdress -->
-            <rect x="275" y="350" width="50" height="55" rx="4" opacity="0.6"/>
-            <!-- Cairo Tower (right side, tall slim) -->
-            <rect x="520" y="60" width="22" height="420"/>
-            <rect x="510" y="55" width="42" height="30" rx="4"/>
-            <rect x="516" y="40" width="28" height="20" rx="3"/>
-            <circle cx="531" cy="32" r="14"/>
-            <!-- Tower base platform -->
-            <rect x="505" y="440" width="52" height="16" rx="3"/>
-            <rect x="500" y="454" width="62" height="26" rx="4"/>
-            <!-- Tower lattice detail -->
-            <rect x="524" y="100" width="14" height="300" opacity="0.4"/>
-            <!-- Tower observation deck -->
-            <rect x="508" y="200" width="46" height="18" rx="3"/>
-            <!-- City buildings (middle ground) -->
-            <rect x="420" y="340" width="45" height="140"/>
-            <rect x="455" y="310" width="38" height="170"/>
-            <rect x="380" y="370" width="42" height="110"/>
-            <!-- Building windows (subtle) -->
-            <rect x="428" y="355" width="8" height="8" opacity="0.4"/>
-            <rect x="444" y="355" width="8" height="8" opacity="0.4"/>
-            <rect x="428" y="375" width="8" height="8" opacity="0.4"/>
-            <rect x="444" y="375" width="8" height="8" opacity="0.4"/>
-        </svg>
-    </div>
+    <!-- Egypt skyline SVG silhouette -->
+    <svg class="hero-skyline" viewBox="0 0 1440 180" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" fill="white">
+        <!-- Pyramids -->
+        <polygon points="120,180 200,60 280,180"/>
+        <polygon points="260,180 320,90 380,180"/>
+        <polygon points="350,180 395,110 440,180"/>
+        <!-- Sphinx outline -->
+        <rect x="430" y="155" width="60" height="25" rx="4"/>
+        <rect x="480" y="140" width="25" height="40"/>
+        <!-- Minaret left -->
+        <rect x="580" y="100" width="18" height="80"/>
+        <rect x="575" y="95" width="28" height="12" rx="2"/>
+        <rect x="582" y="84" width="14" height="14" rx="7"/>
+        <!-- City buildings -->
+        <rect x="630" y="120" width="40" height="60"/>
+        <rect x="680" y="105" width="35" height="75"/>
+        <rect x="725" y="115" width="30" height="65"/>
+        <rect x="765" y="90" width="45" height="90"/>
+        <rect x="820" y="110" width="38" height="70"/>
+        <rect x="868" y="125" width="30" height="55"/>
+        <rect x="908" y="100" width="42" height="80"/>
+        <!-- Minaret right -->
+        <rect x="970" y="95" width="18" height="85"/>
+        <rect x="965" y="90" width="28" height="12" rx="2"/>
+        <rect x="972" y="78" width="14" height="14" rx="7"/>
+        <!-- More buildings -->
+        <rect x="1010" y="115" width="36" height="65"/>
+        <rect x="1056" y="105" width="30" height="75"/>
+        <rect x="1096" y="120" width="40" height="60"/>
+        <rect x="1146" y="95" width="35" height="85"/>
+        <rect x="1191" y="110" width="28" height="70"/>
+        <rect x="1229" y="130" width="50" height="50"/>
+        <rect x="1289" y="115" width="40" height="65"/>
+        <rect x="1339" y="100" width="35" height="80"/>
+    </svg>
 
     <div class="hero-inner">
-        <div class="hero-content">
-            <div class="hero-badge">Egypt's #1 Job Board · لوحة وظائف مصر</div>
-            <h1>Find Your Next<br>Job in <em>Egypt</em></h1>
-            <p class="hero-sub">Thousands of opportunities. Find the right fit for your career.</p>
-            <p class="hero-ar">اكتشف فرصتك القادمة في مصر</p>
+        <div class="hero-badge">Egypt's #1 Job Board · لوحة وظائف مصر</div>
+        <h1>Find Your Next<br>Job in <em>Egypt</em></h1>
+        <p class="hero-ar">ابحث عن فرصتك القادمة في مصر</p>
+        <p class="hero-sub">Thousands of opportunities. Find the right fit for your career.</p>
 
-            <form action="/search" method="get">
-                <div class="hero-search-wrap">
-                    <div class="hero-search-field">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-                        <input type="text" name="q" placeholder="Job title, skill, or company...">
-                    </div>
-                    <div class="hero-search-field">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-                        <input type="text" name="location" placeholder="All Egypt">
-                    </div>
-                    <button type="submit" class="hero-search-btn">Search Jobs →</button>
+        <form action="/search" method="get">
+            <div class="hero-search-wrap">
+                <div class="hero-search-field">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                    <input type="text" name="q" placeholder="Job title, skill, or company...">
                 </div>
-            </form>
-
-            <div class="hero-chips">
-                <span class="hero-chips-label">Popular:</span>
-                <a href="/search?q=Software+Engineer" class="hero-chip">Software Engineer</a>
-                <a href="/search?q=Marketing" class="hero-chip">Marketing</a>
-                <a href="/search?q=Data+Analyst" class="hero-chip">Data Analyst</a>
-                <a href="/search?q=Design" class="hero-chip">Design</a>
-                <a href="/search?q=Financial+Analyst" class="hero-chip">Financial Analyst</a>
-                <a href="/search?q=Civil+Engineer" class="hero-chip">Civil Engineer</a>
+                <div class="hero-search-field">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                    <input type="text" name="location" placeholder="All Egypt">
+                </div>
+                <button type="submit" class="hero-search-btn">
+                    Search Jobs →
+                </button>
             </div>
+        </form>
 
-            <div class="hero-stats-bar">
-                <div class="hstat">
-                    <div class="hstat-icon">💼</div>
-                    <div><strong>{{ total }}</strong><span>Jobs Listed</span></div>
-                </div>
-                <div class="hstat">
-                    <div class="hstat-icon">📂</div>
-                    <div><strong>26</strong><span>Categories</span></div>
-                </div>
-                <div class="hstat">
-                    <div class="hstat-icon">🇪🇬</div>
-                    <div><strong>Egypt Wide</strong><span>Opportunities</span></div>
-                </div>
+        <div class="hero-chips">
+            <span class="hero-chips-label">Popular:</span>
+            <a href="/search?q=Software+Engineer" class="hero-chip">Software Engineer</a>
+            <a href="/search?q=Marketing" class="hero-chip">Marketing</a>
+            <a href="/search?q=Data+Analyst" class="hero-chip">Data Analyst</a>
+            <a href="/search?q=Design" class="hero-chip">Design</a>
+            <a href="/search?q=Financial+Analyst" class="hero-chip">Financial Analyst</a>
+            <a href="/search?q=Civil+Engineer" class="hero-chip">Civil Engineer</a>
+        </div>
+
+        <div class="hero-stats-bar">
+            <div class="hstat">
+                <div class="hstat-icon">💼</div>
+                <strong>{{ total }}</strong>
+                <span>Jobs Listed</span>
+            </div>
+            <div class="hstat">
+                <div class="hstat-icon">📂</div>
+                <strong>26</strong>
+                <span>Categories</span>
+            </div>
+            <div class="hstat">
+                <div class="hstat-icon">🇪🇬</div>
+                <strong>Egypt Wide</strong>
+                <span>Opportunities</span>
             </div>
         </div>
     </div>
