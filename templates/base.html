@@ -450,6 +450,20 @@
             z-index: 1;
         }
 
+        .hero-skyline {
+    position: absolute !important;
+    bottom: 0 !important;
+    right: 0 !important;
+    width: 45vw !important;
+    height: auto !important;
+    max-height: 75% !important;
+    object-fit: contain !important;
+    object-position: bottom right !important;
+    pointer-events: none !important;
+    z-index: 1 !important; /* Slightly increased to make sure it renders over the background gradient layers */
+    opacity: 0.25 !important; /* Bumped up slightly so it is visibly clear and sharp on deploy */
+}
+
                 .hero-skyline {
             position: absolute !important;
             bottom: 0 !important;
