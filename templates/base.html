@@ -444,31 +444,20 @@
             transform: translate(-50%, -50%);
             pointer-events: none;
         }
+        .hero-glow-right {
+            display: none !important;
+        }
 
-       .hero-glow-right {
-    position: absolute !important;
-    top: 0 !important;
-    right: -10% !important;
-    width: 50vw !important;
-    height: 70vh !important;
-    background: radial-gradient(circle at top right, rgba(251, 191, 36, 0.15) 0%, rgba(251, 191, 36, 0.05) 45%, rgba(251, 191, 36, 0) 70%) !important;
-    filter: blur(80px) !important;
-    z-index: 1 !important;
-    pointer-events: none !important;
-}
-
-        .hero-skyline {
+         .hero-skyline {
             position: absolute !important;
             top: 0 !important;
             right: 0 !important;
-            left: auto !important;
             width: 100% !important;
             height: 100% !important;
-            object-fit: cover !important;
-            object-position: center !important;
+            object-fit: fill !important;
             pointer-events: none !important;
             z-index: 0 !important;
-            opacity: 0.3 !important;
+            opacity: 1 !important;
         }
         .hero-inner {
             position: relative; z-index: 1;
