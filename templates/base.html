@@ -111,12 +111,14 @@
 
         .nav-link:hover { color: #F8FAFC; background: rgba(255,255,255,0.04); }
 
-        .nav-link.active {
-            color: var(--gold); font-weight: 700;
-            background: transparent !important;
-            border-bottom: 2px solid var(--gold);
-            border-radius: 0 !important;
-            padding-bottom: 4px;
+        .nav-link.active::after {
+            content: '' !important;
+            position: absolute !important;
+            bottom: -4px !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 2px !important;
+            background-color: var(--gold) !important;
         }
 
         .nav-right { display: flex; align-items: center; gap: 10px; margin-left: auto; flex-shrink: 0; }
@@ -500,19 +502,16 @@
         .hero-feature-badge span { color: var(--gold); margin-right: 4px; }
 
         .hero-search-wrap {
-            display: flex !important;
-            flex-direction: row !important;
-            align-items: center !important;
             background: rgba(10, 20, 42, 0.6) !important;
             backdrop-filter: blur(20px) !important;
             -webkit-backdrop-filter: blur(20px) !important;
-            border: 1px solid rgba(56, 189, 248, 0.15) !important;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), 0 0 15px rgba(56, 189, 248, 0.05) !important;
+            border: 1px solid rgba(56, 189, 248, 0.18) !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(56, 189, 248, 0.04) !important;
             border-radius: 100px !important;
-            padding: 6px 8px 6px 20px !important;
+            padding: 5px 6px 5px 18px !important;
             max-width: 1050px !important;
             width: 100% !important;
-            margin: 32px auto 24px auto !important;
+            margin: 24px auto 16px auto !important;
             overflow: hidden !important;
         }
 
