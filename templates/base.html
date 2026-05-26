@@ -418,7 +418,7 @@ onAuthStateChanged(auth, (user) => {
         const photo = user.photoURL;
         authState.innerHTML = `<div class="nav-user"><div class="nav-avatar">${photo ? `<img src="${photo}" alt="">` : initial}</div><span class="nav-username">${name}</span><button class="nav-logout" onclick="window._doLogout()">Logout</button></div>`;
     } else {
-        authState.innerHTML = `<button class="nav-login" onclick="openAuth('login')">Login</button><button class="nav-signup" onclick="openAuth('signup')">Sign Up</button>`;
+        authState.innerHTML = `<button class="nav-login" onclick="openAuth('login')" style="margin-right:8px;">Login</button><button class="nav-signup" onclick="openAuth('signup')">Sign Up</button>`;
     }
 });
 
