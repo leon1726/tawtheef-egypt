@@ -448,16 +448,68 @@ window.doSignup = async function() {
 };
 
 window.doGoogle = async function() { try { await signInWithPopup(auth, provider); closeAuth(); } catch (e) { showError('login-error', getFirebaseError(e.code)); } };
+window.doGoogle = async function() { 
+    try { 
+        const result = await signInWithPopup(auth, provider);
+        fetch('/api/auth/save-user', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                uid: result.user.uid,
+                email: result.user.email,
+                name: result.user.displayName || '',
+                picture: result.user.photoURL || ''
+            })
+        });
+        closeAuth(); 
+    } catch (e) { showError('login-error', getFirebaseError(e.code)); } 
+};
 window._doLogout = async function() { await signOut(auth); };
 window.sendReset = async function() { const email = document.getElementById('login-email').value.trim(); hideError('login-error'); if (!email) { showError('login-error', 'Enter your email above first.'); return; } try { await sendPasswordResetEmail(auth, email); showSuccess('login-success', 'Reset email sent! Check your inbox.'); } catch (e) { showError('login-error', getFirebaseError(e.code)); } };
 
-window.openAuth = function(tab = 'login') { document.getElementById('authOverlay').classList.add('show'); document.body.style.overflow = 'hidden'; switchTab(tab); };
+window.openAuth = function(tab = 'login') {
+    document.getElementById('authOverlay').classList.add('show');
+    document.body.style.overflow = 'hidden';
+    // Clear all fields
+    document.getElementById('login-email').value = '';
+    document.getElementById('login-password').value = '';
+    document.getElementById('signup-name').value = '';
+    document.getElementById('signup-email').value = '';
+    document.getElementById('signup-password').value = '';
+    // Hide errors/success
+    document.querySelectorAll('.auth-error, .auth-success').forEach(el => el.classList.remove('show'));
+    switchTab(tab);
+};
 window.closeAuth = function() { document.getElementById('authOverlay').classList.remove('show'); document.body.style.overflow = ''; };
 window.switchTab = function(tab) { document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active')); document.querySelectorAll('.auth-panel').forEach(p => p.classList.remove('active')); document.getElementById('tab-' + tab).classList.add('active'); document.getElementById('panel-' + tab).classList.add('active'); };
 
 document.getElementById('authOverlay').addEventListener('click', (e) => { if (e.target === document.getElementById('authOverlay')) closeAuth(); });
 document.getElementById('login-password').addEventListener('keydown', e => { if (e.key === 'Enter') window.doLogin(); });
 document.getElementById('signup-password').addEventListener('keydown', e => { if (e.key === 'Enter') window.doSignup(); });
+window.doSignup = async function() {
+    const name = document.getElementById('signup-name').value.trim();
+    const email = document.getElementById('signup-email').value.trim();
+    const password = document.getElementById('signup-password').value;
+    hideError('signup-error');
+    if (!name || !email || !password) { showError('signup-error', 'Please fill in all fields.'); return; }
+    setLoading('signup-btn', true);
+    try {
+        const cred = await createUserWithEmailAndPassword(auth, email, password);
+        await updateProfile(cred.user, { displayName: name });
+        // Save to backend
+        fetch('/api/auth/save-user', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                uid: cred.user.uid,
+                email: cred.user.email,
+                name: name,
+                picture: cred.user.photoURL || ''
+            })
+        });
+        closeAuth();
+    } catch (e) { showError('signup-error', getFirebaseError(e.code)); } finally { setLoading('signup-btn', false); }
+};
 </script>
 </body>
 </html>
