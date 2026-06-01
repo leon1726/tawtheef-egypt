@@ -30,7 +30,7 @@ def inject_firebase():
         'FIREBASE_MESSAGING_SENDER_ID': os.environ.get('FIREBASE_MESSAGING_SENDER_ID', ''),
         'FIREBASE_APP_ID': os.environ.get('FIREBASE_APP_ID', ''),
     }
-    
+
 DATABASE_URL = os.environ.get("DATABASE_URL")
 USE_SQLITE = DATABASE_URL is None
 SQLITE_PATH = "jobs.db"
@@ -178,6 +178,16 @@ def career_advice():
 @app.route('/login')
 def login_page():
     return render_template('login.html')
+
+
+    
+
+    @app.context_processor
+def inject_lang():
+    lang = request.args.get('lang', 'en')
+    if lang not in ('en', 'ar'):
+        lang = 'en'
+    return {'lang': lang, 'is_ar': lang == 'ar'}
 
 
 @app.route('/signup')

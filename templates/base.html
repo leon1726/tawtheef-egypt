@@ -70,6 +70,8 @@
         .nav-signup:hover { background: var(--gold-h); }
         .nav-login { padding: 8px 18px; font-size: 13px; font-weight: 700; background: var(--gold); color: var(--navy); border: none; border-radius: var(--r-sm); cursor: pointer; white-space: nowrap; transition: all var(--t); }
         .nav-login:hover { background: var(--gold-h); }
+        .nav-lang-btn { padding: 6px 12px; font-size: 13px; font-weight: 700; color: #F8FAFC; border: 1px solid rgba(255,255,255,0.15); border-radius: var(--r-sm); transition: all var(--t); white-space: nowrap; margin-right: 8px; }
+       .nav-lang-btn:hover { border-color: var(--gold); color: var(--gold); background: rgba(212,169,77,0.08); }
         .nav-form { display: none; }
 
         /* ── LAYOUT ── */
@@ -266,26 +268,40 @@
     {% block extra_css %}{% endblock %}
 </head>
 <body>
+    
 
 <nav class="nav">
     <div class="nav-wrap">
-        <a href="/" class="logo">
+        <a href="/{% if is_ar %}?lang=ar{% endif %}" class="logo">
             <div class="logo-icon"><img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" class="logo-symbol"></div>
-            <div class="logo-words"><span class="logo-en">Taw<span>theef</span></span><span class="logo-ar">توظيف مصر</span></div>
+            <div class="logo-words">
+                <span class="logo-en">Taw<span>theef</span></span>
+                <span class="logo-ar">توظيف مصر</span>
+            </div>
         </a>
         <div class="nav-links">
+            {% if is_ar %}
+            <a href="/?lang=ar" class="nav-link {% if request.path == '/' %}active{% endif %}">الرئيسية</a>
+            <a href="/career-advice?lang=ar" class="nav-link {% if request.path == '/career-advice' %}active{% endif %}">نصائح مهنية</a>
+            <a href="/search?lang=ar" class="nav-link {% if request.path == '/search' %}active{% endif %}">تصفح الوظائف</a>
+            {% else %}
             <a href="/" class="nav-link {% if request.path == '/' %}active{% endif %}">Find Jobs</a>
             <a href="/career-advice" class="nav-link {% if request.path == '/career-advice' %}active{% endif %}">Career Advice</a>
             <a href="/search" class="nav-link {% if request.path == '/search' %}active{% endif %}">Categories</a>
+            {% endif %}
         </div>
         <form class="nav-form" action="/search" method="get">
-            <input type="text" name="q" placeholder="Search jobs..." value="{{ request.args.get('q', '') }}">
-            <button type="submit" class="nav-btn">Go</button>
+            <input type="hidden" name="lang" value="{{ lang }}">
+            <input type="text" name="q" placeholder="{% if is_ar %}ابحث عن وظائف...{% else %}Search jobs...{% endif %}" value="{{ request.args.get('q', '') }}">
+            <button type="submit" class="nav-btn">{% if is_ar %}بحث{% else %}Go{% endif %}</button>
         </form>
         <div class="nav-right" id="navRight">
+            <a href="{{ request.path }}{% if is_ar %}{% else %}?lang=ar{% endif %}{% if request.args.get('q') %}&q={{ request.args.get('q') }}{% endif %}{% if request.args.get('category') %}&category={{ request.args.get('category') }}{% endif %}" class="nav-lang-btn" title="{% if is_ar %}English{% else %}العربية{% endif %}">
+                {% if is_ar %}🇺🇸 EN{% else %}🇪🇬 AR{% endif %}
+            </a>
             <div id="authState">
-                <button class="nav-login" onclick="openAuth('login')">Login</button>
-                <button class="nav-signup" onclick="openAuth('signup')">Sign Up</button>
+                <button class="nav-login" onclick="openAuth('login')">{% if is_ar %}دخول{% else %}Login{% endif %}</button>
+                <button class="nav-signup" onclick="openAuth('signup')">{% if is_ar %}تسجيل{% else %}Sign Up{% endif %}</button>
             </div>
         </div>
     </div>
@@ -294,7 +310,7 @@
 {% block hero %}{% endblock %}
 
 <div class="wrap page">
-    <button class="mobile-cat-btn" id="catBtn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 4h18M3 9h12M3 14h18M3 19h8"/></svg>Browse Categories · تصفح التصنيفات</button>
+ <button class="mobile-cat-btn" id="catBtn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 4h18M3 9h12M3 14h18M3 19h8"/></svg>{% if is_ar %}تصفح التصنيفات · Browse Categories{% else %}Browse Categories · تصفح التصنيفات{% endif %}</button>
     {% block content %}{% endblock %}
 </div>
 
@@ -313,7 +329,7 @@
     <script src="https://www.highperformanceformat.com/397822ac95e63c1a331926eb353a041a/invoke.js"></script>
 </div>
 
-<footer><span class="ar">توظيف مصر</span> · Tawtheef Egypt · Data from Wuzzuf.net</footer>
+<footer><span class="ar">توظيف مصر</span> · Tawtheef Egypt · {% if is_ar %}بيانات من Wuzzuf.net{% else %}Data from Wuzzuf.net{% endif %}</footer>
 
 <div class="auth-overlay" id="authOverlay">
     <div class="auth-card">
