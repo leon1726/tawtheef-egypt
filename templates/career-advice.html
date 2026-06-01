@@ -1,14 +1,282 @@
-{% extends 'base.html' %}
-{% block title %}Career Advice — Tawtheef Egypt{% endblock %}
-{% block hero %}{% endblock %}
+{% extends "base.html" %}
+
+{% block title %}Career Advice | Tawtheef Egypt{% endblock %}
+
+{% block hero %}
+<section class="career-hero">
+    <div class="career-hero-inner">
+        <div class="hero-badge">CAREER SUCCESS HUB</div>
+        <h1>Build a Better Career in <span>Egypt</span></h1>
+        <p class="hero-ar">نصائح مهنية تساعدك في الحصول على وظيفة أفضل وتطوير مسارك المهني</p>
+
+        <div class="hero-actions">
+            <a href="#articles" class="btn btn-gold">Explore Articles</a>
+            <a href="/" class="btn btn-outline">Browse Jobs</a>
+        </div>
+
+        <div class="hero-stats">
+            <div><strong>10,000+</strong><span>Job Seekers Helped</span></div>
+            <div><strong>500+</strong><span>Career Guides</span></div>
+            <div><strong>100+</strong><span>Interview Questions</span></div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+.career-hero{
+background:linear-gradient(135deg,var(--navy),var(--navy-2));
+padding:90px 20px;
+text-align:center;
+position:relative;
+overflow:hidden;
+}
+.career-hero:before,.career-hero:after{
+content:'';
+position:absolute;
+border-radius:50%;
+background:rgba(212,169,77,.08);
+}
+.career-hero:before{width:350px;height:350px;top:-120px;right:-80px;}
+.career-hero:after{width:280px;height:280px;bottom:-120px;left:-80px;}
+.career-hero h1{
+font-size:56px;
+color:#fff;
+font-weight:900;
+margin:12px 0;
+}
+.career-hero h1 span{color:var(--gold);}
+.career-hero-inner{max-width:1100px;margin:auto;position:relative;z-index:2;}
+.hero-badge{
+display:inline-block;
+padding:8px 16px;
+border:1px solid rgba(212,169,77,.3);
+color:var(--gold);
+border-radius:30px;
+font-size:12px;
+font-weight:800;
+letter-spacing:1px;
+}
+.hero-ar{color:rgba(255,255,255,.7);font-family:var(--font-ar);font-size:18px;}
+.hero-actions{display:flex;justify-content:center;gap:12px;margin:28px 0;}
+.hero-stats{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:18px;
+margin-top:35px;
+}
+.hero-stats div{
+background:rgba(255,255,255,.05);
+backdrop-filter:blur(10px);
+border:1px solid rgba(255,255,255,.08);
+padding:20px;
+border-radius:16px;
+}
+.hero-stats strong{display:block;color:var(--gold);font-size:28px;}
+.hero-stats span{color:#cbd5e1;font-size:13px;}
+
+.career-section{margin-bottom:70px;}
+.section-title{
+font-size:34px;
+font-weight:800;
+color:var(--head);
+margin-bottom:10px;
+}
+.section-sub{color:var(--muted);margin-bottom:25px;}
+
+.category-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:18px;
+}
+.category-card{
+background:var(--card-bg);
+border:1px solid var(--border);
+border-radius:18px;
+padding:24px;
+transition:.25s;
+box-shadow:var(--sh);
+}
+.category-card:hover{
+transform:translateY(-6px);
+border-color:var(--gold);
+box-shadow:var(--sh-hover);
+}
+.category-icon{font-size:34px;margin-bottom:12px;}
+.category-card h3{margin-bottom:8px;color:var(--head);}
+.category-card p{color:var(--muted);font-size:14px;}
+
+.featured-layout{
+display:grid;
+grid-template-columns:2fr 1fr;
+gap:20px;
+}
+.featured-main,.article-card,.tool-card,.newsletter-box{
+background:var(--card-bg);
+border:1px solid var(--border);
+border-radius:18px;
+box-shadow:var(--sh);
+}
+.featured-main{padding:32px;}
+.article-card{padding:20px;}
+.side-articles{display:grid;gap:20px;}
+.featured-tag{
+display:inline-block;
+background:var(--gold-soft);
+color:#92670a;
+padding:5px 12px;
+border-radius:30px;
+font-size:12px;
+font-weight:700;
+margin-bottom:15px;
+}
+
+.tools-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:18px;
+}
+.tool-card{padding:24px;text-align:center;}
+.tool-card h3{margin:10px 0;}
+
+.insights{
+background:var(--navy);
+padding:40px;
+border-radius:24px;
+text-align:center;
+}
+.insights h2{color:white;margin-bottom:20px;}
+.skill-tags{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:10px;
+}
+.skill-tags span{
+padding:10px 16px;
+border-radius:30px;
+background:rgba(255,255,255,.08);
+color:white;
+border:1px solid rgba(255,255,255,.08);
+}
+
+.newsletter-box{
+padding:40px;
+text-align:center;
+}
+.newsletter-form{
+display:flex;
+gap:12px;
+max-width:650px;
+margin:20px auto 0;
+}
+.newsletter-form input{
+flex:1;
+padding:14px;
+border:1px solid var(--border);
+border-radius:12px;
+}
+
+.cta-final{
+background:linear-gradient(135deg,var(--navy),var(--navy-2));
+padding:60px 30px;
+border-radius:24px;
+text-align:center;
+color:white;
+}
+.cta-final h2{font-size:40px;margin-bottom:10px;}
+.cta-final p{color:#cbd5e1;margin-bottom:20px;}
+
+@media(max-width:900px){
+.featured-layout{grid-template-columns:1fr;}
+.hero-stats{grid-template-columns:1fr;}
+.career-hero h1{font-size:38px;}
+.newsletter-form{flex-direction:column;}
+.cta-final h2{font-size:28px;}
+}
+</style>
+{% endblock %}
+
 {% block content %}
-<div style="max-width:800px; margin:0 auto; padding:60px 20px; text-align:center;">
-    <div class="ph">
-        <h1>Career Advice</h1>
-        <p>Expert tips and guides for your job search in Egypt</p>
+
+<section class="career-section">
+    <h2 class="section-title">Career Categories</h2>
+    <p class="section-sub">Explore expert guidance for every stage of your career.</p>
+
+    <div class="category-grid">
+        <div class="category-card"><div class="category-icon">📄</div><h3>Resume Tips</h3><p>Create CVs that get interviews.</p></div>
+        <div class="category-card"><div class="category-icon">🎤</div><h3>Interview Prep</h3><p>Master interviews with confidence.</p></div>
+        <div class="category-card"><div class="category-icon">💰</div><h3>Salary Guide</h3><p>Understand market salaries.</p></div>
+        <div class="category-card"><div class="category-icon">📈</div><h3>Career Growth</h3><p>Advance your professional journey.</p></div>
+        <div class="category-card"><div class="category-icon">🇪🇬</div><h3>Work In Egypt</h3><p>Local job market insights.</p></div>
+        <div class="category-card"><div class="category-icon">🌍</div><h3>Remote Work</h3><p>Find and thrive in remote careers.</p></div>
     </div>
-    <div style="background:var(--card-bg); border-radius:var(--r-lg); padding:40px 32px; box-shadow:var(--sh); border:1px solid var(--border); margin-top:24px;">
-        <p style="color:var(--muted); font-size:15px;">Coming soon — resume tips, interview guides, salary insights, and career growth strategies.</p>
+</section>
+
+<section class="career-section" id="articles">
+    <h2 class="section-title">Featured Articles</h2>
+
+    <div class="featured-layout">
+        <div class="featured-main">
+            <span class="featured-tag">FEATURED</span>
+            <h2>How To Create A Professional CV That Gets Noticed</h2>
+            <p>Learn the structure, formatting, and content employers expect from modern resumes.</p>
+        </div>
+
+        <div class="side-articles">
+            <div class="article-card"><h3>Top Interview Mistakes</h3><p>Common errors and how to avoid them.</p></div>
+            <div class="article-card"><h3>Salary Negotiation Guide</h3><p>Ask for what you're worth professionally.</p></div>
+            <div class="article-card"><h3>LinkedIn Optimization</h3><p>Build a profile recruiters notice.</p></div>
+        </div>
     </div>
-</div>
+</section>
+
+<section class="career-section">
+    <h2 class="section-title">Career Toolkit</h2>
+
+    <div class="tools-grid">
+        <div class="tool-card"><h3>CV Builder</h3><p>Create professional resumes quickly.</p></div>
+        <div class="tool-card"><h3>Salary Calculator</h3><p>Estimate competitive compensation.</p></div>
+        <div class="tool-card"><h3>Interview Bank</h3><p>Practice common interview questions.</p></div>
+        <div class="tool-card"><h3>Cover Letter Generator</h3><p>Write compelling applications.</p></div>
+    </div>
+</section>
+
+<section class="career-section">
+    <div class="insights">
+        <h2>Trending Skills In Egypt</h2>
+        <div class="skill-tags">
+            <span>Python</span>
+            <span>Digital Marketing</span>
+            <span>Sales</span>
+            <span>UI/UX</span>
+            <span>Accounting</span>
+            <span>Customer Support</span>
+            <span>Data Analysis</span>
+            <span>Project Management</span>
+        </div>
+    </div>
+</section>
+
+<section class="career-section">
+    <div class="newsletter-box">
+        <h2>Stay Ahead Of The Competition</h2>
+        <p>Get weekly career advice, interview strategies, and job market insights.</p>
+
+        <form class="newsletter-form">
+            <input type="email" placeholder="Enter your email address">
+            <button type="submit" class="btn btn-gold">Subscribe</button>
+        </form>
+    </div>
+</section>
+
+<section class="career-section">
+    <div class="cta-final">
+        <h2>Ready For Your Next Career Move?</h2>
+        <p>Explore thousands of opportunities across Egypt.</p>
+        <a href="/" class="btn btn-gold">Browse Latest Jobs →</a>
+    </div>
+</section>
+
 {% endblock %}
