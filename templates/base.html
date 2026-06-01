@@ -14,7 +14,6 @@
     <title>{% block title %}Tawtheef Egypt | توظيف مصر{% endblock %}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Adsterra Native Banner -->
     <script async="async" data-cfasync="false" src="https://pl29543682.effectivecpmnetwork.com/ae6be3a1f64787c0832eb3590e1f5787/invoke.js"></script>
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -33,8 +32,8 @@
             --border-2:  #cbd5e1;
             --muted:     #94A3B8;
             --body:      #334155;
-            --head:      #0f172a;
-            --card-bg:   #ffffff;
+            --head:      #F8FAFC;
+            --card-bg:   #1E2D4A;
             --font:      'Outfit', sans-serif;
             --font-ar:   'Cairo', sans-serif;
             --r:         12px;
@@ -69,12 +68,7 @@
         .nav-post-btn:hover { background: rgba(212,169,77,0.1); border-color: var(--gold); }
         .nav-signup { padding: 8px 18px; font-size: 13px; font-weight: 700; background: var(--gold); color: var(--navy); border: none; border-radius: var(--r-sm); cursor: pointer; white-space: nowrap; transition: all var(--t); }
         .nav-signup:hover { background: var(--gold-h); }
-        .nav-login {
-            padding: 8px 18px; font-size: 13px; font-weight: 700;
-            background: var(--gold); color: var(--navy);
-            border: none; border-radius: var(--r-sm);
-            cursor: pointer; white-space: nowrap; transition: all var(--t);
-        }
+        .nav-login { padding: 8px 18px; font-size: 13px; font-weight: 700; background: var(--gold); color: var(--navy); border: none; border-radius: var(--r-sm); cursor: pointer; white-space: nowrap; transition: all var(--t); }
         .nav-login:hover { background: var(--gold-h); }
         .nav-form { display: none; }
 
@@ -84,18 +78,17 @@
         .grid { display: grid !important; grid-template-columns: 280px 1fr !important; gap: 32px !important; max-width: 1250px !important; margin: 0 auto !important; padding: 40px 24px !important; width: 100% !important; }
 
         /* ── SIDEBAR ── */
-        .sidebar { background: var(--card-bg); border-radius: var(--r-lg); border: 1px solid var(--border); overflow: hidden; position: sticky; top: 84px; box-shadow: var(--sh); }
+        .sidebar { background: #1E2D4A; border-radius: var(--r-lg); border: 1px solid rgba(255,255,255,0.06); overflow: hidden; position: sticky; top: 84px; box-shadow: var(--sh); height: fit-content; }
         .sidebar-head { padding: 14px 18px; background: var(--navy); display: flex; justify-content: space-between; align-items: center; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--gold); }
         .sidebar-head .ar { font-family: var(--font-ar); text-transform: none; letter-spacing: 0; font-size: 12px; color: rgba(255,255,255,0.3); font-weight: 600; }
         .cat-list { max-height: 560px; overflow-y: auto; }
         .cat-list::-webkit-scrollbar { width: 3px; }
-        .cat-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
-        .cat-link { display: flex; justify-content: space-between; align-items: center; padding: 10px 18px; font-size: 13px; font-weight: 600; color: var(--body); border-left: 3px solid transparent; border-bottom: 1px solid var(--bg); transition: all var(--t); }
-        .cat-link:hover { background: var(--gold-soft); color: var(--navy); border-left-color: var(--gold); }
-        .cat-link.on { background: rgba(212,169,77,0.07); color: var(--navy); border-left-color: var(--gold); font-weight: 700; }
-        .cat-n { font-size: 11px; font-weight: 700; background: var(--bg); color: var(--muted); padding: 2px 8px; border-radius: 20px; flex-shrink: 0; }
+        .cat-list::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
+        .cat-link { display: flex; justify-content: space-between; align-items: center; padding: 10px 18px; font-size: 13px; font-weight: 600; color: #94A3B8; border-left: 3px solid transparent; border-bottom: 1px solid rgba(255,255,255,0.04); transition: all var(--t); background: #1E2D4A; }
+        .cat-link:hover { background: #1E2D4A; color: #F8FAFC; border-left-color: var(--gold); }
+        .cat-link.on { background: rgba(212,169,77,0.08); color: #F8FAFC; border-left-color: var(--gold); font-weight: 700; }
+        .cat-n { font-size: 11px; font-weight: 700; background: rgba(255,255,255,0.06); color: #F8FAFC; padding: 2px 8px; border-radius: 20px; flex-shrink: 0; }
         .cat-link.on .cat-n { background: var(--gold); color: var(--navy); }
-
 
         /* ── BUTTONS ── */
         .btn { display: inline-flex; align-items: center; justify-content: center; gap: 5px; padding: 10px 20px; border-radius: var(--r-sm); font-family: var(--font); font-weight: 700; font-size: 13.5px; cursor: pointer; border: none; transition: all var(--t); white-space: nowrap; }
@@ -105,62 +98,62 @@
         .btn-outline:hover { border-color: var(--gold); color: var(--gold); background: var(--gold-pale); }
 
         /* ── JOB CARD ── */
-        .job-card { background: var(--card-bg); border-radius: var(--r); border: 1px solid var(--border); padding: 20px 22px; margin-bottom: 10px; box-shadow: var(--sh); transition: all var(--t); display: block; overflow: hidden; position: relative; }
+        .job-card { background: #1E2D4A; border-radius: var(--r); border: 1px solid rgba(255,255,255,0.06); padding: 20px 22px; margin-bottom: 10px; box-shadow: var(--sh); transition: all var(--t); display: block; overflow: hidden; position: relative; }
         .job-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: transparent; transition: background var(--t); }
-        .job-card:hover { border-color: rgba(212,169,77,0.4); box-shadow: var(--sh-hover); transform: translateY(-2px); }
+        .job-card:hover { border-color: var(--gold); box-shadow: var(--sh-hover); transform: translateY(-2px); }
         .job-card:hover::before { background: var(--gold); }
         .jc-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 8px; }
-        .jc-logo { width: 44px; height: 44px; border-radius: var(--r-sm); border: 1px solid var(--border); background: var(--bg); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; color: var(--muted); flex-shrink: 0; overflow: hidden; }
+        .jc-logo { width: 44px; height: 44px; border-radius: var(--r-sm); border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.04); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; color: var(--muted); flex-shrink: 0; overflow: hidden; }
         .jc-info { flex: 1; min-width: 0; }
-        .jc-title { font-size: 15px; font-weight: 700; color: var(--head); line-height: 1.35; }
+        .jc-title { font-size: 15px; font-weight: 700; color: #F8FAFC; line-height: 1.35; }
         .jc-title a { color: inherit; transition: color var(--t); }
         .jc-title a:hover { color: var(--gold); }
-        .jc-company { font-size: 13px; color: var(--body); font-weight: 600; margin-top: 2px; margin-bottom: 8px; }
+        .jc-company { font-size: 13px; color: #94A3B8; font-weight: 600; margin-top: 2px; margin-bottom: 8px; }
         .jc-meta { display: flex; flex-wrap: wrap; gap: 10px; font-size: 12.5px; color: var(--muted); font-weight: 500; margin-bottom: 10px; align-items: center; }
         .jc-meta-item { display: flex; align-items: center; gap: 4px; }
         .jc-meta-item svg { width: 12px; height: 12px; flex-shrink: 0; }
         .jc-tags { display: flex; flex-wrap: wrap; gap: 5px; align-items: center; }
         .tag { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; }
-        .t-cat  { background: rgba(212,169,77,0.08); color: #92670a; border: 1px solid rgba(212,169,77,0.2); }
-        .t-sal  { background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; }
-        .t-type { background: #eff6ff; color: #1e40af; border: 1px solid #bfdbfe; }
-        .t-date { background: var(--bg); color: var(--muted); border: 1px solid var(--border); }
+        .t-cat  { background: rgba(212,169,77,0.12); color: var(--gold); border: 1px solid rgba(212,169,77,0.2); }
+        .t-sal  { background: rgba(52,211,153,0.1); color: #34d399; border: 1px solid rgba(52,211,153,0.2); }
+        .t-type { background: rgba(96,165,250,0.1); color: #60a5fa; border: 1px solid rgba(96,165,250,0.2); }
+        .t-date { background: rgba(255,255,255,0.04); color: var(--muted); border: 1px solid rgba(255,255,255,0.06); }
         .apply-pill { display: inline-flex; align-items: center; gap: 4px; padding: 8px 16px; background: var(--navy); color: var(--gold); border: 1.5px solid rgba(212,169,77,0.3); border-radius: 20px; font-size: 12px; font-weight: 700; transition: all var(--t); flex-shrink: 0; white-space: nowrap; }
         .apply-pill:hover { background: var(--gold); color: var(--navy); border-color: var(--gold); box-shadow: var(--sh-gold); }
 
         /* ── PAGE HEADER ── */
         .ph { margin-bottom: 20px; }
-        .ph h1 { font-size: 22px; font-weight: 800; color: var(--head); letter-spacing: -0.4px; }
-        .ph p { color: var(--muted); font-size: 13.5px; margin-top: 4px; font-weight: 500; }
+        .ph h1 { font-size: 22px; font-weight: 800; color: #F8FAFC; letter-spacing: -0.4px; }
+        .ph p { color: #94A3B8; font-size: 13.5px; margin-top: 4px; font-weight: 500; }
 
         /* ── AD SLOT ── */
-        .ad { border-radius: var(--r); padding: 8px; text-align: center; margin-bottom: 14px; background: var(--card-bg); overflow: hidden; max-width: 100%; }
+        .ad { border-radius: var(--r); padding: 8px; text-align: center; margin-bottom: 14px; background: transparent; overflow: hidden; max-width: 100%; }
         .ad iframe { max-width: 100% !important; }
         .ad:empty { display: none; }
 
         /* ── SEARCH BAR ── */
-        .sbar { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--r); padding: 12px 16px; margin-bottom: 16px; display: flex; gap: 8px; align-items: center; box-shadow: var(--sh); }
-        .sbar input { flex: 1; min-width: 0; border: 1.5px solid var(--border); border-radius: var(--r-sm); padding: 9px 14px; font-family: var(--font); font-size: 13.5px; outline: none; background: var(--bg); color: var(--head); transition: all var(--t); }
-        .sbar input:focus { border-color: var(--gold); background: #fff; }
+        .sbar { background: #1E2D4A; border: 1px solid rgba(255,255,255,0.06); border-radius: var(--r); padding: 12px 16px; margin-bottom: 16px; display: flex; gap: 8px; align-items: center; box-shadow: var(--sh); }
+        .sbar input { flex: 1; min-width: 0; border: 1.5px solid rgba(255,255,255,0.08); border-radius: var(--r-sm); padding: 9px 14px; font-family: var(--font); font-size: 13.5px; outline: none; background: rgba(255,255,255,0.04); color: #F8FAFC; transition: all var(--t); }
+        .sbar input:focus { border-color: var(--gold); background: rgba(255,255,255,0.06); }
 
         /* ── RESULTS META ── */
-        .rmeta { font-size: 13px; color: var(--muted); font-weight: 500; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; }
-        .rmeta strong { color: var(--head); font-weight: 700; }
+        .rmeta { font-size: 13px; color: #94A3B8; font-weight: 500; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; }
+        .rmeta strong { color: #F8FAFC; font-weight: 700; }
 
         /* ── PAGINATION ── */
         .pages { display: flex; justify-content: center; gap: 4px; margin-top: 28px; flex-wrap: wrap; }
-        .pg { min-width: 36px; height: 36px; padding: 0 8px; display: flex; align-items: center; justify-content: center; border-radius: var(--r-sm); font-size: 13px; font-weight: 700; border: 1.5px solid var(--border); color: var(--muted); background: var(--card-bg); transition: all var(--t); }
+        .pg { min-width: 36px; height: 36px; padding: 0 8px; display: flex; align-items: center; justify-content: center; border-radius: var(--r-sm); font-size: 13px; font-weight: 700; border: 1.5px solid rgba(255,255,255,0.08); color: #94A3B8; background: #1E2D4A; transition: all var(--t); }
         .pg:hover { border-color: var(--gold); color: var(--gold); }
-        .pg.on { background: var(--navy); color: var(--gold); border-color: var(--navy); }
+        .pg.on { background: var(--gold); color: var(--navy); border-color: var(--gold); }
 
         /* ── EMPTY ── */
-        .empty { text-align: center; padding: 60px 20px; background: var(--card-bg); border-radius: var(--r-lg); border: 1px solid var(--border); }
-        .empty h3 { font-size: 17px; font-weight: 700; color: var(--head); margin-bottom: 5px; }
-        .empty p { color: var(--muted); font-size: 13.5px; }
+        .empty { text-align: center; padding: 60px 20px; background: #1E2D4A; border-radius: var(--r-lg); border: 1px solid rgba(255,255,255,0.06); }
+        .empty h3 { font-size: 17px; font-weight: 700; color: #F8FAFC; margin-bottom: 5px; }
+        .empty p { color: #94A3B8; font-size: 13.5px; }
 
         /* ── BREADCRUMB ── */
         .bc { display: flex; align-items: center; gap: 6px; font-size: 12.5px; color: var(--muted); margin-bottom: 18px; flex-wrap: wrap; font-weight: 500; }
-        .bc a { color: var(--body); font-weight: 600; }
+        .bc a { color: #F8FAFC; font-weight: 600; }
         .bc a:hover { color: var(--gold); }
 
         /* ── HERO ── */
@@ -200,15 +193,15 @@
         footer .ar { font-family: var(--font-ar); color: var(--gold); font-weight: 700; }
 
         /* ── MOBILE CATEGORY BUTTON ── */
-        .mobile-cat-btn { display: none; align-items: center; gap: 8px; padding: 11px 16px; background: var(--card-bg); border: 1.5px solid var(--border); border-radius: var(--r-sm); font-family: var(--font); font-size: 13px; font-weight: 700; color: var(--navy); cursor: pointer; width: 100%; justify-content: center; transition: all var(--t); margin-bottom: 14px; }
-        .mobile-cat-btn:hover { border-color: var(--gold); background: var(--gold-pale); }
+        .mobile-cat-btn { display: none; align-items: center; gap: 8px; padding: 11px 16px; background: #1E2D4A; border: 1.5px solid rgba(255,255,255,0.08); border-radius: var(--r-sm); font-family: var(--font); font-size: 13px; font-weight: 700; color: #F8FAFC; cursor: pointer; width: 100%; justify-content: center; transition: all var(--t); margin-bottom: 14px; }
+        .mobile-cat-btn:hover { border-color: var(--gold); background: rgba(212,169,77,0.08); }
         .cat-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.65); z-index: 300; align-items: center; justify-content: center; padding: 20px; }
         .cat-overlay.show { display: flex; }
-        .cat-overlay-card { background: var(--card-bg); border-radius: var(--r-lg); width: 100%; max-width: 400px; max-height: 80vh; overflow: hidden; box-shadow: 0 24px 80px rgba(0,0,0,0.4); }
+        .cat-overlay-card { background: #1E2D4A; border-radius: var(--r-lg); width: 100%; max-width: 400px; max-height: 80vh; overflow: hidden; box-shadow: 0 24px 80px rgba(0,0,0,0.4); }
         .cat-overlay-head { display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; background: var(--navy); color: var(--gold); font-weight: 700; font-size: 15px; }
         .cat-overlay-close { background: none; border: none; color: #fff; font-size: 20px; cursor: pointer; padding: 4px 8px; }
         .cat-overlay-list { overflow-y: auto; max-height: calc(80vh - 56px); }
-        .cat-overlay-item { padding: 14px 20px; border-bottom: 1px solid var(--bg); }
+        .cat-overlay-item { padding: 14px 20px; border-bottom: 1px solid rgba(255,255,255,0.04); }
         .cat-overlay-item:last-child { border-bottom: none; }
         .mobile-ad { display: none; }
 
@@ -217,7 +210,7 @@
         .auth-overlay.show { display: flex; }
         .auth-card { background: #fff; border-radius: 20px; width: 100%; max-width: 420px; overflow: hidden; box-shadow: 0 24px 64px rgba(0,0,0,0.4); animation: slideUp 0.25s ease; }
         @keyframes slideUp { from { transform: translateY(24px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-.auth-header { background: #0B1A3B; padding: 28px 28px 0; text-align: center; position: relative; }
+        .auth-header { background: #0B1A3B; padding: 28px 28px 0; text-align: center; position: relative; }
         .auth-logo { display: flex; align-items: center; justify-content: center; gap: 3px; margin-bottom: 20px; }
         .auth-logo img { width: 80px; height: 80px; object-fit: contain; }
         .auth-logo span { font-size: 18px; font-weight: 800; color: #fff; }
@@ -264,7 +257,7 @@
         @media (min-width: 901px) { .logo-icon { width: 80px; height: 80px; } .logo-symbol { width: 80px; height: 80px; } .logo-en { font-size: 20px; } .logo-ar { font-size: 12px; } .wrap { padding: 0 28px; } }
 
         /* ── TABLET / MOBILE ── */
-        @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } .sidebar-desktop { display: none; } .mobile-cat-btn { display: flex; } .mobile-ad { display: block; } .nav-links, .nav-right { display: none; } .nav-form { display: flex; flex: 1; gap: 6px; max-width: 320px; margin-left: auto; } .nav-form input { flex: 1; min-width: 0; background: var(--bg); border: 1.5px solid var(--border); border-radius: var(--r-sm); padding: 8px 12px; font-family: var(--font); font-size: 13px; color: var(--head); outline: none; } .nav-form input::placeholder { color: var(--muted); } .nav-btn { padding: 8px 14px; background: var(--gold); color: var(--navy); border: none; border-radius: var(--r-sm); font-family: var(--font); font-size: 13px; font-weight: 700; cursor: pointer; flex-shrink: 0; white-space: nowrap; } .hero h1 { font-size: 28px; } .hero-search-wrap { flex-direction: column !important; } .hero-skyline { width: 80%; opacity: 0.2; } }
+        @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } .sidebar-desktop { display: none; } .mobile-cat-btn { display: flex; } .mobile-ad { display: block; } .nav-links, .nav-right { display: none; } .nav-form { display: flex; flex: 1; gap: 6px; max-width: 320px; margin-left: auto; } .nav-form input { flex: 1; min-width: 0; background: rgba(255,255,255,0.04); border: 1.5px solid rgba(255,255,255,0.08); border-radius: var(--r-sm); padding: 8px 12px; font-family: var(--font); font-size: 13px; color: #F8FAFC; outline: none; } .nav-form input::placeholder { color: var(--muted); } .nav-btn { padding: 8px 14px; background: var(--gold); color: var(--navy); border: none; border-radius: var(--r-sm); font-family: var(--font); font-size: 13px; font-weight: 700; cursor: pointer; flex-shrink: 0; white-space: nowrap; } .hero h1 { font-size: 28px; } .hero-search-wrap { flex-direction: column !important; } .hero-skyline { width: 80%; opacity: 0.2; } }
 
         /* ── MOBILE ── */
         @media (max-width: 640px) { .page { padding: 16px 0 60px; } .ph h1 { font-size: 19px; } .job-card { padding: 14px 16px; } .jc-top { flex-direction: column; gap: 8px; } .apply-pill { width: 100%; justify-content: center; } .sbar { display: none; } .rmeta { flex-direction: column; gap: 3px; font-size: 12px; align-items: flex-start; } .bc { font-size: 11.5px; } footer { font-size: 11.5px; } .hero { padding: 50px 16px 70px; } .hero h1 { font-size: 24px; } .hero-feature-badges { gap: 6px; } .hero-feature-badge { font-size: 10px; padding: 4px 10px; } .hero-stats-bar { gap: 20px; } }
@@ -289,7 +282,6 @@
             <button type="submit" class="nav-btn">Go</button>
         </form>
         <div class="nav-right" id="navRight">
-
             <div id="authState">
                 <button class="nav-login" onclick="openAuth('login')">Login</button>
                 <button class="nav-signup" onclick="openAuth('signup')">Sign Up</button>
@@ -322,7 +314,6 @@
 
 <footer><span class="ar">توظيف مصر</span> · Tawtheef Egypt · Data from Wuzzuf.net</footer>
 
-<!-- AUTH MODAL -->
 <div class="auth-overlay" id="authOverlay">
     <div class="auth-card">
         <div class="auth-header">
@@ -362,7 +353,6 @@
     </div>
 </div>
 
-<!-- Adblock Detector -->
 <script>
     (function() {
         let adBlockEnabled = false;
@@ -381,10 +371,8 @@
     })();
 </script>
 
-<!-- Adsterra Social Bar -->
 <script src="https://pl29543683.effectivecpmnetwork.com/6c/ab/73/6cab73af5eaa34dde04da1d3b6fca514.js"></script>
 
-<!-- Category overlay -->
 <script>
     const catBtn = document.getElementById('catBtn'), catOverlay = document.getElementById('catOverlay'), catClose = document.getElementById('catClose');
     if (catBtn) catBtn.addEventListener('click', () => { catOverlay.classList.add('show'); document.body.style.overflow = 'hidden'; });
@@ -393,7 +381,6 @@
     function closeOverlay() { catOverlay.classList.remove('show'); document.body.style.overflow = ''; }
 </script>
 
-<!-- Firebase Auth -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged, updateProfile, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
@@ -413,7 +400,6 @@ const provider = new GoogleAuthProvider();
 provider.addScope('profile');
 provider.addScope('email');
 
-// ── AUTH STATE ──
 onAuthStateChanged(auth, (user) => {
     const authState = document.getElementById('authState');
     if (!authState) return;
@@ -434,7 +420,6 @@ onAuthStateChanged(auth, (user) => {
     }
 });
 
-// ── HELPERS ──
 function showError(id, msg) { const el = document.getElementById(id); if (el) { el.textContent = msg; el.classList.add('show'); } }
 function hideError(id) { const el = document.getElementById(id); if (el) el.classList.remove('show'); }
 function showSuccess(id, msg) { const el = document.getElementById(id); if (el) { el.textContent = msg; el.classList.add('show'); } }
@@ -463,37 +448,22 @@ async function saveUserToBackend(user) {
         await fetch('/api/auth/save-user', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                uid: user.uid,
-                email: user.email,
-                name: user.displayName || '',
-                picture: user.photoURL || ''
-            })
+            body: JSON.stringify({ uid: user.uid, email: user.email, name: user.displayName || '', picture: user.photoURL || '' })
         });
-    } catch (err) {
-        console.warn('Could not save user to backend:', err);
-    }
+    } catch (err) { console.warn('Could not save user to backend:', err); }
 }
 
-// ── LOGIN ──
 window.doLogin = async function() {
     const email = document.getElementById('login-email').value.trim();
     const password = document.getElementById('login-password').value;
     hideError('login-error');
     if (!email || !password) { showError('login-error', 'Please fill in all fields.'); return; }
     setLoading('login-btn', true);
-    try {
-        await signInWithEmailAndPassword(auth, email, password);
-        closeAuth();
-    } catch (e) {
-        showError('login-error', getFirebaseError(e.code));
-    } finally {
-        setLoading('login-btn', false);
-    }
+    try { await signInWithEmailAndPassword(auth, email, password); closeAuth(); }
+    catch (e) { showError('login-error', getFirebaseError(e.code)); }
+    finally { setLoading('login-btn', false); }
 };
 
-
-// ── SIGN UP ──
 window.doSignup = async function() {
     const name = document.getElementById('signup-name').value.trim();
     const email = document.getElementById('signup-email').value.trim();
@@ -506,66 +476,37 @@ window.doSignup = async function() {
         await updateProfile(cred.user, { displayName: name });
         await saveUserToBackend({ ...cred.user, displayName: name });
         closeAuth();
-    } catch (e) {
-        showError('signup-error', getFirebaseError(e.code));
-    } finally {
-        setLoading('signup-btn', false);
-    }
+    } catch (e) { showError('signup-error', getFirebaseError(e.code)); }
+    finally { setLoading('signup-btn', false); }
 };
 
-// ── GOOGLE SIGN IN ──
 window.doGoogle = async function() {
-    // Determine which panel is active to show errors in the right place
     const activePanel = document.querySelector('.auth-panel.active');
     const errorId = activePanel && activePanel.id === 'panel-signup' ? 'signup-error' : 'login-error';
-    hideError('login-error');
-    hideError('signup-error');
-    try {
-        const result = await signInWithPopup(auth, provider);
-        await saveUserToBackend(result.user);
-        closeAuth();
-    } catch (e) {
-        if (e.code !== 'auth/popup-closed-by-user' && e.code !== 'auth/cancelled-popup-request') {
-            showError(errorId, getFirebaseError(e.code));
-        }
-    }
+    hideError('login-error'); hideError('signup-error');
+    try { const result = await signInWithPopup(auth, provider); await saveUserToBackend(result.user); closeAuth(); }
+    catch (e) { if (e.code !== 'auth/popup-closed-by-user' && e.code !== 'auth/cancelled-popup-request') { showError(errorId, getFirebaseError(e.code)); } }
 };
 
-// ── LOGOUT ──
-window._doLogout = async function() {
-    try { await signOut(auth); } catch (e) { console.error('Logout error:', e); }
-};
+window._doLogout = async function() { try { await signOut(auth); } catch (e) { console.error('Logout error:', e); } };
 
-// ── FORGOT PASSWORD ──
 window.sendReset = async function() {
     const email = document.getElementById('login-email').value.trim();
     hideError('login-error');
     if (!email) { showError('login-error', 'Enter your email above first.'); return; }
-    try {
-        await sendPasswordResetEmail(auth, email);
-        showSuccess('login-success', 'Reset email sent! Check your inbox.');
-    } catch (e) {
-        showError('login-error', getFirebaseError(e.code));
-    }
+    try { await sendPasswordResetEmail(auth, email); showSuccess('login-success', 'Reset email sent! Check your inbox.'); }
+    catch (e) { showError('login-error', getFirebaseError(e.code)); }
 };
 
-// ── MODAL CONTROLS ──
 window.openAuth = function(tab = 'login') {
-    document.getElementById('authOverlay').classList.add('show');
-    document.body.style.overflow = 'hidden';
-    document.getElementById('login-email').value = '';
-    document.getElementById('login-password').value = '';
-    document.getElementById('signup-name').value = '';
-    document.getElementById('signup-email').value = '';
-    document.getElementById('signup-password').value = '';
+    document.getElementById('authOverlay').classList.add('show'); document.body.style.overflow = 'hidden';
+    document.getElementById('login-email').value = ''; document.getElementById('login-password').value = '';
+    document.getElementById('signup-name').value = ''; document.getElementById('signup-email').value = ''; document.getElementById('signup-password').value = '';
     document.querySelectorAll('.auth-error, .auth-success').forEach(el => el.classList.remove('show'));
     switchTab(tab);
 };
 
-window.closeAuth = function() {
-    document.getElementById('authOverlay').classList.remove('show');
-    document.body.style.overflow = '';
-};
+window.closeAuth = function() { document.getElementById('authOverlay').classList.remove('show'); document.body.style.overflow = ''; };
 
 window.switchTab = function(tab) {
     document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
@@ -574,10 +515,7 @@ window.switchTab = function(tab) {
     document.getElementById('panel-' + tab).classList.add('active');
 };
 
-// ── EVENT LISTENERS ──
-document.getElementById('authOverlay').addEventListener('click', (e) => {
-    if (e.target === document.getElementById('authOverlay')) closeAuth();
-});
+document.getElementById('authOverlay').addEventListener('click', (e) => { if (e.target === document.getElementById('authOverlay')) closeAuth(); });
 document.getElementById('login-password').addEventListener('keydown', e => { if (e.key === 'Enter') window.doLogin(); });
 document.getElementById('signup-password').addEventListener('keydown', e => { if (e.key === 'Enter') window.doSignup(); });
 </script>

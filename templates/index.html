@@ -1,13 +1,6 @@
 {% extends 'base.html' %}
 {% block extra_css %}
 <style>
-
-    .job-card, .sidebar, .ad, .cat-link, .empty { background: #1E2D4A; border-color: rgba(255,255,255,0.06); }
-.job-card .jc-title, .job-card .jc-title a, .cat-link, .empty h3 { color: #F8FAFC; }
-.job-card .jc-company { color: #94A3B8; }
-.cat-link:hover, .cat-link.on { background: rgba(212,169,77,0.08); }
-.tag { filter: brightness(0.9); }
-/* ── Hero overrides ── */
 .hero {
     background: linear-gradient(135deg, #0b1724 0%, #0f1f38 60%, #0d1a2e 100%);
     padding: 56px 24px 48px;
@@ -15,29 +8,22 @@
     overflow: hidden;
     position: relative;
 }
-
-.ph h1 { color: #F8FAFC; }
-.ph p { color: #94A3B8; }
-/* ... paste ALL of Claude's CSS here ... */
 </style>
 {% endblock %}
 {% block title %}Tawtheef Egypt | توظيف مصر — Latest Jobs{% endblock %}
 {% block hero %}
 <div class="hero">
     <img src="{{ url_for('static', filename='cairo-skyline.png') }}" class="hero-skyline" alt="">
-
     <div class="hero-inner">
         <div class="hero-badge">Egypt's #1 Job Board · لوحة وظائف مصر</div>
         <h1>Find Your Next<br>Job in <em>Egypt</em></h1>
         <p class="hero-ar">ابحث عن فرصتك القادمة في مصر</p>
         <p class="hero-sub">Thousands of opportunities. Find the right fit for your career.</p>
-
         <div class="hero-feature-badges">
-    <div class="hero-feature-badge"><span>●</span> 2,000+ Active Jobs</div>
-    <div class="hero-feature-badge"><span>●</span> 500+ Companies</div>
-    <div class="hero-feature-badge"><span>●</span> AI Powered Search</div>
-</div>
-
+            <div class="hero-feature-badge"><span>●</span> 2,000+ Active Jobs</div>
+            <div class="hero-feature-badge"><span>●</span> 500+ Companies</div>
+            <div class="hero-feature-badge"><span>●</span> AI Powered Search</div>
+        </div>
         <form action="/search" method="get">
             <div class="hero-search-wrap">
                 <div class="hero-search-field">
@@ -70,7 +56,6 @@
                 <button type="submit" class="hero-search-btn">Search Jobs →</button>
             </div>
         </form>
-
         <div class="hero-chips">
             <span class="hero-chips-label">Popular:</span>
             <a href="/search?q=Software+Engineer" class="hero-chip">Software Engineer</a>
@@ -80,7 +65,6 @@
             <a href="/search?q=Financial+Analyst" class="hero-chip">Financial Analyst</a>
             <a href="/search?q=Civil+Engineer" class="hero-chip">Civil Engineer</a>
         </div>
-
         <div class="hero-stats-bar">
             <div class="hstat">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
