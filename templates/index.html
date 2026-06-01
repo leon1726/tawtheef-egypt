@@ -93,7 +93,7 @@
             <script>atOptions={'key':'b1409f5fdeb6cd8e02d4c96526854341','format':'iframe','height':250,'width':300,'params':{}};</script>
             <script src="https://www.highperformanceformat.com/b1409f5fdeb6cd8e02d4c96526854341/invoke.js"></script>
         </div>
-        <div class="sidebar-head">Categories <span class="ar">التصنيفات</span></div>
+        <div class="sidebar-head">{% if is_ar %}التصنيفات{% else %}Categories{% endif %} <span class="ar">{% if is_ar %}Categories{% else %}التصنيفات{% endif %}</span></div>
         <div class="cat-list">
             {% for cat in categories %}
             <a href="/search?category={{ cat.category }}" class="cat-link">
@@ -104,7 +104,7 @@
     </aside>
 
     <div>
-        <div class="ph"><h1>Featured Positions</h1><p>Most in-demand roles with comprehensive requirements</p></div>
+        <div class="ph"><h1>{{ t.featured_positions }}</h1><p>{% if is_ar %}أكثر الوظائف طلباً مع متطلبات شاملة{% else %}Most in-demand roles with comprehensive requirements{% endif %}</p></div>
         {% if hot_jobs %}
             {% for job in hot_jobs %}
             <div class="job-card">
@@ -114,7 +114,7 @@
                         <div class="jc-title"><a href="/job/{{ job.id }}">{{ job.title }}</a></div>
                         <div class="jc-company">{{ job.company }}</div>
                     </div>
-                    <a href="/apply/{{ job.id }}" class="apply-pill" target="_blank">Apply · قدّم ↗</a>
+                    <a href="/apply/{{ job.id }}" class="apply-pill" target="_blank">{% if is_ar %}تقدم الآن{% else %}Apply{% endif %} · قدّم ↗</a>
                 </div>
                 <div class="jc-meta">
                     <span class="jc-meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>{{ job.location }}</span>
@@ -132,14 +132,14 @@
             {% endfor %}
         {% else %}<div class="empty"><p>No featured positions right now.</p></div>{% endif %}
 
-        <div class="ph" style="margin-top:32px;"><h1>Top Compensation</h1><p>Positions with disclosed salary ranges</p></div>
+        <div class="ph" style="margin-top:32px;"><h1>{{ t.top_compensation }}</h1><p>{% if is_ar %}وظائف مع نطاق رواتب معلن{% else %}Positions with disclosed salary ranges{% endif %}</p></div>
         {% if top_paying %}
             {% for job in top_paying %}
             <div class="job-card">
                 <div class="jc-top">
                     <div class="jc-logo">{{ job.company[0]|upper if job.company else '?' }}</div>
                     <div class="jc-info"><div class="jc-title"><a href="/job/{{ job.id }}">{{ job.title }}</a></div><div class="jc-company">{{ job.company }}</div></div>
-                    <a href="/apply/{{ job.id }}" class="apply-pill" target="_blank">Apply · قدّم ↗</a>
+                    <a href="/apply/{{ job.id }}" class="apply-pill" target="_blank">{% if is_ar %}تقدم الآن{% else %}Apply{% endif %} · قدّم ↗</a>
                 </div>
                 <div class="jc-meta">
                     <span class="jc-meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>{{ job.location }}</span>
@@ -157,13 +157,13 @@
 
         <div class="ad" style="margin-top:8px;"><script>atOptions={'key':'cc432909594119547953a02597dab708','format':'iframe','height':90,'width':728,'params':{}};</script><script src="https://www.highperformanceformat.com/cc432909594119547953a02597dab708/invoke.js"></script></div>
 
-        <div class="ph" style="margin-top:32px;"><h1>Latest Openings</h1><p>{{ total }}+ jobs from top companies across Egypt — updated daily</p></div>
+        <div class="ph" style="margin-top:32px;"><h1>{{ t.latest_jobs }}</h1><p>{{ total }}+ {% if is_ar %}وظيفة من أفضل الشركات في مصر — تحديث يومي{% else %}jobs from top companies across Egypt — updated daily{% endif %}</p></div>
         {% for job in jobs %}
         <div class="job-card">
             <div class="jc-top">
                 <div class="jc-logo">{{ job.company[0]|upper if job.company else '?' }}</div>
                 <div class="jc-info"><div class="jc-title"><a href="/job/{{ job.id }}">{{ job.title }}</a></div><div class="jc-company">{{ job.company }}</div></div>
-                <a href="/apply/{{ job.id }}" class="apply-pill" target="_blank">Apply · قدّم ↗</a>
+                <a href="/apply/{{ job.id }}" class="apply-pill" target="_blank">{% if is_ar %}تقدم الآن{% else %}Apply{% endif %} · قدّم ↗</a>
             </div>
             <div class="jc-meta">
                 <span class="jc-meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>{{ job.location }}</span>
