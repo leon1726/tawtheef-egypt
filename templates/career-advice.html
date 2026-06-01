@@ -202,6 +202,16 @@
     padding: 0 2rem;
   }
 
+    .ca-hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    opacity: 0.25;
+  }
+
   .ca-hero__eyebrow {
     display: flex;
     align-items: center;
@@ -1383,59 +1393,34 @@
   <!-- ============================================================
        SECTION 1 — HERO
   ============================================================ -->
-  <section class="ca-hero">
-    <div class="ca-hero__grid"></div>
-    <div class="ca-hero__orb ca-hero__orb--1"></div>
-    <div class="ca-hero__orb ca-hero__orb--2"></div>
-    <div class="ca-hero__accent"></div>
-
-    <div class="ca-hero__inner">
-      <div class="ca-hero__eyebrow">
+    <section class="ca-hero">
+   <img src="{{ url_for('static', filename='career-advice-bg.png') }}" class="ca-hero-bg" alt="">
+    <div class="ca-hero__inner" style="text-align:center; max-width:800px; margin:0 auto;">
+      <div class="ca-hero__eyebrow" style="justify-content:center;">
         <span class="ca-hero__eyebrow-line"></span>
         <span class="ca-hero__eyebrow-text">Tawtheef Egypt · Career Resource Center</span>
       </div>
-
-      <h1 class="ca-hero__title">Career Advice</h1>
-      <p class="ca-hero__title-ar">النصائح المهنية والتطوير الوظيفي</p>
-
-      <p class="ca-hero__desc">
-        Expert guidance, market insights, and practical strategies to help professionals across Egypt navigate their career journey — from first job to executive leadership.
+      <h1 class="ca-hero__title" style="text-align:center;">Career Advice</h1>
+      <p class="ca-hero__title-ar" style="text-align:center;">النصائح المهنية والتطوير الوظيفي</p>
+      <p class="ca-hero__desc" style="margin:0 auto 40px; text-align:center;">
+        Expert guidance, market insights, and practical strategies to help professionals across Egypt navigate their career journey.
       </p>
-
-      <div class="ca-hero__search">
-        <span class="ca-hero__search-icon">
-          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
-          </svg>
-        </span>
+      <div class="ca-hero__search" style="margin:0 auto;">
+        <span class="ca-hero__search-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span>
         <input type="text" placeholder="Search guides, tips, salary insights...">
         <button class="ca-hero__search-btn">Search</button>
       </div>
-
-      <div class="ca-hero__trust">
-        <span class="ca-hero__trust-item"><span class="ca-hero__trust-dot"></span>Expert-curated content</span>
-        <span class="ca-hero__trust-item"><span class="ca-hero__trust-dot"></span>Egypt job market focused</span>
+      <div class="ca-hero__trust" style="justify-content:center;">
+        <span class="ca-hero__trust-item"><span class="ca-hero__trust-dot"></span>Expert-curated</span>
+        <span class="ca-hero__trust-item"><span class="ca-hero__trust-dot"></span>Egypt focused</span>
         <span class="ca-hero__trust-item"><span class="ca-hero__trust-dot"></span>Updated weekly</span>
         <span class="ca-hero__trust-item"><span class="ca-hero__trust-dot"></span>Free to access</span>
       </div>
-
-      <div class="ca-hero__stats">
-        <div class="ca-hero__stat">
-          <div class="ca-hero__stat-num">50+</div>
-          <div class="ca-hero__stat-label">Career Guides</div>
-        </div>
-        <div class="ca-hero__stat">
-          <div class="ca-hero__stat-num">100+</div>
-          <div class="ca-hero__stat-label">Interview Tips</div>
-        </div>
-        <div class="ca-hero__stat">
-          <div class="ca-hero__stat-num">25+</div>
-          <div class="ca-hero__stat-label">Salary Insights</div>
-        </div>
-        <div class="ca-hero__stat">
-          <div class="ca-hero__stat-num">10k+</div>
-          <div class="ca-hero__stat-label">Monthly Readers</div>
-        </div>
+      <div class="ca-hero__stats" style="margin:0 auto;">
+        <div class="ca-hero__stat"><div class="ca-hero__stat-num">50+</div><div class="ca-hero__stat-label">Career Guides</div></div>
+        <div class="ca-hero__stat"><div class="ca-hero__stat-num">100+</div><div class="ca-hero__stat-label">Interview Tips</div></div>
+        <div class="ca-hero__stat"><div class="ca-hero__stat-num">25+</div><div class="ca-hero__stat-label">Salary Insights</div></div>
+        <div class="ca-hero__stat"><div class="ca-hero__stat-num">10k+</div><div class="ca-hero__stat-label">Monthly Readers</div></div>
       </div>
     </div>
   </section>
