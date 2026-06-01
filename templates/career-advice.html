@@ -2,6 +2,20 @@
 
 {% block extra_css %}
 <style>
+  /* Force hero center alignment */
+  .ca-hero__inner {
+    max-width: 800px !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+  }
+  .ca-hero__title { text-align: center !important; }
+  .ca-hero__desc { margin: 0 auto 40px !important; text-align: center !important; }
+  .ca-hero__eyebrow { justify-content: center !important; }
+  .ca-hero__trust { justify-content: center !important; }
+  
+  /* Force unified background */
+  .ca-section--alt { background: var(--bg) !important; }
+</style>
   /* ============================================================
      CAREER ADVICE PAGE — TAWTHEEF EGYPT
      Premium Resource Center
@@ -195,14 +209,15 @@
     background: linear-gradient(to bottom, transparent, rgba(180,140,60,0.3), transparent);
   }
 
-  .ca-hero__inner {
-    position: relative;
-    z-index: 2;
-    max-width: 800px;
+.ca-hero__inner {
+    max-width: 1280px;
     margin: 0 auto;
-    padding: 0 2rem;
-    text-align: center;
-  }
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 80px;
+    align-items: center;
+    text-align: left;
+}
 
     .ca-hero-bg {
     position: absolute;
