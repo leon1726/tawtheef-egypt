@@ -248,7 +248,6 @@
     overflow: hidden;
   }
 
-  /* FIX: background image properly contained */
   .ca-hero-bg {
     position: absolute;
     top: 0;
@@ -283,7 +282,6 @@
     text-align: center;
   }
 
-  /* Hide decorative elements we don't need */
   .ca-hero__grid,
   .ca-hero__orb,
   .ca-hero__orb--1,
@@ -1123,9 +1121,7 @@
 {% block content %}
 <main class="ca-page">
 
-  <!-- ============================================================
-       SECTION 1 — HERO
-  ============================================================ -->
+  <!-- SECTION 1 — HERO -->
   <section class="ca-hero">
     <img src="{{ url_for('static', filename='cairo-skyline.png') }}" class="ca-hero-bg" alt="">
     <div class="ca-hero__inner">
@@ -1136,13 +1132,9 @@
       </div>
       <h1 class="ca-hero__title">Career Advice</h1>
       <p class="ca-hero__title-ar">النصائح المهنية والتطوير الوظيفي</p>
-      <p class="ca-hero__desc">
-        Expert guidance, market insights, and practical strategies to help professionals across Egypt navigate their career journey.
-      </p>
+      <p class="ca-hero__desc">Expert guidance, market insights, and practical strategies to help professionals across Egypt navigate their career journey.</p>
       <div class="ca-hero__search">
-        <span class="ca-hero__search-icon">
-          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        </span>
+        <span class="ca-hero__search-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span>
         <input type="text" placeholder="Search guides, tips, salary insights...">
         <button class="ca-hero__search-btn">Search</button>
       </div>
@@ -1161,52 +1153,31 @@
     </div>
   </section>
 
-  <!-- ============================================================
-       SECTION 2 — FEATURED GUIDE
-  ============================================================ -->
+  <!-- SECTION 2 — FEATURED GUIDE -->
   <section class="ca-section">
     <div class="ca-container">
       <div class="ca-section-header">
         <span class="ca-section-label">Featured Guide</span>
         <h2 class="ca-section-title">Editor's Pick This Month</h2>
       </div>
-
       <div class="ca-featured">
         <div class="ca-featured__content">
           <div class="ca-featured__meta">
             <span class="ca-badge">Career Strategy</span>
-            <span class="ca-featured__read-time">
-              <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-              12 min read
-            </span>
+            <span class="ca-featured__read-time"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>12 min read</span>
           </div>
           <h2 class="ca-featured__title">The Complete Guide to Navigating Your Career in Egypt's Evolving Job Market</h2>
-          <p class="ca-featured__excerpt">
-            Egypt's professional landscape is transforming rapidly. From the rise of remote-first companies to the increasing demand for bilingual talent, understanding the market dynamics can be the difference between stagnation and accelerated career growth.
-          </p>
+          <p class="ca-featured__excerpt">Egypt's professional landscape is transforming rapidly. From the rise of remote-first companies to the increasing demand for bilingual talent, understanding the market dynamics can be the difference between stagnation and accelerated career growth.</p>
           <div class="ca-featured__author">
             <div class="ca-featured__avatar">CE</div>
-            <div>
-              <div class="ca-featured__author-name">Career Experts Team</div>
-              <div class="ca-featured__author-date">June 1, 2025 · Updated regularly</div>
-            </div>
+            <div><div class="ca-featured__author-name">Career Experts Team</div><div class="ca-featured__author-date">June 1, 2025 · Updated regularly</div></div>
           </div>
-   <a class="ca-btn ca-btn--gold" onclick="openArticle('career_strategy')" style="cursor:pointer;">
-            Read Full Guide
-            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
+          <a class="ca-btn ca-btn--gold" onclick="openArticle('career_strategy')" style="cursor:pointer;">Read Full Guide <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
         </div>
-
         <div class="ca-featured__image">
           <div class="ca-featured__image-decor"></div>
           <div class="ca-featured__image-badge">
-            <div class="ca-featured__image-icon">
-              <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                <path d="M2 17l10 5 10-5"/>
-                <path d="M2 12l10 5 10-5"/>
-              </svg>
-            </div>
+            <div class="ca-featured__image-icon"><svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
             <div class="ca-featured__image-label">Featured Resource</div>
             <div class="ca-featured__image-title">Career Strategy 2025</div>
           </div>
@@ -1215,9 +1186,7 @@
     </div>
   </section>
 
-  <!-- ============================================================
-       SECTION 3 — LATEST ARTICLES
-  ============================================================ -->
+  <!-- SECTION 3 — LATEST ARTICLES -->
   <section class="ca-section">
     <div class="ca-container">
       <div class="ca-section-header">
@@ -1226,85 +1195,23 @@
         <p class="ca-section-sub">Practical, expert-written guides to help you grow professionally in the Egyptian market.</p>
       </div>
       <div class="ca-articles-grid">
-        <a class="ca-article-card" data-article="ats_resume" onclick="openArticle('ats_resume')" style="cursor:pointer;">
-          <div class="ca-article-card__top"><span class="ca-badge">Resume Writing</span></div>
-          <h3 class="ca-article-card__title">How to Write a Resume That Gets Past ATS Systems in 2025</h3>
-          <p class="ca-article-card__excerpt">Applicant tracking systems reject up to 75% of resumes before a human ever sees them. Learn the exact formatting and keyword strategies that ensure your application reaches a recruiter's desk.</p>
-          <div class="ca-article-card__footer"><span class="ca-article-card__read-time">8 min read</span><span class="ca-article-card__arrow"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
-        </a>
-        <a class="ca-article-card" data-article="ats_resume" onclick="openArticle('ats_resume')" style="cursor:pointer;">
-          <div class="ca-article-card__top"><span class="ca-badge">Interviews</span></div>
-          <h3 class="ca-article-card__title">The 20 Most Common Interview Questions Asked in Egyptian Companies</h3>
-          <p class="ca-article-card__excerpt">From multinational corporations in Cairo to fast-growing startups, these are the questions that appear most frequently — with proven frameworks to answer each one confidently.</p>
-          <div class="ca-article-card__footer"><span class="ca-article-card__read-time">11 min read</span><span class="ca-article-card__arrow"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
-        </a>
-        <a class="ca-article-card" data-article="ats_resume" onclick="openArticle('ats_resume')" style="cursor:pointer;">
-          <div class="ca-article-card__top"><span class="ca-badge">Salary</span></div>
-          <h3 class="ca-article-card__title">How to Negotiate Your Salary Without Losing the Offer</h3>
-          <p class="ca-article-card__excerpt">Salary negotiation remains one of the most underutilized career skills. Discover when to bring it up, how to anchor your number, and the exact phrases that open conversations without creating conflict.</p>
-          <div class="ca-article-card__footer"><span class="ca-article-card__read-time">9 min read</span><span class="ca-article-card__arrow"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
-        </a>
-        <a class="ca-article-card" data-article="ats_resume" onclick="openArticle('ats_resume')" style="cursor:pointer;">
-          <div class="ca-article-card__top"><span class="ca-badge">LinkedIn</span></div>
-          <h3 class="ca-article-card__title">Building a LinkedIn Profile That Attracts Recruiters in Egypt</h3>
-          <p class="ca-article-card__excerpt">LinkedIn has become the primary sourcing tool for Egyptian recruiters. This guide breaks down every section — headline, summary, experience — and shows you how to rank for the right searches.</p>
-          <div class="ca-article-card__footer"><span class="ca-article-card__read-time">7 min read</span><span class="ca-article-card__arrow"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
-        </a>
-        <a class="ca-article-card" data-article="ats_resume" onclick="openArticle('ats_resume')" style="cursor:pointer;">
-          <div class="ca-article-card__top"><span class="ca-badge">Remote Work</span></div>
-          <h3 class="ca-article-card__title">How Egyptian Professionals Can Land Remote Jobs With International Companies</h3>
-          <p class="ca-article-card__excerpt">The global remote market is open to Egyptian talent like never before. We cover the platforms, the positioning strategies, and the profile adjustments that lead to international offers.</p>
-          <div class="ca-article-card__footer"><span class="ca-article-card__read-time">10 min read</span><span class="ca-article-card__arrow"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
-        </a>
-        <a class="ca-article-card" data-article="ats_resume" onclick="openArticle('ats_resume')" style="cursor:pointer;">
-          <div class="ca-article-card__top"><span class="ca-badge">Career Change</span></div>
-          <h3 class="ca-article-card__title">Making a Career Pivot at 30: A Practical Roadmap for Egyptian Professionals</h3>
-          <p class="ca-article-card__excerpt">Changing careers mid-way doesn't mean starting from zero. Learn how to transfer existing skills, identify adjacent roles, and build credibility in a new field within 6–12 months.</p>
-          <div class="ca-article-card__footer"><span class="ca-article-card__read-time">13 min read</span><span class="ca-article-card__arrow"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
-        </a>
-        <a class="ca-article-card" data-article="ats_resume" onclick="openArticle('ats_resume')" style="cursor:pointer;">
-          <div class="ca-article-card__top"><span class="ca-badge">Networking</span></div>
-          <h3 class="ca-article-card__title">Professional Networking in Egypt: Building Relationships That Open Doors</h3>
-          <p class="ca-article-card__excerpt">In Egypt's relationship-driven market, who you know matters as much as what you know. Discover authentic networking strategies for Cairo, Alexandria, and online communities.</p>
-          <div class="ca-article-card__footer"><span class="ca-article-card__read-time">8 min read</span><span class="ca-article-card__arrow"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
-        </a>
-        <a class="ca-article-card" data-article="ats_resume" onclick="openArticle('ats_resume')" style="cursor:pointer;">
-          <div class="ca-article-card__top"><span class="ca-badge">Cover Letter</span></div>
-          <h3 class="ca-article-card__title">Writing a Cover Letter That Hiring Managers Actually Read</h3>
-          <p class="ca-article-card__excerpt">Most cover letters say the same things. This guide shows you how to write an opening paragraph that creates genuine curiosity, and a body that reinforces your candidacy without repeating your resume.</p>
-          <div class="ca-article-card__footer"><span class="ca-article-card__read-time">6 min read</span><span class="ca-article-card__arrow"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
-        </a>
-        <a class="ca-article-card" data-article="ats_resume" onclick="openArticle('ats_resume')" style="cursor:pointer;">
-          <div class="ca-article-card__top"><span class="ca-badge">Productivity</span></div>
-          <h3 class="ca-article-card__title">Time Management Strategies for the Ambitious Egyptian Professional</h3>
-          <p class="ca-article-card__excerpt">Between long commutes, family obligations, and a demanding job market, managing your time effectively is a competitive advantage. These evidence-based strategies are tailored to the Egyptian work context.</p>
-          <div class="ca-article-card__footer"><span class="ca-article-card__read-time">7 min read</span><span class="ca-article-card__arrow"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
-        </a>
-        <a class="ca-article-card" data-article="ats_resume" onclick="openArticle('ats_resume')" style="cursor:pointer;">
-          <div class="ca-article-card__top"><span class="ca-badge">First Job</span></div>
-          <h3 class="ca-article-card__title">Fresh Graduate Survival Guide: Your First 90 Days at a New Job in Egypt</h3>
-          <p class="ca-article-card__excerpt">The first three months define how colleagues and managers perceive you for the rest of your tenure. Learn the unwritten rules, the relationship-building strategies, and the performance signals that matter most.</p>
-          <div class="ca-article-card__footer"><span class="ca-article-card__read-time">10 min read</span><span class="ca-article-card__arrow"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
-        </a>
-        <a class="ca-article-card" data-article="ats_resume" onclick="openArticle('ats_resume')" style="cursor:pointer;">
-          <div class="ca-article-card__top"><span class="ca-badge">Leadership</span></div>
-          <h3 class="ca-article-card__title">From Individual Contributor to Manager: Making the Transition Successfully</h3>
-          <p class="ca-article-card__excerpt">The skills that made you a great performer won't automatically make you a great manager. This guide addresses the mindset shift, the delegation challenges, and the communication changes required to lead effectively.</p>
-          <div class="ca-article-card__footer"><span class="ca-article-card__read-time">12 min read</span><span class="ca-article-card__arrow"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
-        </a>
-        <a class="ca-article-card" data-article="ats_resume" onclick="openArticle('ats_resume')" style="cursor:pointer;">
-          <div class="ca-article-card__top"><span class="ca-badge">Personal Brand</span></div>
-          <h3 class="ca-article-card__title">Building a Professional Personal Brand That Drives Inbound Opportunities</h3>
-          <p class="ca-article-card__excerpt">In a crowded market, professionals who actively shape how they're perceived online receive more unsolicited opportunities than those who don't. A step-by-step personal branding framework for Egyptian professionals.</p>
-          <div class="ca-article-card__footer"><span class="ca-article-card__read-time">9 min read</span><span class="ca-article-card__arrow"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
-        </a>
+        <div class="ca-article-card" onclick="openArticle('ats_resume')" style="cursor:pointer;"><div class="ca-article-card__top"><span class="ca-badge">Resume Writing</span></div><h3 class="ca-article-card__title">How to Write a Resume That Gets Past ATS Systems in 2025</h3><p class="ca-article-card__excerpt">Applicant tracking systems reject up to 75% of resumes before a human ever sees them. Learn the exact formatting and keyword strategies that ensure your application reaches a recruiter's desk.</p><div class="ca-article-card__footer"><span class="ca-article-card__read-time">8 min read</span><span class="ca-article-card__arrow"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div></div>
+        <div class="ca-article-card" onclick="openArticle('behavioral_interviews')" style="cursor:pointer;"><div class="ca-article-card__top"><span class="ca-badge">Interviews</span></div><h3 class="ca-article-card__title">The 20 Most Common Interview Questions Asked in Egyptian Companies</h3><p class="ca-article-card__excerpt">From multinational corporations in Cairo to fast-growing startups, these are the questions that appear most frequently — with proven frameworks to answer each one confidently.</p><div class="ca-article-card__footer"><span class="ca-article-card__read-time">11 min read</span><span class="ca-article-card__arrow"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div></div>
+        <div class="ca-article-card" onclick="openArticle('salary_negotiation')" style="cursor:pointer;"><div class="ca-article-card__top"><span class="ca-badge">Salary</span></div><h3 class="ca-article-card__title">How to Negotiate Your Salary Without Losing the Offer</h3><p class="ca-article-card__excerpt">Salary negotiation remains one of the most underutilized career skills. Discover when to bring it up, how to anchor your number, and the exact phrases that open conversations without creating conflict.</p><div class="ca-article-card__footer"><span class="ca-article-card__read-time">9 min read</span><span class="ca-article-card__arrow"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div></div>
+        <div class="ca-article-card" onclick="openArticle('linkedin_profile')" style="cursor:pointer;"><div class="ca-article-card__top"><span class="ca-badge">LinkedIn</span></div><h3 class="ca-article-card__title">Building a LinkedIn Profile That Attracts Recruiters in Egypt</h3><p class="ca-article-card__excerpt">LinkedIn has become the primary sourcing tool for Egyptian recruiters. This guide breaks down every section — headline, summary, experience — and shows you how to rank for the right searches.</p><div class="ca-article-card__footer"><span class="ca-article-card__read-time">7 min read</span><span class="ca-article-card__arrow"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div></div>
+        <div class="ca-article-card" onclick="openArticle('job_search_strategy')" style="cursor:pointer;"><div class="ca-article-card__top"><span class="ca-badge">Remote Work</span></div><h3 class="ca-article-card__title">How Egyptian Professionals Can Land Remote Jobs With International Companies</h3><p class="ca-article-card__excerpt">The global remote market is open to Egyptian talent like never before. We cover the platforms, the positioning strategies, and the profile adjustments that lead to international offers.</p><div class="ca-article-card__footer"><span class="ca-article-card__read-time">10 min read</span><span class="ca-article-card__arrow"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div></div>
+        <div class="ca-article-card" onclick="openArticle('career_change')" style="cursor:pointer;"><div class="ca-article-card__top"><span class="ca-badge">Career Change</span></div><h3 class="ca-article-card__title">Making a Career Pivot at 30: A Practical Roadmap for Egyptian Professionals</h3><p class="ca-article-card__excerpt">Changing careers mid-way doesn't mean starting from zero. Learn how to transfer existing skills, identify adjacent roles, and build credibility in a new field within 6–12 months.</p><div class="ca-article-card__footer"><span class="ca-article-card__read-time">13 min read</span><span class="ca-article-card__arrow"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div></div>
+        <div class="ca-article-card" onclick="openArticle('networking_egypt')" style="cursor:pointer;"><div class="ca-article-card__top"><span class="ca-badge">Networking</span></div><h3 class="ca-article-card__title">Professional Networking in Egypt: Building Relationships That Open Doors</h3><p class="ca-article-card__excerpt">In Egypt's relationship-driven market, who you know matters as much as what you know. Discover authentic networking strategies for Cairo, Alexandria, and online communities.</p><div class="ca-article-card__footer"><span class="ca-article-card__read-time">8 min read</span><span class="ca-article-card__arrow"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div></div>
+        <div class="ca-article-card" onclick="openArticle('cover_letter_guide')" style="cursor:pointer;"><div class="ca-article-card__top"><span class="ca-badge">Cover Letter</span></div><h3 class="ca-article-card__title">Writing a Cover Letter That Hiring Managers Actually Read</h3><p class="ca-article-card__excerpt">Most cover letters say the same things. This guide shows you how to write an opening paragraph that creates genuine curiosity, and a body that reinforces your candidacy without repeating your resume.</p><div class="ca-article-card__footer"><span class="ca-article-card__read-time">6 min read</span><span class="ca-article-card__arrow"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div></div>
+        <div class="ca-article-card" onclick="openArticle('work_life_balance')" style="cursor:pointer;"><div class="ca-article-card__top"><span class="ca-badge">Productivity</span></div><h3 class="ca-article-card__title">Time Management Strategies for the Ambitious Egyptian Professional</h3><p class="ca-article-card__excerpt">Between long commutes, family obligations, and a demanding job market, managing your time effectively is a competitive advantage. These evidence-based strategies are tailored to the Egyptian work context.</p><div class="ca-article-card__footer"><span class="ca-article-card__read-time">7 min read</span><span class="ca-article-card__arrow"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div></div>
+        <div class="ca-article-card" onclick="openArticle('fresh_graduate')" style="cursor:pointer;"><div class="ca-article-card__top"><span class="ca-badge">First Job</span></div><h3 class="ca-article-card__title">Fresh Graduate Survival Guide: Your First 90 Days at a New Job in Egypt</h3><p class="ca-article-card__excerpt">The first three months define how colleagues and managers perceive you for the rest of your tenure. Learn the unwritten rules, the relationship-building strategies, and the performance signals that matter most.</p><div class="ca-article-card__footer"><span class="ca-article-card__read-time">10 min read</span><span class="ca-article-card__arrow"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div></div>
+        <div class="ca-article-card" onclick="openArticle('promotion_strategy')" style="cursor:pointer;"><div class="ca-article-card__top"><span class="ca-badge">Leadership</span></div><h3 class="ca-article-card__title">From Individual Contributor to Manager: Making the Transition Successfully</h3><p class="ca-article-card__excerpt">The skills that made you a great performer won't automatically make you a great manager. This guide addresses the mindset shift, the delegation challenges, and the communication changes required to lead effectively.</p><div class="ca-article-card__footer"><span class="ca-article-card__read-time">12 min read</span><span class="ca-article-card__arrow"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div></div>
+        <div class="ca-article-card" onclick="openArticle('personal_branding')" style="cursor:pointer;"><div class="ca-article-card__top"><span class="ca-badge">Personal Brand</span></div><h3 class="ca-article-card__title">Building a Professional Personal Brand That Drives Inbound Opportunities</h3><p class="ca-article-card__excerpt">In a crowded market, professionals who actively shape how they're perceived online receive more unsolicited opportunities than those who don't. A step-by-step personal branding framework for Egyptian professionals.</p><div class="ca-article-card__footer"><span class="ca-article-card__read-time">9 min read</span><span class="ca-article-card__arrow"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div></div>
       </div>
     </div>
   </section>
 
-  <!-- ============================================================
-       SECTION 4 — CAREER RESOURCES HUB
-  ============================================================ -->
+  <!-- SECTION 4 — CAREER RESOURCES HUB -->
   <section class="ca-section">
     <div class="ca-container">
       <div class="ca-section-header">
@@ -1313,113 +1220,38 @@
         <p class="ca-section-sub">Professional-grade resources designed to give you a practical edge in the Egyptian job market.</p>
       </div>
       <div class="ca-resources-grid">
-        <a class="ca-resource-card" onclick="openArticle('cv_templates')" style="cursor:pointer;">
-          <div class="ca-resource-card__icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 8h10M7 12h10M7 16h6"/></svg></div>
-          <h3 class="ca-resource-card__title">CV Templates</h3>
-          <p class="ca-resource-card__desc">ATS-optimized, professionally designed templates tailored for the Egyptian and regional market.</p>
-          <span class="ca-resource-card__cta">Download Free <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
-        </a>
-        <a class="ca-resource-card" onclick="openArticle('cover_letter_guide')" style="cursor:pointer;">
-          <div class="ca-resource-card__icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
-          <h3 class="ca-resource-card__title">Cover Letter Guide</h3>
-          <p class="ca-resource-card__desc">A complete framework for writing cover letters that distinguish you from the competition.</p>
-          <span class="ca-resource-card__cta">Read Guide <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
-        </a>
-        <a class="ca-resource-card" onclick="openArticle('interview_checklist')" style="cursor:pointer;">
-          <div class="ca-resource-card__icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
-          <h3 class="ca-resource-card__title">Interview Checklist</h3>
-          <p class="ca-resource-card__desc">A step-by-step preparation checklist from 48 hours before the interview to the follow-up message.</p>
-          <span class="ca-resource-card__cta">Get Checklist <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
-        </a>
-        <a class="ca-resource-card" onclick="openArticle('career_planning')" style="cursor:pointer;">
-          <div class="ca-resource-card__icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg></div>
-          <h3 class="ca-resource-card__title">Career Planning</h3>
-          <p class="ca-resource-card__desc">A structured 5-year career planning worksheet with milestone tracking and skills gap analysis.</p>
-          <span class="ca-resource-card__cta">Start Planning <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
-        </a>
-        <a class="ca-resource-card" onclick="openArticle('networking_guide')" style="cursor:pointer;">
-          <div class="ca-resource-card__icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="17" cy="7" r="3"/><circle cx="7" cy="17" r="3"/><circle cx="17" cy="17" r="3"/><circle cx="7" cy="7" r="3"/><path d="M10 7h4M7 10v4M17 10v4M10 17h4"/></svg></div>
-          <h3 class="ca-resource-card__title">Networking Guide</h3>
-          <p class="ca-resource-card__desc">Build meaningful professional relationships through strategic networking in Egypt's business community.</p>
-          <span class="ca-resource-card__cta">Read Guide <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
-        </a>
-        <a class="ca-resource-card" onclick="openArticle('linkedin_optimization')" style="cursor:pointer;">
-          <div class="ca-resource-card__icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
-          <h3 class="ca-resource-card__title">LinkedIn Optimization</h3>
-          <p class="ca-resource-card__desc">A comprehensive guide to building a LinkedIn profile that consistently attracts recruiter outreach.</p>
-          <span class="ca-resource-card__cta">Optimize Now <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
-        </a>
-        <a class="ca-resource-card" onclick="openArticle('professional_branding')" style="cursor:pointer;">
-          <div class="ca-resource-card__icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
-          <h3 class="ca-resource-card__title">Professional Branding</h3>
-          <p class="ca-resource-card__desc">Define and communicate your professional identity to position yourself as a go-to expert in your field.</p>
-          <span class="ca-resource-card__cta">Build Brand <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
-        </a>
-        <a class="ca-resource-card" onclick="openArticle('professional_development')" style="cursor:pointer;">
-          <div class="ca-resource-card__icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
-          <h3 class="ca-resource-card__title">Professional Development</h3>
-          <p class="ca-resource-card__desc">Curated learning paths and certification recommendations for key careers in the Egyptian market.</p>
-          <span class="ca-resource-card__cta">Explore Paths <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
-        </a>
-      </div>
+        <div class="ca-resource-card" onclick="openArticle('cv_templates')" style="cursor:pointer;"><div class="ca-resource-card__icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 8h10M7 12h10M7 16h6"/></svg></div><h3 class="ca-resource-card__title">CV Templates</h3><p class="ca-resource-card__desc">ATS-optimized, professionally designed templates tailored for the Egyptian and regional market.</p><span class="ca-resource-card__cta">Download Free <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+        <div class="ca-resource-card" onclick="openArticle('cover_letter_guide')" style="cursor:pointer;"><div class="ca-resource-card__icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><h3 class="ca-resource-card__title">Cover Letter Guide</h3><p class="ca-resource-card__desc">A complete framework for writing cover letters that distinguish you from the competition.</p><span class="ca-resource-card__cta">Read Guide <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+        <div class="ca-resource-card" onclick="openArticle('interview_checklist')" style="cursor:pointer;"><div class="ca-resource-card__icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><h3 class="ca-resource-card__title">Interview Checklist</h3><p class="ca-resource-card__desc">A step-by-step preparation checklist from 48 hours before the interview to the follow-up message.</p><span class="ca-resource-card__cta">Get Checklist <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+        <div class="ca-resource-card" onclick="openArticle('career_planning')" style="cursor:pointer;"><div class="ca-resource-card__icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg></div><h3 class="ca-resource-card__title">Career Planning</h3><p class="ca-resource-card__desc">A structured 5-year career planning worksheet with milestone tracking and skills gap analysis.</p><span class="ca-resource-card__cta">Start Planning <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+        <div class="ca-resource-card" onclick="openArticle('networking_guide')" style="cursor:pointer;"><div class="ca-resource-card__icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="17" cy="7" r="3"/><circle cx="7" cy="17" r="3"/><circle cx="17" cy="17" r="3"/><circle cx="7" cy="7" r="3"/><path d="M10 7h4M7 10v4M17 10v4M10 17h4"/></svg></div><h3 class="ca-resource-card__title">Networking Guide</h3><p class="ca-resource-card__desc">Build meaningful professional relationships through strategic networking in Egypt's business community.</p><span class="ca-resource-card__cta">Read Guide <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+        <div class="ca-resource-card" onclick="openArticle('linkedin_optimization')" style="cursor:pointer;"><div class="ca-resource-card__icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div><h3 class="ca-resource-card__title">LinkedIn Optimization</h3><p class="ca-resource-card__desc">A comprehensive guide to building a LinkedIn profile that consistently attracts recruiter outreach.</p><span class="ca-resource-card__cta">Optimize Now <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+        <div class="ca-resource-card" onclick="openArticle('professional_branding')" style="cursor:pointer;"><div class="ca-resource-card__icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><h3 class="ca-resource-card__title">Professional Branding</h3><p class="ca-resource-card__desc">Define and communicate your professional identity to position yourself as a go-to expert in your field.</p><span class="ca-resource-card__cta">Build Brand <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+        <div class="ca-resource-card" onclick="openArticle('professional_development')" style="cursor:pointer;"><div class="ca-resource-card__icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div><h3 class="ca-resource-card__title">Professional Development</h3><p class="ca-resource-card__desc">Curated learning paths and certification recommendations for key careers in the Egyptian market.</p><span class="ca-resource-card__cta">Explore Paths <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
       </div>
     </div>
   </section>
 
-  <!-- ============================================================
-       SECTION 5 — EGYPT JOB MARKET INSIGHTS
-  ============================================================ -->
+  <!-- SECTION 5 — EGYPT JOB MARKET INSIGHTS -->
   <section class="ca-section">
     <div class="ca-container">
       <div class="ca-section-header">
         <span class="ca-section-label">Market Intelligence</span>
         <h2 class="ca-section-title">Egypt Job Market Insights</h2>
-        <p class="ca-section-sub">Sector-by-sector analysis of Egypt's most dynamic industries, updated quarterly to reflect real market conditions.</p>
+        <p class="ca-section-sub">Sector-by-sector analysis of Egypt's most dynamic industries, updated quarterly.</p>
       </div>
       <div class="ca-market-grid">
-        <div class="ca-market-card">
-          <div class="ca-market-card__header"><span class="ca-market-card__sector">Technology</span><span class="ca-market-card__trend ca-market-card__trend--up"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>High Growth</span></div>
-          <p class="ca-market-card__insight">Egypt's tech sector is experiencing exceptional growth, driven by a thriving startup ecosystem in Cairo and Alexandria. Software developers, data engineers, and cybersecurity professionals are in sustained high demand.</p>
-          <div class="ca-market-card__bar-label"><span>Demand Level</span><span>92%</span></div>
-          <div class="ca-market-card__bar"><div class="ca-market-card__bar-fill" style="width:92%"></div></div>
-        </div>
-        <div class="ca-market-card">
-          <div class="ca-market-card__header"><span class="ca-market-card__sector">Finance & Banking</span><span class="ca-market-card__trend ca-market-card__trend--up"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>Growing</span></div>
-          <p class="ca-market-card__insight">Financial services remain one of Egypt's most stable employment sectors. Digital banking transformation is creating new roles in fintech, risk management, and financial analysis.</p>
-          <div class="ca-market-card__bar-label"><span>Demand Level</span><span>78%</span></div>
-          <div class="ca-market-card__bar"><div class="ca-market-card__bar-fill" style="width:78%"></div></div>
-        </div>
-        <div class="ca-market-card">
-          <div class="ca-market-card__header"><span class="ca-market-card__sector">Healthcare</span><span class="ca-market-card__trend ca-market-card__trend--up"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>Strong</span></div>
-          <p class="ca-market-card__insight">Healthcare professionals continue to experience strong demand across public and private sectors. Expansion of private hospital networks and pharmaceutical companies is generating consistent opportunities.</p>
-          <div class="ca-market-card__bar-label"><span>Demand Level</span><span>85%</span></div>
-          <div class="ca-market-card__bar"><div class="ca-market-card__bar-fill" style="width:85%"></div></div>
-        </div>
-        <div class="ca-market-card">
-          <div class="ca-market-card__header"><span class="ca-market-card__sector">Sales & Business Dev</span><span class="ca-market-card__trend ca-market-card__trend--stable"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14"/></svg>Stable</span></div>
-          <p class="ca-market-card__insight">Sales roles remain highly abundant across industries, with particularly strong demand in B2B technology sales, pharmaceutical sales, and real estate. Commission structures have become increasingly competitive.</p>
-          <div class="ca-market-card__bar-label"><span>Demand Level</span><span>82%</span></div>
-          <div class="ca-market-card__bar"><div class="ca-market-card__bar-fill" style="width:82%"></div></div>
-        </div>
-        <div class="ca-market-card">
-          <div class="ca-market-card__header"><span class="ca-market-card__sector">Customer Service</span><span class="ca-market-card__trend ca-market-card__trend--stable"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14"/></svg>High Volume</span></div>
-          <p class="ca-market-card__insight">Egypt's BPO and customer service industry is among the largest in the region. English-speaking agents, particularly those with additional language skills, enjoy strong bargaining power and competitive compensation.</p>
-          <div class="ca-market-card__bar-label"><span>Demand Level</span><span>88%</span></div>
-          <div class="ca-market-card__bar"><div class="ca-market-card__bar-fill" style="width:88%"></div></div>
-        </div>
-        <div class="ca-market-card">
-          <div class="ca-market-card__header"><span class="ca-market-card__sector">Remote Work</span><span class="ca-market-card__trend ca-market-card__trend--up"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>Expanding</span></div>
-          <p class="ca-market-card__insight">Remote-first opportunities for Egyptian professionals are growing significantly, especially in software development, digital marketing, and creative roles. International clients increasingly recognize Egypt's talent quality.</p>
-          <div class="ca-market-card__bar-label"><span>Demand Level</span><span>74%</span></div>
-          <div class="ca-market-card__bar"><div class="ca-market-card__bar-fill" style="width:74%"></div></div>
-        </div>
+        <div class="ca-market-card"><div class="ca-market-card__header"><span class="ca-market-card__sector">Technology</span><span class="ca-market-card__trend ca-market-card__trend--up"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>High Growth</span></div><p class="ca-market-card__insight">Egypt's tech sector is experiencing exceptional growth, driven by a thriving startup ecosystem in Cairo and Alexandria. Software developers, data engineers, and cybersecurity professionals are in sustained high demand.</p><div class="ca-market-card__bar-label"><span>Demand Level</span><span>92%</span></div><div class="ca-market-card__bar"><div class="ca-market-card__bar-fill" style="width:92%"></div></div></div>
+        <div class="ca-market-card"><div class="ca-market-card__header"><span class="ca-market-card__sector">Finance & Banking</span><span class="ca-market-card__trend ca-market-card__trend--up"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>Growing</span></div><p class="ca-market-card__insight">Financial services remain one of Egypt's most stable employment sectors. Digital banking transformation is creating new roles in fintech, risk management, and financial analysis.</p><div class="ca-market-card__bar-label"><span>Demand Level</span><span>78%</span></div><div class="ca-market-card__bar"><div class="ca-market-card__bar-fill" style="width:78%"></div></div></div>
+        <div class="ca-market-card"><div class="ca-market-card__header"><span class="ca-market-card__sector">Healthcare</span><span class="ca-market-card__trend ca-market-card__trend--up"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>Strong</span></div><p class="ca-market-card__insight">Healthcare professionals continue to experience strong demand across public and private sectors. Expansion of private hospital networks and pharmaceutical companies is generating consistent opportunities.</p><div class="ca-market-card__bar-label"><span>Demand Level</span><span>85%</span></div><div class="ca-market-card__bar"><div class="ca-market-card__bar-fill" style="width:85%"></div></div></div>
+        <div class="ca-market-card"><div class="ca-market-card__header"><span class="ca-market-card__sector">Sales & Business Dev</span><span class="ca-market-card__trend ca-market-card__trend--stable"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14"/></svg>Stable</span></div><p class="ca-market-card__insight">Sales roles remain highly abundant across industries, with particularly strong demand in B2B technology sales, pharmaceutical sales, and real estate.</p><div class="ca-market-card__bar-label"><span>Demand Level</span><span>82%</span></div><div class="ca-market-card__bar"><div class="ca-market-card__bar-fill" style="width:82%"></div></div></div>
+        <div class="ca-market-card"><div class="ca-market-card__header"><span class="ca-market-card__sector">Customer Service</span><span class="ca-market-card__trend ca-market-card__trend--stable"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14"/></svg>High Volume</span></div><p class="ca-market-card__insight">Egypt's BPO and customer service industry is among the largest in the region. English-speaking agents enjoy strong bargaining power and competitive compensation.</p><div class="ca-market-card__bar-label"><span>Demand Level</span><span>88%</span></div><div class="ca-market-card__bar"><div class="ca-market-card__bar-fill" style="width:88%"></div></div></div>
+        <div class="ca-market-card"><div class="ca-market-card__header"><span class="ca-market-card__sector">Remote Work</span><span class="ca-market-card__trend ca-market-card__trend--up"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>Expanding</span></div><p class="ca-market-card__insight">Remote-first opportunities for Egyptian professionals are growing significantly, especially in software development, digital marketing, and creative roles.</p><div class="ca-market-card__bar-label"><span>Demand Level</span><span>74%</span></div><div class="ca-market-card__bar"><div class="ca-market-card__bar-fill" style="width:74%"></div></div></div>
       </div>
     </div>
   </section>
 
-  <!-- ============================================================
-       SECTION 6 — SALARY INSIGHTS
-  ============================================================ -->
+  <!-- SECTION 6 — SALARY INSIGHTS -->
   <section class="ca-section">
     <div class="ca-container">
       <div class="ca-section-header">
@@ -1428,302 +1260,133 @@
         <p class="ca-section-sub">Monthly salary ranges for key roles in the Egyptian market, across entry, mid, and senior levels.</p>
       </div>
       <div class="ca-salary-grid">
-        <div class="ca-salary-card">
-          <div class="ca-salary-card__role">Software Engineer</div>
-          <div class="ca-salary-card__range">6,000 – 30,000 <span class="ca-salary-card__range-unit">EGP / month</span></div>
-          <div class="ca-salary-card__levels">
-            <div class="ca-salary-card__level"><div class="ca-salary-card__level-header"><span>Junior (0–2 yrs)</span><span>6k–10k</span></div><div class="ca-salary-card__bar"><div class="ca-salary-card__bar-fill" style="width:30%"></div></div></div>
-            <div class="ca-salary-card__level"><div class="ca-salary-card__level-header"><span>Mid-level (3–5 yrs)</span><span>12k–20k</span></div><div class="ca-salary-card__bar"><div class="ca-salary-card__bar-fill" style="width:58%"></div></div></div>
-            <div class="ca-salary-card__level"><div class="ca-salary-card__level-header"><span>Senior (6+ yrs)</span><span>22k–30k+</span></div><div class="ca-salary-card__bar"><div class="ca-salary-card__bar-fill" style="width:85%"></div></div></div>
-          </div>
-          <span class="ca-salary-card__tag">High Demand</span>
-        </div>
-        <div class="ca-salary-card">
-          <div class="ca-salary-card__role">Accountant</div>
-          <div class="ca-salary-card__range">4,000 – 18,000 <span class="ca-salary-card__range-unit">EGP / month</span></div>
-          <div class="ca-salary-card__levels">
-            <div class="ca-salary-card__level"><div class="ca-salary-card__level-header"><span>Junior (0–2 yrs)</span><span>4k–7k</span></div><div class="ca-salary-card__bar"><div class="ca-salary-card__bar-fill" style="width:28%"></div></div></div>
-            <div class="ca-salary-card__level"><div class="ca-salary-card__level-header"><span>Mid-level (3–5 yrs)</span><span>8k–13k</span></div><div class="ca-salary-card__bar"><div class="ca-salary-card__bar-fill" style="width:52%"></div></div></div>
-            <div class="ca-salary-card__level"><div class="ca-salary-card__level-header"><span>Senior (6+ yrs)</span><span>14k–18k+</span></div><div class="ca-salary-card__bar"><div class="ca-salary-card__bar-fill" style="width:72%"></div></div></div>
-          </div>
-          <span class="ca-salary-card__tag">Stable Sector</span>
-        </div>
-        <div class="ca-salary-card">
-          <div class="ca-salary-card__role">Sales Executive</div>
-          <div class="ca-salary-card__range">5,000 – 25,000 <span class="ca-salary-card__range-unit">EGP / month</span></div>
-          <div class="ca-salary-card__levels">
-            <div class="ca-salary-card__level"><div class="ca-salary-card__level-header"><span>Junior (0–2 yrs)</span><span>5k–9k</span></div><div class="ca-salary-card__bar"><div class="ca-salary-card__bar-fill" style="width:27%"></div></div></div>
-            <div class="ca-salary-card__level"><div class="ca-salary-card__level-header"><span>Mid-level (3–5 yrs)</span><span>10k–16k</span></div><div class="ca-salary-card__bar"><div class="ca-salary-card__bar-fill" style="width:52%"></div></div></div>
-            <div class="ca-salary-card__level"><div class="ca-salary-card__level-header"><span>Senior (6+ yrs)</span><span>18k–25k+</span></div><div class="ca-salary-card__bar"><div class="ca-salary-card__bar-fill" style="width:80%"></div></div></div>
-          </div>
-          <span class="ca-salary-card__tag">Commission Upside</span>
-        </div>
-        <div class="ca-salary-card">
-          <div class="ca-salary-card__role">Digital Marketer</div>
-          <div class="ca-salary-card__range">5,000 – 22,000 <span class="ca-salary-card__range-unit">EGP / month</span></div>
-          <div class="ca-salary-card__levels">
-            <div class="ca-salary-card__level"><div class="ca-salary-card__level-header"><span>Junior (0–2 yrs)</span><span>5k–8k</span></div><div class="ca-salary-card__bar"><div class="ca-salary-card__bar-fill" style="width:26%"></div></div></div>
-            <div class="ca-salary-card__level"><div class="ca-salary-card__level-header"><span>Mid-level (3–5 yrs)</span><span>9k–15k</span></div><div class="ca-salary-card__bar"><div class="ca-salary-card__bar-fill" style="width:50%"></div></div></div>
-            <div class="ca-salary-card__level"><div class="ca-salary-card__level-header"><span>Senior (6+ yrs)</span><span>16k–22k+</span></div><div class="ca-salary-card__bar"><div class="ca-salary-card__bar-fill" style="width:75%"></div></div></div>
-          </div>
-          <span class="ca-salary-card__tag">Growing Demand</span>
-        </div>
-        <div class="ca-salary-card">
-          <div class="ca-salary-card__role">Customer Support</div>
-          <div class="ca-salary-card__range">5,000 – 15,000 <span class="ca-salary-card__range-unit">EGP / month</span></div>
-          <div class="ca-salary-card__levels">
-            <div class="ca-salary-card__level"><div class="ca-salary-card__level-header"><span>Entry Level</span><span>5k–8k</span></div><div class="ca-salary-card__bar"><div class="ca-salary-card__bar-fill" style="width:35%"></div></div></div>
-            <div class="ca-salary-card__level"><div class="ca-salary-card__level-header"><span>Specialist</span><span>9k–12k</span></div><div class="ca-salary-card__bar"><div class="ca-salary-card__bar-fill" style="width:58%"></div></div></div>
-            <div class="ca-salary-card__level"><div class="ca-salary-card__level-header"><span>Team Lead</span><span>12k–15k+</span></div><div class="ca-salary-card__bar"><div class="ca-salary-card__bar-fill" style="width:70%"></div></div></div>
-          </div>
-          <span class="ca-salary-card__tag">High Availability</span>
-        </div>
-        <div class="ca-salary-card">
-          <div class="ca-salary-card__role">Graphic Designer</div>
-          <div class="ca-salary-card__range">4,500 – 20,000 <span class="ca-salary-card__range-unit">EGP / month</span></div>
-          <div class="ca-salary-card__levels">
-            <div class="ca-salary-card__level"><div class="ca-salary-card__level-header"><span>Junior (0–2 yrs)</span><span>4.5k–7k</span></div><div class="ca-salary-card__bar"><div class="ca-salary-card__bar-fill" style="width:25%"></div></div></div>
-            <div class="ca-salary-card__level"><div class="ca-salary-card__level-header"><span>Mid-level (3–5 yrs)</span><span>8k–14k</span></div><div class="ca-salary-card__bar"><div class="ca-salary-card__bar-fill" style="width:48%"></div></div></div>
-            <div class="ca-salary-card__level"><div class="ca-salary-card__level-header"><span>Senior (6+ yrs)</span><span>15k–20k+</span></div><div class="ca-salary-card__bar"><div class="ca-salary-card__bar-fill" style="width:72%"></div></div></div>
-          </div>
-          <span class="ca-salary-card__tag">Portfolio Critical</span>
-        </div>
+        <div class="ca-salary-card"><div class="ca-salary-card__role">Software Engineer</div><div class="ca-salary-card__range">6,000 – 30,000 <span class="ca-salary-card__range-unit">EGP / month</span></div><div class="ca-salary-card__levels"><div class="ca-salary-card__level"><div class="ca-salary-card__level-header"><span>Junior (0–2 yrs)</span><span>6k–10k</span></div><div class="ca-salary-card__bar"><div class="ca-salary-card__bar-fill" style="width:30%"></div></div></div><div class="ca-salary-card__level"><div class="ca-salary-card__level-header"><span>Mid-level (3–5 yrs)</span><span>12k–20k</span></div><div class="ca-salary-card__bar"><div class="ca-salary-card__bar-fill" style="width:58%"></div></div></div><div class="ca-salary-card__level"><div class="ca-salary-card__level-header"><span>Senior (6+ yrs)</span><span>22k–30k+</span></div><div class="ca-salary-card__bar"><div class="ca-salary-card__bar-fill" style="width:85%"></div></div></div></div><span class="ca-salary-card__tag">High Demand</span></div>
+        <div class="ca-salary-card"><div class="ca-salary-card__role">Accountant</div><div class="ca-salary-card__range">4,000 – 18,000 <span class="ca-salary-card__range-unit">EGP / month</span></div><div class="ca-salary-card__levels"><div class="ca-salary-card__level"><div class="ca-salary-card__level-header"><span>Junior (0–2 yrs)</span><span>4k–7k</span></div><div class="ca-salary-card__bar"><div class="ca-salary-card__bar-fill" style="width:28%"></div></div></div><div class="ca-salary-card__level"><div class="ca-salary-card__level-header"><span>Mid-level (3–5 yrs)</span><span>8k–13k</span></div><div class="ca-salary-card__bar"><div class="ca-salary-card__bar-fill" style="width:52%"></div></div></div><div class="ca-salary-card__level"><div class="ca-salary-card__level-header"><span>Senior (6+ yrs)</span><span>14k–18k+</span></div><div class="ca-salary-card__bar"><div class="ca-salary-card__bar-fill" style="width:72%"></div></div></div></div><span class="ca-salary-card__tag">Stable Sector</span></div>
+        <div class="ca-salary-card"><div class="ca-salary-card__role">Sales Executive</div><div class="ca-salary-card__range">5,000 – 25,000 <span class="ca-salary-card__range-unit">EGP / month</span></div><div class="ca-salary-card__levels"><div class="ca-salary-card__level"><div class="ca-salary-card__level-header"><span>Junior (0–2 yrs)</span><span>5k–9k</span></div><div class="ca-salary-card__bar"><div class="ca-salary-card__bar-fill" style="width:27%"></div></div></div><div class="ca-salary-card__level"><div class="ca-salary-card__level-header"><span>Mid-level (3–5 yrs)</span><span>10k–16k</span></div><div class="ca-salary-card__bar"><div class="ca-salary-card__bar-fill" style="width:52%"></div></div></div><div class="ca-salary-card__level"><div class="ca-salary-card__level-header"><span>Senior (6+ yrs)</span><span>18k–25k+</span></div><div class="ca-salary-card__bar"><div class="ca-salary-card__bar-fill" style="width:80%"></div></div></div></div><span class="ca-salary-card__tag">Commission Upside</span></div>
+        <div class="ca-salary-card"><div class="ca-salary-card__role">Digital Marketer</div><div class="ca-salary-card__range">5,000 – 22,000 <span class="ca-salary-card__range-unit">EGP / month</span></div><div class="ca-salary-card__levels"><div class="ca-salary-card__level"><div class="ca-salary-card__level-header"><span>Junior (0–2 yrs)</span><span>5k–8k</span></div><div class="ca-salary-card__bar"><div class="ca-salary-card__bar-fill" style="width:26%"></div></div></div><div class="ca-salary-card__level"><div class="ca-salary-card__level-header"><span>Mid-level (3–5 yrs)</span><span>9k–15k</span></div><div class="ca-salary-card__bar"><div class="ca-salary-card__bar-fill" style="width:50%"></div></div></div><div class="ca-salary-card__level"><div class="ca-salary-card__level-header"><span>Senior (6+ yrs)</span><span>16k–22k+</span></div><div class="ca-salary-card__bar"><div class="ca-salary-card__bar-fill" style="width:75%"></div></div></div></div><span class="ca-salary-card__tag">Growing Demand</span></div>
+        <div class="ca-salary-card"><div class="ca-salary-card__role">Customer Support</div><div class="ca-salary-card__range">5,000 – 15,000 <span class="ca-salary-card__range-unit">EGP / month</span></div><div class="ca-salary-card__levels"><div class="ca-salary-card__level"><div class="ca-salary-card__level-header"><span>Entry Level</span><span>5k–8k</span></div><div class="ca-salary-card__bar"><div class="ca-salary-card__bar-fill" style="width:35%"></div></div></div><div class="ca-salary-card__level"><div class="ca-salary-card__level-header"><span>Specialist</span><span>9k–12k</span></div><div class="ca-salary-card__bar"><div class="ca-salary-card__bar-fill" style="width:58%"></div></div></div><div class="ca-salary-card__level"><div class="ca-salary-card__level-header"><span>Team Lead</span><span>12k–15k+</span></div><div class="ca-salary-card__bar"><div class="ca-salary-card__bar-fill" style="width:70%"></div></div></div></div><span class="ca-salary-card__tag">High Availability</span></div>
+        <div class="ca-salary-card"><div class="ca-salary-card__role">Graphic Designer</div><div class="ca-salary-card__range">4,500 – 20,000 <span class="ca-salary-card__range-unit">EGP / month</span></div><div class="ca-salary-card__levels"><div class="ca-salary-card__level"><div class="ca-salary-card__level-header"><span>Junior (0–2 yrs)</span><span>4.5k–7k</span></div><div class="ca-salary-card__bar"><div class="ca-salary-card__bar-fill" style="width:25%"></div></div></div><div class="ca-salary-card__level"><div class="ca-salary-card__level-header"><span>Mid-level (3–5 yrs)</span><span>8k–14k</span></div><div class="ca-salary-card__bar"><div class="ca-salary-card__bar-fill" style="width:48%"></div></div></div><div class="ca-salary-card__level"><div class="ca-salary-card__level-header"><span>Senior (6+ yrs)</span><span>15k–20k+</span></div><div class="ca-salary-card__bar"><div class="ca-salary-card__bar-fill" style="width:72%"></div></div></div></div><span class="ca-salary-card__tag">Portfolio Critical</span></div>
       </div>
     </div>
   </section>
 
-  <!-- ============================================================
-       SECTION 7 — RESUME HUB
-  ============================================================ -->
+  <!-- SECTION 7 — RESUME HUB -->
   <section class="ca-section">
     <div class="ca-container">
-      <div class="ca-section-header">
-        <span class="ca-section-label">Resume Center</span>
-        <h2 class="ca-section-title">The Complete Resume Writing Hub</h2>
-        <p class="ca-section-sub">From structure to formatting, every dimension of a compelling, market-ready resume.</p>
-      </div>
+      <div class="ca-section-header"><span class="ca-section-label">Resume Center</span><h2 class="ca-section-title">The Complete Resume Writing Hub</h2><p class="ca-section-sub">From structure to formatting, every dimension of a compelling, market-ready resume.</p></div>
       <div class="ca-hub-grid">
-       <a class="ca-hub-card" onclick="openArticle('resume_structure')" style="cursor:pointer;"><span class="ca-hub-card__num">01</span><h3 class="ca-hub-card__title">Resume Structure & Layout</h3><p class="ca-hub-card__desc">The architecture of a high-performing resume — which sections to include, what order they go in, and how to allocate space based on your career stage.</p><span class="ca-hub-card__link">Read Guide <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a>
-        <a class="ca-hub-card" onclick="openArticle('ats_optimization')" style="cursor:pointer;"><span class="ca-hub-card__num">02</span><h3 class="ca-hub-card__title">ATS Optimization</h3><p class="ca-hub-card__desc">Understand exactly how Applicant Tracking Systems parse resumes and the specific formatting choices that maximize your chances of passing the automated screening stage.</p><span class="ca-hub-card__link">Read Guide <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a>
-        <a class="ca-hub-card" onclick="openArticle('professional_summary')" style="cursor:pointer;"><span class="ca-hub-card__num">03</span><h3 class="ca-hub-card__title">Professional Summary</h3><p class="ca-hub-card__desc">Write a 3–5 line summary that immediately signals your value, your specialization, and why you're a strong candidate — even before the recruiter reads a single bullet.</p><span class="ca-hub-card__link">Read Guide <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a>
-       <div class="ca-hub-card" onclick="openOverlay('skills-section')"><span class="ca-hub-card__num">04</span><h3 class="ca-hub-card__title">Skills Section Mastery</h3><p class="ca-hub-card__desc">How to organize technical and soft skills, which ones to include, and how to demonstrate proficiency level without claiming more than you can deliver.</p><span class="ca-hub-card__link">Read Guide <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
-        <div class="ca-hub-card" onclick="openOverlay('work-experience-section')"><span class="ca-hub-card__num">05</span><h3 class="ca-hub-card__title">Work Experience Section</h3><p class="ca-hub-card__desc">Transform vague job descriptions into compelling achievement statements using the CAR framework — Context, Action, Result — with quantified metrics wherever possible.</p><span class="ca-hub-card__link">Read Guide <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
-        <div class="ca-hub-card" onclick="openOverlay('common-resume-mistakes')"><span class="ca-hub-card__num">06</span><h3 class="ca-hub-card__title">Common Resume Mistakes</h3><p class="ca-hub-card__desc">The 15 most frequent errors that cause qualified candidates to be rejected automatically — from photos in the wrong context to generic objective statements and unquantified experience.</p><span class="ca-hub-card__link">Read Guide <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
-<div class="ca-hub-card" onclick="openOverlay('showcasing-achievements')"><span class="ca-hub-card__num">07</span><h3 class="ca-hub-card__title">Showcasing Achievements</h3><p class="ca-hub-card__desc">How to identify, articulate, and position your professional achievements even if your previous roles didn't include formal KPIs.</p><span class="ca-hub-card__link">Read Guide <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
-        <div class="ca-hub-card" onclick="openOverlay('formatting-design')"><span class="ca-hub-card__num">08</span><h3 class="ca-hub-card__title">Formatting & Design</h3><p class="ca-hub-card__desc">The complete visual guide to resume formatting — fonts, margins, columns, color usage, and file format. What looks impressive to a human recruiter and passes through ATS without issues.</p><span class="ca-hub-card__link">Read Guide <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+        <div class="ca-hub-card" onclick="openArticle('resume_structure')" style="cursor:pointer;"><span class="ca-hub-card__num">01</span><h3 class="ca-hub-card__title">Resume Structure & Layout</h3><p class="ca-hub-card__desc">The architecture of a high-performing resume — which sections to include, what order they go in, and how to allocate space based on your career stage.</p><span class="ca-hub-card__link">Read Guide <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+        <div class="ca-hub-card" onclick="openArticle('ats_optimization')" style="cursor:pointer;"><span class="ca-hub-card__num">02</span><h3 class="ca-hub-card__title">ATS Optimization</h3><p class="ca-hub-card__desc">Understand exactly how Applicant Tracking Systems parse resumes and the specific formatting choices that maximize your chances of passing the automated screening stage.</p><span class="ca-hub-card__link">Read Guide <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+        <div class="ca-hub-card" onclick="openArticle('professional_summary')" style="cursor:pointer;"><span class="ca-hub-card__num">03</span><h3 class="ca-hub-card__title">Professional Summary</h3><p class="ca-hub-card__desc">Write a 3–5 line summary that immediately signals your value, your specialization, and why you're a strong candidate — even before the recruiter reads a single bullet.</p><span class="ca-hub-card__link">Read Guide <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+        <div class="ca-hub-card" onclick="openArticle('skills_section')" style="cursor:pointer;"><span class="ca-hub-card__num">04</span><h3 class="ca-hub-card__title">Skills Section Mastery</h3><p class="ca-hub-card__desc">How to organize technical and soft skills, which ones to include, and how to demonstrate proficiency level without claiming more than you can deliver.</p><span class="ca-hub-card__link">Read Guide <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+        <div class="ca-hub-card" onclick="openArticle('work_experience_section')" style="cursor:pointer;"><span class="ca-hub-card__num">05</span><h3 class="ca-hub-card__title">Work Experience Section</h3><p class="ca-hub-card__desc">Transform vague job descriptions into compelling achievement statements using the CAR framework — Context, Action, Result — with quantified metrics wherever possible.</p><span class="ca-hub-card__link">Read Guide <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+        <div class="ca-hub-card" onclick="openArticle('common_resume_mistakes')" style="cursor:pointer;"><span class="ca-hub-card__num">06</span><h3 class="ca-hub-card__title">Common Resume Mistakes</h3><p class="ca-hub-card__desc">The 15 most frequent errors that cause qualified candidates to be rejected automatically — from photos in the wrong context to generic objective statements and unquantified experience.</p><span class="ca-hub-card__link">Read Guide <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+        <div class="ca-hub-card" onclick="openArticle('showcasing_achievements')" style="cursor:pointer;"><span class="ca-hub-card__num">07</span><h3 class="ca-hub-card__title">Showcasing Achievements</h3><p class="ca-hub-card__desc">How to identify, articulate, and position your professional achievements even if your previous roles didn't include formal KPIs.</p><span class="ca-hub-card__link">Read Guide <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+        <div class="ca-hub-card" onclick="openArticle('formatting_design')" style="cursor:pointer;"><span class="ca-hub-card__num">08</span><h3 class="ca-hub-card__title">Formatting & Design</h3><p class="ca-hub-card__desc">The complete visual guide to resume formatting — fonts, margins, columns, color usage, and file format. What looks impressive to a human recruiter and passes through ATS without issues.</p><span class="ca-hub-card__link">Read Guide <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
       </div>
     </div>
   </section>
 
-  <!-- ============================================================
-       SECTION 8 — INTERVIEW PREP HUB
-  ============================================================ -->
+  <!-- SECTION 8 — INTERVIEW PREP HUB -->
   <section class="ca-section">
     <div class="ca-container">
-      <div class="ca-section-header">
-        <span class="ca-section-label">Interview Preparation</span>
-        <h2 class="ca-section-title">Master Every Interview Format</h2>
-        <p class="ca-section-sub">Comprehensive preparation guides for every interview type you'll encounter in Egypt's job market.</p>
-      </div>
+      <div class="ca-section-header"><span class="ca-section-label">Interview Preparation</span><h2 class="ca-section-title">Master Every Interview Format</h2><p class="ca-section-sub">Comprehensive preparation guides for every interview type you'll encounter in Egypt's job market.</p></div>
       <div class="ca-hub-grid">
-<div class="ca-hub-card" onclick="openOverlay('hr-interviews')"><span class="ca-hub-card__num">01</span><h3 class="ca-hub-card__title">HR Interviews</h3><p class="ca-hub-card__desc">Navigate screening interviews with HR professionals — covering the questions designed to evaluate cultural fit, motivation, salary expectations, and employment history.</p><span class="ca-hub-card__link">Read Guide <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
-        <div class="ca-hub-card" onclick="openOverlay('behavioral-interviews')"><span class="ca-hub-card__num">02</span><h3 class="ca-hub-card__title">Behavioral Interviews</h3><p class="ca-hub-card__desc">Master the STAR method with 30 worked examples across the most common behavioral competencies — leadership, conflict resolution, adaptability, and problem-solving.</p><span class="ca-hub-card__link">Read Guide <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
-        <div class="ca-hub-card" onclick="openOverlay('technical-interviews')"><span class="ca-hub-card__num">03</span><h3 class="ca-hub-card__title">Technical Interviews</h3><p class="ca-hub-card__desc">A structured approach to technical assessments across software engineering, finance, and engineering roles — how to think out loud, handle unknowns, and demonstrate problem-solving under pressure.</p><span class="ca-hub-card__link">Read Guide <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
-        <div class="ca-hub-card" onclick="openOverlay('case-interviews')"><span class="ca-hub-card__num">04</span><h3 class="ca-hub-card__title">Case Interviews</h3><p class="ca-hub-card__desc">Prepare for case-based assessments used by consulting firms and strategy teams — including frameworks, practice cases set in the Egyptian and MENA context, and structuring your verbal delivery.</p><span class="ca-hub-card__link">Read Guide <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
-        <div class="ca-hub-card" onclick="openOverlay('virtual-interviews')"><span class="ca-hub-card__num">05</span><h3 class="ca-hub-card__title">Virtual Interviews</h3><p class="ca-hub-card__desc">Everything you need to perform confidently on video — from lighting and camera positioning to managing technical issues and projecting presence through a screen.</p><span class="ca-hub-card__link">Read Guide <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
-        <div class="ca-hub-card" onclick="openOverlay('follow-up-strategy')"><span class="ca-hub-card__num">06</span><h3 class="ca-hub-card__title">Follow-Up Strategy</h3><p class="ca-hub-card__desc">When to send it, what to say, how to address concerns raised during the interview, and how to stay top of mind without being a nuisance.</p><span class="ca-hub-card__link">Read Guide <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
-        <div class="ca-hub-card" onclick="openOverlay('salary-discussions')"><span class="ca-hub-card__num">07</span><h3 class="ca-hub-card__title">Salary Discussions</h3><p class="ca-hub-card__desc">How to deflect early, anchor high, respond to lowball offers, and negotiate total compensation beyond base salary during an interview.</p><span class="ca-hub-card__link">Read Guide <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
-        <div class="ca-hub-card" onclick="openOverlay('interview-mistakes')"><span class="ca-hub-card__num">08</span><h3 class="ca-hub-card__title">Interview Mistakes</h3><p class="ca-hub-card__desc">The 12 most costly interview errors — from over-preparing scripts that sound robotic, to failing to ask questions, to misjudging the cultural fit signals companies send through the process itself.</p><span class="ca-hub-card__link">Read Guide <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+        <div class="ca-hub-card" onclick="openArticle('hr_interviews')" style="cursor:pointer;"><span class="ca-hub-card__num">01</span><h3 class="ca-hub-card__title">HR Interviews</h3><p class="ca-hub-card__desc">Navigate screening interviews with HR professionals — covering the questions designed to evaluate cultural fit, motivation, salary expectations, and employment history.</p><span class="ca-hub-card__link">Read Guide <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+        <div class="ca-hub-card" onclick="openArticle('behavioral_interviews')" style="cursor:pointer;"><span class="ca-hub-card__num">02</span><h3 class="ca-hub-card__title">Behavioral Interviews</h3><p class="ca-hub-card__desc">Master the STAR method with 30 worked examples across the most common behavioral competencies — leadership, conflict resolution, adaptability, and problem-solving.</p><span class="ca-hub-card__link">Read Guide <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+        <div class="ca-hub-card" onclick="openArticle('technical_interviews')" style="cursor:pointer;"><span class="ca-hub-card__num">03</span><h3 class="ca-hub-card__title">Technical Interviews</h3><p class="ca-hub-card__desc">A structured approach to technical assessments across software engineering, finance, and engineering roles — how to think out loud, handle unknowns, and demonstrate problem-solving under pressure.</p><span class="ca-hub-card__link">Read Guide <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+        <div class="ca-hub-card" onclick="openArticle('case_interviews')" style="cursor:pointer;"><span class="ca-hub-card__num">04</span><h3 class="ca-hub-card__title">Case Interviews</h3><p class="ca-hub-card__desc">Prepare for case-based assessments used by consulting firms and strategy teams — including frameworks, practice cases set in the Egyptian and MENA context, and structuring your verbal delivery.</p><span class="ca-hub-card__link">Read Guide <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+        <div class="ca-hub-card" onclick="openArticle('virtual_interviews')" style="cursor:pointer;"><span class="ca-hub-card__num">05</span><h3 class="ca-hub-card__title">Virtual Interviews</h3><p class="ca-hub-card__desc">Everything you need to perform confidently on video — from lighting and camera positioning to managing technical issues and projecting presence through a screen.</p><span class="ca-hub-card__link">Read Guide <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+        <div class="ca-hub-card" onclick="openArticle('follow_up_strategy')" style="cursor:pointer;"><span class="ca-hub-card__num">06</span><h3 class="ca-hub-card__title">Follow-Up Strategy</h3><p class="ca-hub-card__desc">When to send it, what to say, how to address concerns raised during the interview, and how to stay top of mind without being a nuisance.</p><span class="ca-hub-card__link">Read Guide <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+        <div class="ca-hub-card" onclick="openArticle('salary_discussions')" style="cursor:pointer;"><span class="ca-hub-card__num">07</span><h3 class="ca-hub-card__title">Salary Discussions</h3><p class="ca-hub-card__desc">How to deflect early, anchor high, respond to lowball offers, and negotiate total compensation beyond base salary during an interview.</p><span class="ca-hub-card__link">Read Guide <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+        <div class="ca-hub-card" onclick="openArticle('interview_mistakes')" style="cursor:pointer;"><span class="ca-hub-card__num">08</span><h3 class="ca-hub-card__title">Interview Mistakes</h3><p class="ca-hub-card__desc">The 12 most costly interview errors — from over-preparing scripts that sound robotic, to failing to ask questions, to misjudging the cultural fit signals companies send through the process itself.</p><span class="ca-hub-card__link">Read Guide <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
       </div>
     </div>
   </section>
 
-  <!-- ============================================================
-       SECTION 9 — REMOTE WORK HUB
-  ============================================================ -->
+  <!-- SECTION 9 — REMOTE WORK HUB -->
   <section class="ca-section">
     <div class="ca-container">
-      <div class="ca-section-header">
-        <span class="ca-section-label">Remote Work</span>
-        <h2 class="ca-section-title">The Egyptian Remote Work Guide</h2>
-        <p class="ca-section-sub">Everything you need to build a thriving remote career as an Egyptian professional — locally or internationally.</p>
-      </div>
+      <div class="ca-section-header"><span class="ca-section-label">Remote Work</span><h2 class="ca-section-title">The Egyptian Remote Work Guide</h2><p class="ca-section-sub">Everything you need to build a thriving remote career as an Egyptian professional — locally or internationally.</p></div>
       <div class="ca-hub-grid">
-    <div class="ca-hub-card" onclick="openOverlay('finding-remote-jobs')"><span class="ca-hub-card__num">01</span><h3 class="ca-hub-card__title">Finding Remote Jobs</h3><p class="ca-hub-card__desc">The platforms, search strategies, and application tactics that consistently produce remote job offers for Egyptian professionals.</p><span class="ca-hub-card__link">Read Guide <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
-        <div class="ca-hub-card" onclick="openOverlay('freelancing')"><span class="ca-hub-card__num">02</span><h3 class="ca-hub-card__title">Freelancing</h3><p class="ca-hub-card__desc">How to launch and scale a freelance career — platform selection, pricing strategy, proposal writing, client communication, and building a consistent pipeline.</p><span class="ca-hub-card__link">Read Guide <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
-        <div class="ca-hub-card" onclick="openOverlay('portfolio-building')"><span class="ca-hub-card__num">03</span><h3 class="ca-hub-card__title">Portfolio Building</h3><p class="ca-hub-card__desc">Build a portfolio that converts — what to include, how to present projects, how to handle the chicken-and-egg problem, and where to host it for maximum visibility.</p><span class="ca-hub-card__link">Read Guide <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
-        <div class="ca-hub-card" onclick="openOverlay('international-clients')"><span class="ca-hub-card__num">04</span><h3 class="ca-hub-card__title">International Clients</h3><p class="ca-hub-card__desc">How to position yourself for international clients, handle cross-cultural communication, set up payment channels, manage contracts, and avoid the most common pitfalls.</p><span class="ca-hub-card__link">Read Guide <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
-        <div class="ca-hub-card" onclick="openOverlay('communication-skills')"><span class="ca-hub-card__num">05</span><h3 class="ca-hub-card__title">Communication Skills</h3><p class="ca-hub-card__desc">Master asynchronous communication, written professionalism, video presence, and the signals that make distributed teams trust and promote remote members.</p><span class="ca-hub-card__link">Read Guide <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
-        <div class="ca-hub-card" onclick="openOverlay('productivity-systems')"><span class="ca-hub-card__num">06</span><h3 class="ca-hub-card__title">Productivity Systems</h3><p class="ca-hub-card__desc">The systems and habits that separate high-earning remote professionals from those who struggle with isolation, distraction, and inconsistent output.</p><span class="ca-hub-card__link">Read Guide <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
-        <div class="ca-hub-card" onclick="openOverlay('time-management')"><span class="ca-hub-card__num">07</span><h3 class="ca-hub-card__title">Time Management</h3><p class="ca-hub-card__desc">Managing your time across different time zones while maintaining work-life boundaries in Egypt — for clients in Europe, the Gulf, and North America.</p><span class="ca-hub-card__link">Read Guide <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
-        <div class="ca-hub-card" onclick="openOverlay('remote-interviews')"><span class="ca-hub-card__num">08</span><h3 class="ca-hub-card__title">Remote Interviews</h3><p class="ca-hub-card__desc">Specific preparation for the remote hiring process — which differs significantly from in-person interviews in pacing, structure, and what signals employers use to assess suitability.</p><span class="ca-hub-card__link">Read Guide <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+        <div class="ca-hub-card" onclick="openArticle('finding_remote_jobs')" style="cursor:pointer;"><span class="ca-hub-card__num">01</span><h3 class="ca-hub-card__title">Finding Remote Jobs</h3><p class="ca-hub-card__desc">The platforms, search strategies, and application tactics that consistently produce remote job offers for Egyptian professionals.</p><span class="ca-hub-card__link">Read Guide <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+        <div class="ca-hub-card" onclick="openArticle('freelancing')" style="cursor:pointer;"><span class="ca-hub-card__num">02</span><h3 class="ca-hub-card__title">Freelancing</h3><p class="ca-hub-card__desc">How to launch and scale a freelance career — platform selection, pricing strategy, proposal writing, client communication, and building a consistent pipeline.</p><span class="ca-hub-card__link">Read Guide <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+        <div class="ca-hub-card" onclick="openArticle('portfolio_building')" style="cursor:pointer;"><span class="ca-hub-card__num">03</span><h3 class="ca-hub-card__title">Portfolio Building</h3><p class="ca-hub-card__desc">Build a portfolio that converts — what to include, how to present projects, how to handle the chicken-and-egg problem, and where to host it for maximum visibility.</p><span class="ca-hub-card__link">Read Guide <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+        <div class="ca-hub-card" onclick="openArticle('international_clients')" style="cursor:pointer;"><span class="ca-hub-card__num">04</span><h3 class="ca-hub-card__title">International Clients</h3><p class="ca-hub-card__desc">How to position yourself for international clients, handle cross-cultural communication, set up payment channels, manage contracts, and avoid the most common pitfalls.</p><span class="ca-hub-card__link">Read Guide <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+        <div class="ca-hub-card" onclick="openArticle('communication_skills')" style="cursor:pointer;"><span class="ca-hub-card__num">05</span><h3 class="ca-hub-card__title">Communication Skills</h3><p class="ca-hub-card__desc">Master asynchronous communication, written professionalism, video presence, and the signals that make distributed teams trust and promote remote members.</p><span class="ca-hub-card__link">Read Guide <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+        <div class="ca-hub-card" onclick="openArticle('productivity_systems')" style="cursor:pointer;"><span class="ca-hub-card__num">06</span><h3 class="ca-hub-card__title">Productivity Systems</h3><p class="ca-hub-card__desc">The systems and habits that separate high-earning remote professionals from those who struggle with isolation, distraction, and inconsistent output.</p><span class="ca-hub-card__link">Read Guide <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+        <div class="ca-hub-card" onclick="openArticle('time_management')" style="cursor:pointer;"><span class="ca-hub-card__num">07</span><h3 class="ca-hub-card__title">Time Management</h3><p class="ca-hub-card__desc">Managing your time across different time zones while maintaining work-life boundaries in Egypt — for clients in Europe, the Gulf, and North America.</p><span class="ca-hub-card__link">Read Guide <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+        <div class="ca-hub-card" onclick="openArticle('remote_interviews')" style="cursor:pointer;"><span class="ca-hub-card__num">08</span><h3 class="ca-hub-card__title">Remote Interviews</h3><p class="ca-hub-card__desc">Specific preparation for the remote hiring process — which differs significantly from in-person interviews in pacing, structure, and what signals employers use to assess suitability.</p><span class="ca-hub-card__link">Read Guide <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
       </div>
     </div>
   </section>
 
-  <!-- ============================================================
-       SECTION 10 — CAREER ROADMAPS
-  ============================================================ -->
+  <!-- SECTION 10 — CAREER ROADMAPS -->
   <section class="ca-section">
     <div class="ca-container">
-      <div class="ca-section-header">
-        <span class="ca-section-label">Career Roadmaps</span>
-        <h2 class="ca-section-title">Your Path to Professional Success</h2>
-        <p class="ca-section-sub">Step-by-step career progression maps for Egypt's most in-demand professional fields.</p>
-      </div>
+      <div class="ca-section-header"><span class="ca-section-label">Career Roadmaps</span><h2 class="ca-section-title">Your Path to Professional Success</h2><p class="ca-section-sub">Step-by-step career progression maps for Egypt's most in-demand professional fields.</p></div>
       <div class="ca-roadmaps-grid">
-
-        <div class="ca-roadmap-card">
-          <h3 class="ca-roadmap-card__title">Software Engineering</h3>
-          <p class="ca-roadmap-card__subtitle">A full career progression in Egypt's fastest-growing sector</p>
-          <div class="ca-roadmap-milestones">
-            <div class="ca-roadmap-milestone"><div class="ca-roadmap-milestone__dot ca-roadmap-milestone__dot--filled"></div><div class="ca-roadmap-milestone__body"><div class="ca-roadmap-milestone__level">Entry</div><div class="ca-roadmap-milestone__role">Junior Developer</div><div class="ca-roadmap-milestone__skills"><span class="ca-roadmap-skill">HTML/CSS</span><span class="ca-roadmap-skill">JavaScript</span><span class="ca-roadmap-skill">Git</span></div></div></div>
-            <div class="ca-roadmap-milestone"><div class="ca-roadmap-milestone__dot ca-roadmap-milestone__dot--filled"></div><div class="ca-roadmap-milestone__body"><div class="ca-roadmap-milestone__level">Mid-Level</div><div class="ca-roadmap-milestone__role">Software Engineer</div><div class="ca-roadmap-milestone__skills"><span class="ca-roadmap-skill">React/Node</span><span class="ca-roadmap-skill">APIs</span><span class="ca-roadmap-skill">Testing</span></div></div></div>
-            <div class="ca-roadmap-milestone"><div class="ca-roadmap-milestone__dot"></div><div class="ca-roadmap-milestone__body"><div class="ca-roadmap-milestone__level">Senior</div><div class="ca-roadmap-milestone__role">Senior / Tech Lead</div><div class="ca-roadmap-milestone__skills"><span class="ca-roadmap-skill">Architecture</span><span class="ca-roadmap-skill">Mentoring</span><span class="ca-roadmap-skill">System Design</span></div></div></div>
-          </div>
-        </div>
-
-        <div class="ca-roadmap-card">
-          <h3 class="ca-roadmap-card__title">Digital Marketing</h3>
-          <p class="ca-roadmap-card__subtitle">From content execution to full-stack marketing leadership</p>
-          <div class="ca-roadmap-milestones">
-            <div class="ca-roadmap-milestone"><div class="ca-roadmap-milestone__dot ca-roadmap-milestone__dot--filled"></div><div class="ca-roadmap-milestone__body"><div class="ca-roadmap-milestone__level">Entry</div><div class="ca-roadmap-milestone__role">Marketing Coordinator</div><div class="ca-roadmap-milestone__skills"><span class="ca-roadmap-skill">Social Media</span><span class="ca-roadmap-skill">Copywriting</span><span class="ca-roadmap-skill">Analytics</span></div></div></div>
-            <div class="ca-roadmap-milestone"><div class="ca-roadmap-milestone__dot ca-roadmap-milestone__dot--filled"></div><div class="ca-roadmap-milestone__body"><div class="ca-roadmap-milestone__level">Mid-Level</div><div class="ca-roadmap-milestone__role">Digital Marketing Specialist</div><div class="ca-roadmap-milestone__skills"><span class="ca-roadmap-skill">Paid Ads</span><span class="ca-roadmap-skill">SEO</span><span class="ca-roadmap-skill">Email</span></div></div></div>
-            <div class="ca-roadmap-milestone"><div class="ca-roadmap-milestone__dot"></div><div class="ca-roadmap-milestone__body"><div class="ca-roadmap-milestone__level">Senior</div><div class="ca-roadmap-milestone__role">Marketing Manager</div><div class="ca-roadmap-milestone__skills"><span class="ca-roadmap-skill">Strategy</span><span class="ca-roadmap-skill">Budget Mgmt</span><span class="ca-roadmap-skill">Team Lead</span></div></div></div>
-          </div>
-        </div>
-
-        <div class="ca-roadmap-card">
-          <h3 class="ca-roadmap-card__title">Accounting & Finance</h3>
-          <p class="ca-roadmap-card__subtitle">Building towards financial controller or CFO</p>
-          <div class="ca-roadmap-milestones">
-            <div class="ca-roadmap-milestone"><div class="ca-roadmap-milestone__dot ca-roadmap-milestone__dot--filled"></div><div class="ca-roadmap-milestone__body"><div class="ca-roadmap-milestone__level">Entry</div><div class="ca-roadmap-milestone__role">Junior Accountant</div><div class="ca-roadmap-milestone__skills"><span class="ca-roadmap-skill">Excel</span><span class="ca-roadmap-skill">Bookkeeping</span><span class="ca-roadmap-skill">Reporting</span></div></div></div>
-            <div class="ca-roadmap-milestone"><div class="ca-roadmap-milestone__dot ca-roadmap-milestone__dot--filled"></div><div class="ca-roadmap-milestone__body"><div class="ca-roadmap-milestone__level">Mid-Level</div><div class="ca-roadmap-milestone__role">Financial Analyst</div><div class="ca-roadmap-milestone__skills"><span class="ca-roadmap-skill">Forecasting</span><span class="ca-roadmap-skill">ERP</span><span class="ca-roadmap-skill">CPA prep</span></div></div></div>
-            <div class="ca-roadmap-milestone"><div class="ca-roadmap-milestone__dot"></div><div class="ca-roadmap-milestone__body"><div class="ca-roadmap-milestone__level">Senior</div><div class="ca-roadmap-milestone__role">Finance Manager / Controller</div><div class="ca-roadmap-milestone__skills"><span class="ca-roadmap-skill">Strategy</span><span class="ca-roadmap-skill">Risk</span><span class="ca-roadmap-skill">Leadership</span></div></div></div>
-          </div>
-        </div>
-
-        <div class="ca-roadmap-card">
-          <h3 class="ca-roadmap-card__title">Data Analytics</h3>
-          <p class="ca-roadmap-card__subtitle">From data analyst to Chief Data Officer</p>
-          <div class="ca-roadmap-milestones">
-            <div class="ca-roadmap-milestone"><div class="ca-roadmap-milestone__dot ca-roadmap-milestone__dot--filled"></div><div class="ca-roadmap-milestone__body"><div class="ca-roadmap-milestone__level">Entry</div><div class="ca-roadmap-milestone__role">Data Analyst</div><div class="ca-roadmap-milestone__skills"><span class="ca-roadmap-skill">SQL</span><span class="ca-roadmap-skill">Excel</span><span class="ca-roadmap-skill">Tableau</span></div></div></div>
-            <div class="ca-roadmap-milestone"><div class="ca-roadmap-milestone__dot ca-roadmap-milestone__dot--filled"></div><div class="ca-roadmap-milestone__body"><div class="ca-roadmap-milestone__level">Mid-Level</div><div class="ca-roadmap-milestone__role">Data Scientist</div><div class="ca-roadmap-milestone__skills"><span class="ca-roadmap-skill">Python</span><span class="ca-roadmap-skill">ML</span><span class="ca-roadmap-skill">Statistics</span></div></div></div>
-            <div class="ca-roadmap-milestone"><div class="ca-roadmap-milestone__dot"></div><div class="ca-roadmap-milestone__body"><div class="ca-roadmap-milestone__level">Senior</div><div class="ca-roadmap-milestone__role">Analytics Lead / CDO</div><div class="ca-roadmap-milestone__skills"><span class="ca-roadmap-skill">Data Strategy</span><span class="ca-roadmap-skill">Team Mgmt</span></div></div></div>
-          </div>
-        </div>
-
-        <div class="ca-roadmap-card">
-          <h3 class="ca-roadmap-card__title">UI/UX Design</h3>
-          <p class="ca-roadmap-card__subtitle">From visual design to product design leadership</p>
-          <div class="ca-roadmap-milestones">
-            <div class="ca-roadmap-milestone"><div class="ca-roadmap-milestone__dot ca-roadmap-milestone__dot--filled"></div><div class="ca-roadmap-milestone__body"><div class="ca-roadmap-milestone__level">Entry</div><div class="ca-roadmap-milestone__role">Junior UI Designer</div><div class="ca-roadmap-milestone__skills"><span class="ca-roadmap-skill">Figma</span><span class="ca-roadmap-skill">Typography</span><span class="ca-roadmap-skill">Color</span></div></div></div>
-            <div class="ca-roadmap-milestone"><div class="ca-roadmap-milestone__dot ca-roadmap-milestone__dot--filled"></div><div class="ca-roadmap-milestone__body"><div class="ca-roadmap-milestone__level">Mid-Level</div><div class="ca-roadmap-milestone__role">UX Designer</div><div class="ca-roadmap-milestone__skills"><span class="ca-roadmap-skill">Research</span><span class="ca-roadmap-skill">Prototyping</span><span class="ca-roadmap-skill">Testing</span></div></div></div>
-            <div class="ca-roadmap-milestone"><div class="ca-roadmap-milestone__dot"></div><div class="ca-roadmap-milestone__body"><div class="ca-roadmap-milestone__level">Senior</div><div class="ca-roadmap-milestone__role">Product Designer / Lead</div><div class="ca-roadmap-milestone__skills"><span class="ca-roadmap-skill">Design Systems</span><span class="ca-roadmap-skill">Strategy</span></div></div></div>
-          </div>
-        </div>
-
-        <div class="ca-roadmap-card">
-          <h3 class="ca-roadmap-card__title">Project Management</h3>
-          <p class="ca-roadmap-card__subtitle">From coordinator to program director</p>
-          <div class="ca-roadmap-milestones">
-            <div class="ca-roadmap-milestone"><div class="ca-roadmap-milestone__dot ca-roadmap-milestone__dot--filled"></div><div class="ca-roadmap-milestone__body"><div class="ca-roadmap-milestone__level">Entry</div><div class="ca-roadmap-milestone__role">Project Coordinator</div><div class="ca-roadmap-milestone__skills"><span class="ca-roadmap-skill">Scheduling</span><span class="ca-roadmap-skill">Jira</span><span class="ca-roadmap-skill">Reporting</span></div></div></div>
-            <div class="ca-roadmap-milestone"><div class="ca-roadmap-milestone__dot ca-roadmap-milestone__dot--filled"></div><div class="ca-roadmap-milestone__body"><div class="ca-roadmap-milestone__level">Mid-Level</div><div class="ca-roadmap-milestone__role">Project Manager (PMP)</div><div class="ca-roadmap-milestone__skills"><span class="ca-roadmap-skill">Risk Mgmt</span><span class="ca-roadmap-skill">Agile</span><span class="ca-roadmap-skill">Budgeting</span></div></div></div>
-            <div class="ca-roadmap-milestone"><div class="ca-roadmap-milestone__dot"></div><div class="ca-roadmap-milestone__body"><div class="ca-roadmap-milestone__level">Senior</div><div class="ca-roadmap-milestone__role">Program / Portfolio Director</div><div class="ca-roadmap-milestone__skills"><span class="ca-roadmap-skill">Governance</span><span class="ca-roadmap-skill">Exec Reporting</span></div></div></div>
-          </div>
-        </div>
-
+        <div class="ca-roadmap-card"><h3 class="ca-roadmap-card__title">Software Engineering</h3><p class="ca-roadmap-card__subtitle">A full career progression in Egypt's fastest-growing sector</p><div class="ca-roadmap-milestones"><div class="ca-roadmap-milestone"><div class="ca-roadmap-milestone__dot ca-roadmap-milestone__dot--filled"></div><div class="ca-roadmap-milestone__body"><div class="ca-roadmap-milestone__level">Entry</div><div class="ca-roadmap-milestone__role">Junior Developer</div><div class="ca-roadmap-milestone__skills"><span class="ca-roadmap-skill">HTML/CSS</span><span class="ca-roadmap-skill">JavaScript</span><span class="ca-roadmap-skill">Git</span></div></div></div><div class="ca-roadmap-milestone"><div class="ca-roadmap-milestone__dot ca-roadmap-milestone__dot--filled"></div><div class="ca-roadmap-milestone__body"><div class="ca-roadmap-milestone__level">Mid-Level</div><div class="ca-roadmap-milestone__role">Software Engineer</div><div class="ca-roadmap-milestone__skills"><span class="ca-roadmap-skill">React/Node</span><span class="ca-roadmap-skill">APIs</span><span class="ca-roadmap-skill">Testing</span></div></div></div><div class="ca-roadmap-milestone"><div class="ca-roadmap-milestone__dot"></div><div class="ca-roadmap-milestone__body"><div class="ca-roadmap-milestone__level">Senior</div><div class="ca-roadmap-milestone__role">Senior / Tech Lead</div><div class="ca-roadmap-milestone__skills"><span class="ca-roadmap-skill">Architecture</span><span class="ca-roadmap-skill">Mentoring</span><span class="ca-roadmap-skill">System Design</span></div></div></div></div></div>
+        <div class="ca-roadmap-card"><h3 class="ca-roadmap-card__title">Digital Marketing</h3><p class="ca-roadmap-card__subtitle">From content execution to full-stack marketing leadership</p><div class="ca-roadmap-milestones"><div class="ca-roadmap-milestone"><div class="ca-roadmap-milestone__dot ca-roadmap-milestone__dot--filled"></div><div class="ca-roadmap-milestone__body"><div class="ca-roadmap-milestone__level">Entry</div><div class="ca-roadmap-milestone__role">Marketing Coordinator</div><div class="ca-roadmap-milestone__skills"><span class="ca-roadmap-skill">Social Media</span><span class="ca-roadmap-skill">Copywriting</span><span class="ca-roadmap-skill">Analytics</span></div></div></div><div class="ca-roadmap-milestone"><div class="ca-roadmap-milestone__dot ca-roadmap-milestone__dot--filled"></div><div class="ca-roadmap-milestone__body"><div class="ca-roadmap-milestone__level">Mid-Level</div><div class="ca-roadmap-milestone__role">Digital Marketing Specialist</div><div class="ca-roadmap-milestone__skills"><span class="ca-roadmap-skill">Paid Ads</span><span class="ca-roadmap-skill">SEO</span><span class="ca-roadmap-skill">Email</span></div></div></div><div class="ca-roadmap-milestone"><div class="ca-roadmap-milestone__dot"></div><div class="ca-roadmap-milestone__body"><div class="ca-roadmap-milestone__level">Senior</div><div class="ca-roadmap-milestone__role">Marketing Manager</div><div class="ca-roadmap-milestone__skills"><span class="ca-roadmap-skill">Strategy</span><span class="ca-roadmap-skill">Budget Mgmt</span><span class="ca-roadmap-skill">Team Lead</span></div></div></div></div></div>
+        <div class="ca-roadmap-card"><h3 class="ca-roadmap-card__title">Accounting & Finance</h3><p class="ca-roadmap-card__subtitle">Building towards financial controller or CFO</p><div class="ca-roadmap-milestones"><div class="ca-roadmap-milestone"><div class="ca-roadmap-milestone__dot ca-roadmap-milestone__dot--filled"></div><div class="ca-roadmap-milestone__body"><div class="ca-roadmap-milestone__level">Entry</div><div class="ca-roadmap-milestone__role">Junior Accountant</div><div class="ca-roadmap-milestone__skills"><span class="ca-roadmap-skill">Excel</span><span class="ca-roadmap-skill">Bookkeeping</span><span class="ca-roadmap-skill">Reporting</span></div></div></div><div class="ca-roadmap-milestone"><div class="ca-roadmap-milestone__dot ca-roadmap-milestone__dot--filled"></div><div class="ca-roadmap-milestone__body"><div class="ca-roadmap-milestone__level">Mid-Level</div><div class="ca-roadmap-milestone__role">Financial Analyst</div><div class="ca-roadmap-milestone__skills"><span class="ca-roadmap-skill">Forecasting</span><span class="ca-roadmap-skill">ERP</span><span class="ca-roadmap-skill">CPA prep</span></div></div></div><div class="ca-roadmap-milestone"><div class="ca-roadmap-milestone__dot"></div><div class="ca-roadmap-milestone__body"><div class="ca-roadmap-milestone__level">Senior</div><div class="ca-roadmap-milestone__role">Finance Manager / Controller</div><div class="ca-roadmap-milestone__skills"><span class="ca-roadmap-skill">Strategy</span><span class="ca-roadmap-skill">Risk</span><span class="ca-roadmap-skill">Leadership</span></div></div></div></div></div>
+        <div class="ca-roadmap-card"><h3 class="ca-roadmap-card__title">Data Analytics</h3><p class="ca-roadmap-card__subtitle">From data analyst to Chief Data Officer</p><div class="ca-roadmap-milestones"><div class="ca-roadmap-milestone"><div class="ca-roadmap-milestone__dot ca-roadmap-milestone__dot--filled"></div><div class="ca-roadmap-milestone__body"><div class="ca-roadmap-milestone__level">Entry</div><div class="ca-roadmap-milestone__role">Data Analyst</div><div class="ca-roadmap-milestone__skills"><span class="ca-roadmap-skill">SQL</span><span class="ca-roadmap-skill">Excel</span><span class="ca-roadmap-skill">Tableau</span></div></div></div><div class="ca-roadmap-milestone"><div class="ca-roadmap-milestone__dot ca-roadmap-milestone__dot--filled"></div><div class="ca-roadmap-milestone__body"><div class="ca-roadmap-milestone__level">Mid-Level</div><div class="ca-roadmap-milestone__role">Data Scientist</div><div class="ca-roadmap-milestone__skills"><span class="ca-roadmap-skill">Python</span><span class="ca-roadmap-skill">ML</span><span class="ca-roadmap-skill">Statistics</span></div></div></div><div class="ca-roadmap-milestone"><div class="ca-roadmap-milestone__dot"></div><div class="ca-roadmap-milestone__body"><div class="ca-roadmap-milestone__level">Senior</div><div class="ca-roadmap-milestone__role">Analytics Lead / CDO</div><div class="ca-roadmap-milestone__skills"><span class="ca-roadmap-skill">Data Strategy</span><span class="ca-roadmap-skill">Team Mgmt</span></div></div></div></div></div>
+        <div class="ca-roadmap-card"><h3 class="ca-roadmap-card__title">UI/UX Design</h3><p class="ca-roadmap-card__subtitle">From visual design to product design leadership</p><div class="ca-roadmap-milestones"><div class="ca-roadmap-milestone"><div class="ca-roadmap-milestone__dot ca-roadmap-milestone__dot--filled"></div><div class="ca-roadmap-milestone__body"><div class="ca-roadmap-milestone__level">Entry</div><div class="ca-roadmap-milestone__role">Junior UI Designer</div><div class="ca-roadmap-milestone__skills"><span class="ca-roadmap-skill">Figma</span><span class="ca-roadmap-skill">Typography</span><span class="ca-roadmap-skill">Color</span></div></div></div><div class="ca-roadmap-milestone"><div class="ca-roadmap-milestone__dot ca-roadmap-milestone__dot--filled"></div><div class="ca-roadmap-milestone__body"><div class="ca-roadmap-milestone__level">Mid-Level</div><div class="ca-roadmap-milestone__role">UX Designer</div><div class="ca-roadmap-milestone__skills"><span class="ca-roadmap-skill">Research</span><span class="ca-roadmap-skill">Prototyping</span><span class="ca-roadmap-skill">Testing</span></div></div></div><div class="ca-roadmap-milestone"><div class="ca-roadmap-milestone__dot"></div><div class="ca-roadmap-milestone__body"><div class="ca-roadmap-milestone__level">Senior</div><div class="ca-roadmap-milestone__role">Product Designer / Lead</div><div class="ca-roadmap-milestone__skills"><span class="ca-roadmap-skill">Design Systems</span><span class="ca-roadmap-skill">Strategy</span></div></div></div></div></div>
+        <div class="ca-roadmap-card"><h3 class="ca-roadmap-card__title">Project Management</h3><p class="ca-roadmap-card__subtitle">From coordinator to program director</p><div class="ca-roadmap-milestones"><div class="ca-roadmap-milestone"><div class="ca-roadmap-milestone__dot ca-roadmap-milestone__dot--filled"></div><div class="ca-roadmap-milestone__body"><div class="ca-roadmap-milestone__level">Entry</div><div class="ca-roadmap-milestone__role">Project Coordinator</div><div class="ca-roadmap-milestone__skills"><span class="ca-roadmap-skill">Scheduling</span><span class="ca-roadmap-skill">Jira</span><span class="ca-roadmap-skill">Reporting</span></div></div></div><div class="ca-roadmap-milestone"><div class="ca-roadmap-milestone__dot ca-roadmap-milestone__dot--filled"></div><div class="ca-roadmap-milestone__body"><div class="ca-roadmap-milestone__level">Mid-Level</div><div class="ca-roadmap-milestone__role">Project Manager (PMP)</div><div class="ca-roadmap-milestone__skills"><span class="ca-roadmap-skill">Risk Mgmt</span><span class="ca-roadmap-skill">Agile</span><span class="ca-roadmap-skill">Budgeting</span></div></div></div><div class="ca-roadmap-milestone"><div class="ca-roadmap-milestone__dot"></div><div class="ca-roadmap-milestone__body"><div class="ca-roadmap-milestone__level">Senior</div><div class="ca-roadmap-milestone__role">Program / Portfolio Director</div><div class="ca-roadmap-milestone__skills"><span class="ca-roadmap-skill">Governance</span><span class="ca-roadmap-skill">Exec Reporting</span></div></div></div></div></div>
       </div>
     </div>
   </section>
 
-  <!-- ============================================================
-       SECTION 11 — POPULAR READS
-  ============================================================ -->
+  <!-- SECTION 11 — POPULAR READS -->
   <section class="ca-section">
     <div class="ca-container">
-      <div class="ca-section-header">
-        <span class="ca-section-label">Popular Reads</span>
-        <h2 class="ca-section-title">Most-Read Career Articles</h2>
-        <p class="ca-section-sub">The guides and articles Egyptian professionals return to most, ranked by reader engagement.</p>
-      </div>
+      <div class="ca-section-header"><span class="ca-section-label">Popular Reads</span><h2 class="ca-section-title">Most-Read Career Articles</h2><p class="ca-section-sub">The guides and articles Egyptian professionals return to most, ranked by reader engagement.</p></div>
       <div class="ca-popular-list">
-    <div class="ca-popular-item" onclick="openOverlay('how-to-write-a-resume')"><span class="ca-popular-item__rank">01</span><div class="ca-popular-item__content"><div class="ca-popular-item__title">How to Write a Resume That Gets You an Interview in Egypt</div><div class="ca-popular-item__meta"><span class="ca-badge">Resume Writing</span><span>8 min read</span></div></div><svg class="ca-popular-item__arrow" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-        <div class="ca-popular-item" onclick="openOverlay('salary-negotiation-scripts')"><span class="ca-popular-item__rank">02</span><div class="ca-popular-item__content"><div class="ca-popular-item__title">Salary Negotiation Scripts That Actually Work in the Egyptian Market</div><div class="ca-popular-item__meta"><span class="ca-badge">Salary</span><span>11 min read</span></div></div><svg class="ca-popular-item__arrow" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-        <div class="ca-popular-item" onclick="openOverlay('top-15-hr-questions')"><span class="ca-popular-item__rank">03</span><div class="ca-popular-item__content"><div class="ca-popular-item__title">Top 15 Questions Asked in Every Egyptian HR Interview (With Answers)</div><div class="ca-popular-item__meta"><span class="ca-badge">Interviews</span><span>9 min read</span></div></div><svg class="ca-popular-item__arrow" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-        <div class="ca-popular-item" onclick="openOverlay('remote-job-egyptian-2025')"><span class="ca-popular-item__rank">04</span><div class="ca-popular-item__content"><div class="ca-popular-item__title">How to Get a Remote Job as an Egyptian Professional in 2025</div><div class="ca-popular-item__meta"><span class="ca-badge">Remote Work</span><span>13 min read</span></div></div><svg class="ca-popular-item__arrow" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-        <div class="ca-popular-item" onclick="openOverlay('linkedin-profile-checklist')"><span class="ca-popular-item__rank">05</span><div class="ca-popular-item__content"><div class="ca-popular-item__title">LinkedIn Profile Checklist for Egyptian Professionals: 25 Optimizations</div><div class="ca-popular-item__meta"><span class="ca-badge">LinkedIn</span><span>7 min read</span></div></div><svg class="ca-popular-item__arrow" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-        <div class="ca-popular-item" onclick="openOverlay('hiring-managers-egypt')"><span class="ca-popular-item__rank">06</span><div class="ca-popular-item__content"><div class="ca-popular-item__title">What Hiring Managers in Egypt Actually Look For (We Asked 50 of Them)</div><div class="ca-popular-item__meta"><span class="ca-badge">Hiring Insights</span><span>10 min read</span></div></div><svg class="ca-popular-item__arrow" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-        <div class="ca-popular-item" onclick="openOverlay('career-change-at-any-age')"><span class="ca-popular-item__rank">07</span><div class="ca-popular-item__content"><div class="ca-popular-item__title">Career Change at Any Age: A Complete Guide to Pivoting in Egypt</div><div class="ca-popular-item__meta"><span class="ca-badge">Career Change</span><span>14 min read</span></div></div><svg class="ca-popular-item__arrow" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-        <div class="ca-popular-item" onclick="openOverlay('average-salaries-egypt-2025')"><span class="ca-popular-item__rank">08</span><div class="ca-popular-item__content"><div class="ca-popular-item__title">Average Salaries in Egypt by Industry and Level (2025 Report)</div><div class="ca-popular-item__meta"><span class="ca-badge">Salary</span><span>6 min read</span></div></div><svg class="ca-popular-item__arrow" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-        <div class="ca-popular-item" onclick="openOverlay('overqualified-job-search')"><span class="ca-popular-item__rank">09</span><div class="ca-popular-item__content"><div class="ca-popular-item__title">How to Handle Being Overqualified in Your Job Search</div><div class="ca-popular-item__meta"><span class="ca-badge">Job Search</span><span>8 min read</span></div></div><svg class="ca-popular-item__arrow" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-        <div class="ca-popular-item" onclick="openOverlay('professional-network-cairo')"><span class="ca-popular-item__rank">10</span><div class="ca-popular-item__content"><div class="ca-popular-item__title">The Definitive Guide to Building a Professional Network in Cairo</div><div class="ca-popular-item__meta"><span class="ca-badge">Networking</span><span>9 min read</span></div></div><svg class="ca-popular-item__arrow" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        <div class="ca-popular-item" onclick="openArticle('how_to_write_a_resume')"><span class="ca-popular-item__rank">01</span><div class="ca-popular-item__content"><div class="ca-popular-item__title">How to Write a Resume That Gets You an Interview in Egypt</div><div class="ca-popular-item__meta"><span class="ca-badge">Resume Writing</span><span>8 min read</span></div></div><svg class="ca-popular-item__arrow" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        <div class="ca-popular-item" onclick="openArticle('salary_negotiation_scripts')"><span class="ca-popular-item__rank">02</span><div class="ca-popular-item__content"><div class="ca-popular-item__title">Salary Negotiation Scripts That Actually Work in the Egyptian Market</div><div class="ca-popular-item__meta"><span class="ca-badge">Salary</span><span>11 min read</span></div></div><svg class="ca-popular-item__arrow" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        <div class="ca-popular-item" onclick="openArticle('top_15_hr_questions')"><span class="ca-popular-item__rank">03</span><div class="ca-popular-item__content"><div class="ca-popular-item__title">Top 15 Questions Asked in Every Egyptian HR Interview (With Answers)</div><div class="ca-popular-item__meta"><span class="ca-badge">Interviews</span><span>9 min read</span></div></div><svg class="ca-popular-item__arrow" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        <div class="ca-popular-item" onclick="openArticle('remote_job_egyptian_2025')"><span class="ca-popular-item__rank">04</span><div class="ca-popular-item__content"><div class="ca-popular-item__title">How to Get a Remote Job as an Egyptian Professional in 2025</div><div class="ca-popular-item__meta"><span class="ca-badge">Remote Work</span><span>13 min read</span></div></div><svg class="ca-popular-item__arrow" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        <div class="ca-popular-item" onclick="openArticle('linkedin_profile_checklist')"><span class="ca-popular-item__rank">05</span><div class="ca-popular-item__content"><div class="ca-popular-item__title">LinkedIn Profile Checklist for Egyptian Professionals: 25 Optimizations</div><div class="ca-popular-item__meta"><span class="ca-badge">LinkedIn</span><span>7 min read</span></div></div><svg class="ca-popular-item__arrow" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        <div class="ca-popular-item" onclick="openArticle('hiring_managers_egypt')"><span class="ca-popular-item__rank">06</span><div class="ca-popular-item__content"><div class="ca-popular-item__title">What Hiring Managers in Egypt Actually Look For (We Asked 50 of Them)</div><div class="ca-popular-item__meta"><span class="ca-badge">Hiring Insights</span><span>10 min read</span></div></div><svg class="ca-popular-item__arrow" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        <div class="ca-popular-item" onclick="openArticle('career_change_at_any_age')"><span class="ca-popular-item__rank">07</span><div class="ca-popular-item__content"><div class="ca-popular-item__title">Career Change at Any Age: A Complete Guide to Pivoting in Egypt</div><div class="ca-popular-item__meta"><span class="ca-badge">Career Change</span><span>14 min read</span></div></div><svg class="ca-popular-item__arrow" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        <div class="ca-popular-item" onclick="openArticle('average_salaries_egypt_2025')"><span class="ca-popular-item__rank">08</span><div class="ca-popular-item__content"><div class="ca-popular-item__title">Average Salaries in Egypt by Industry and Level (2025 Report)</div><div class="ca-popular-item__meta"><span class="ca-badge">Salary</span><span>6 min read</span></div></div><svg class="ca-popular-item__arrow" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        <div class="ca-popular-item" onclick="openArticle('overqualified_job_search')"><span class="ca-popular-item__rank">09</span><div class="ca-popular-item__content"><div class="ca-popular-item__title">How to Handle Being Overqualified in Your Job Search</div><div class="ca-popular-item__meta"><span class="ca-badge">Job Search</span><span>8 min read</span></div></div><svg class="ca-popular-item__arrow" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        <div class="ca-popular-item" onclick="openArticle('professional_network_cairo')"><span class="ca-popular-item__rank">10</span><div class="ca-popular-item__content"><div class="ca-popular-item__title">The Definitive Guide to Building a Professional Network in Cairo</div><div class="ca-popular-item__meta"><span class="ca-badge">Networking</span><span>9 min read</span></div></div><svg class="ca-popular-item__arrow" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
       </div>
     </div>
   </section>
 
-  <!-- ============================================================
-       SECTION 12 — FAQ
-  ============================================================ -->
+  <!-- SECTION 12 — FAQ -->
   <section class="ca-section">
     <div class="ca-container">
-      <div class="ca-section-header ca-section-header--center">
-        <span class="ca-section-label">FAQ</span>
-        <h2 class="ca-section-title">Frequently Asked Questions</h2>
-        <p class="ca-section-sub">Answers to the most common career questions from Egyptian professionals.</p>
-      </div>
+      <div class="ca-section-header ca-section-header--center"><span class="ca-section-label">FAQ</span><h2 class="ca-section-title">Frequently Asked Questions</h2><p class="ca-section-sub">Answers to the most common career questions from Egyptian professionals.</p></div>
       <div class="ca-faq-list">
-        <div class="ca-faq-item"><div class="ca-faq-question"><span class="ca-faq-question__text">How long should my CV be for jobs in Egypt?</span><span class="ca-faq-question__icon"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span></div><div class="ca-faq-answer"><div class="ca-faq-answer__inner">For most roles in Egypt, a one-to-two-page CV is standard. Fresh graduates and those with under five years of experience should aim for one page. Candidates with ten or more years of progressive experience may extend to two pages. Avoid padding — every line should justify its space. Recruiters typically spend 7–10 seconds on an initial scan, so density and clarity matter more than length.</div></div></div>
-        <div class="ca-faq-item"><div class="ca-faq-question"><span class="ca-faq-question__text">Should I include a photo on my CV when applying for jobs in Egypt?</span><span class="ca-faq-question__icon"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span></div><div class="ca-faq-answer"><div class="ca-faq-answer__inner">In Egypt, including a professional photo is common and generally expected for local companies, particularly in sales, customer-facing, and corporate roles. For international companies or technical roles, a photo is optional. If you include one, use a recent, high-resolution headshot with a neutral background and professional attire.</div></div></div>
-        <div class="ca-faq-item"><div class="ca-faq-question"><span class="ca-faq-question__text">What is the best way to answer "What is your expected salary?" in an interview?</span><span class="ca-faq-question__icon"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span></div><div class="ca-faq-answer"><div class="ca-faq-answer__inner">Early in the process, try to redirect: "I'd like to learn more about the full scope of responsibilities before settling on a number — what is the budgeted range for this role?" If pressed, provide a researched range anchored slightly above your target. Never state a figure lower than your actual minimum.</div></div></div>
-        <div class="ca-faq-item"><div class="ca-faq-question"><span class="ca-faq-question__text">How do I explain a gap in my employment history?</span><span class="ca-faq-question__icon"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span></div><div class="ca-faq-answer"><div class="ca-faq-answer__inner">Address gaps directly and briefly, then pivot to what you did during that time. Employers respect honesty far more than evasion. If the gap involved family responsibilities, freelance work, education, or health — say so clearly. A confident, matter-of-fact explanation almost always satisfies recruiters.</div></div></div>
-        <div class="ca-faq-item"><div class="ca-faq-question"><span class="ca-faq-question__text">Is it worth getting international certifications like PMP, CPA, or AWS in Egypt?</span><span class="ca-faq-question__icon"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span></div><div class="ca-faq-answer"><div class="ca-faq-answer__inner">Yes, significantly so. PMP holders command a measurable salary premium. CPA and CMA certifications are highly regarded in finance. AWS, Google Cloud, and Azure certifications open doors to both local tech companies and international remote opportunities. These credentials signal commitment, rigor, and internationally benchmarked expertise.</div></div></div>
-        <div class="ca-faq-item"><div class="ca-faq-question"><span class="ca-faq-question__text">How long does a typical hiring process take in Egypt?</span><span class="ca-faq-question__icon"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span></div><div class="ca-faq-answer"><div class="ca-faq-answer__inner">Startups often move in one to two weeks. Mid-size local companies typically take two to four weeks. Multinational corporations often run processes of four to eight weeks. Following up professionally after each stage is appropriate — silence is rarely a rejection in Egyptian hiring culture.</div></div></div>
-        <div class="ca-faq-item"><div class="ca-faq-question"><span class="ca-faq-question__text">How can I transition into tech with no prior technical experience?</span><span class="ca-faq-question__icon"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span></div><div class="ca-faq-answer"><div class="ca-faq-answer__inner">Identify bridge roles that combine your existing expertise with technology — such as product management, technical sales, business analysis, or UX research. Pursue structured learning through bootcamps or platforms like Coursera and Udemy. Build a portfolio of small projects and join Egypt's active tech communities on LinkedIn and GitHub.</div></div></div>
-        <div class="ca-faq-item"><div class="ca-faq-question"><span class="ca-faq-question__text">Is a cover letter required when applying for jobs in Egypt?</span><span class="ca-faq-question__icon"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span></div><div class="ca-faq-answer"><div class="ca-faq-answer__inner">Cover letters are not universally required, but submitting one when others don't is a meaningful differentiator. A strong cover letter addresses why you want this specific role at this specific company and demonstrates relevant experience. Generic template cover letters are worse than none.</div></div></div>
-        <div class="ca-faq-item"><div class="ca-faq-question"><span class="ca-faq-question__text">What are the most in-demand skills in Egypt's job market right now?</span><span class="ca-faq-question__icon"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span></div><div class="ca-faq-answer"><div class="ca-faq-answer__inner">The highest-demand skills currently include software development (Python, JavaScript, React, Node.js), data analysis and SQL, digital marketing, English proficiency at B2 or above, project management, cloud computing, and UI/UX design. Bilingual professionals — Arabic, English, and French — are particularly valued in customer-facing and multinational roles.</div></div></div>
-        <div class="ca-faq-item"><div class="ca-faq-question"><span class="ca-faq-question__text">How do I handle a job offer that is lower than expected?</span><span class="ca-faq-question__icon"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span></div><div class="ca-faq-answer"><div class="ca-faq-answer__inner">Never accept or decline on the spot. Express genuine enthusiasm and ask for 24–48 hours to review the full offer. Evaluate total compensation — benefits, bonuses, flexibility, and growth trajectory all have real value. If the base is lower than expected, counteroffer with a specific number backed by market data: "Based on my research for this level in Egypt, I was targeting X — is there flexibility?"</div></div></div>
+        <div class="ca-faq-item"><div class="ca-faq-question"><span class="ca-faq-question__text">How long should my CV be for jobs in Egypt?</span><span class="ca-faq-question__icon"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span></div><div class="ca-faq-answer"><div class="ca-faq-answer__inner">For most roles in Egypt, a one-to-two-page CV is standard. Fresh graduates and those with under five years of experience should aim for one page. Candidates with ten or more years of progressive experience may extend to two pages.</div></div></div>
+        <div class="ca-faq-item"><div class="ca-faq-question"><span class="ca-faq-question__text">Should I include a photo on my CV when applying for jobs in Egypt?</span><span class="ca-faq-question__icon"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span></div><div class="ca-faq-answer"><div class="ca-faq-answer__inner">In Egypt, including a professional photo is common and generally expected for local companies, particularly in sales, customer-facing, and corporate roles. For international companies or technical roles, a photo is optional.</div></div></div>
+        <div class="ca-faq-item"><div class="ca-faq-question"><span class="ca-faq-question__text">What is the best way to answer "What is your expected salary?" in an interview?</span><span class="ca-faq-question__icon"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span></div><div class="ca-faq-answer"><div class="ca-faq-answer__inner">Early in the process, try to redirect: "I'd like to learn more about the full scope of responsibilities before settling on a number — what is the budgeted range for this role?" If pressed, provide a researched range anchored slightly above your target.</div></div></div>
+        <div class="ca-faq-item"><div class="ca-faq-question"><span class="ca-faq-question__text">How do I explain a gap in my employment history?</span><span class="ca-faq-question__icon"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span></div><div class="ca-faq-answer"><div class="ca-faq-answer__inner">Address gaps directly and briefly, then pivot to what you did during that time. Employers respect honesty far more than evasion. A confident, matter-of-fact explanation almost always satisfies recruiters.</div></div></div>
+        <div class="ca-faq-item"><div class="ca-faq-question"><span class="ca-faq-question__text">Is it worth getting international certifications like PMP, CPA, or AWS in Egypt?</span><span class="ca-faq-question__icon"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span></div><div class="ca-faq-answer"><div class="ca-faq-answer__inner">Yes, significantly so. PMP holders command a measurable salary premium. CPA and CMA certifications are highly regarded in finance. AWS, Google Cloud, and Azure certifications open doors to both local tech companies and international remote opportunities.</div></div></div>
       </div>
     </div>
   </section>
 
-  <!-- ============================================================
-       SECTION 13 — NEWSLETTER
-  ============================================================ -->
+  <!-- SECTION 13 — NEWSLETTER -->
   <section class="ca-section">
     <div class="ca-container">
       <div class="ca-newsletter">
         <div class="ca-newsletter__bg-line"></div>
-        <div>
-          <div class="ca-newsletter__label">Weekly Career Digest</div>
-          <h2 class="ca-newsletter__title">Stay Ahead in Egypt's Job Market</h2>
-          <p class="ca-newsletter__desc">Every week, receive curated career advice, fresh salary data, new guides, and job market insights delivered directly to your inbox. No spam. Unsubscribe anytime.</p>
-        </div>
-        <div class="ca-newsletter__form">
-          <div class="ca-newsletter__input-row">
-            <input class="ca-newsletter__input" type="email" placeholder="Your professional email address">
-            <button class="ca-newsletter__submit">Subscribe</button>
-          </div>
-          <p class="ca-newsletter__note">Joined by 10,000+ Egyptian professionals. Privacy guaranteed.</p>
-        </div>
+        <div><div class="ca-newsletter__label">Weekly Career Digest</div><h2 class="ca-newsletter__title">Stay Ahead in Egypt's Job Market</h2><p class="ca-newsletter__desc">Every week, receive curated career advice, fresh salary data, new guides, and job market insights delivered directly to your inbox. No spam. Unsubscribe anytime.</p></div>
+        <div class="ca-newsletter__form"><div class="ca-newsletter__input-row"><input class="ca-newsletter__input" type="email" placeholder="Your professional email address"><button class="ca-newsletter__submit">Subscribe</button></div><p class="ca-newsletter__note">Joined by 10,000+ Egyptian professionals. Privacy guaranteed.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- ============================================================
-       SECTION 14 — FINAL CTA
-  ============================================================ -->
+  <!-- SECTION 14 — FINAL CTA -->
   <section class="ca-final-cta">
     <h2 class="ca-final-cta__title">Ready For Your Next Opportunity?</h2>
     <p class="ca-final-cta__sub">Browse thousands of jobs across Egypt and discover your next career move.</p>
     <div class="ca-final-cta__actions">
-      <a href="/" class="ca-btn ca-btn--gold">
-        Browse All Jobs
-        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
-      <a href="/search" class="ca-btn ca-btn--outline">
-        Search By Category
-      </a>
+      <a href="/" class="ca-btn ca-btn--gold">Browse All Jobs <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <a href="/search" class="ca-btn ca-btn--outline">Search By Category</a>
     </div>
   </section>
 
@@ -1762,19 +1425,28 @@
 
 <!-- ARTICLE OVERLAY JAVASCRIPT -->
 <script>
-let articles = {};
+let articleData = {};
 
 fetch('/static/articles.json')
   .then(response => response.json())
-  .then(data => { articles = data; })
+  .then(data => {
+    articleData = {
+      ...data.articles,
+      ...data.resources,
+      ...data.interview_prep
+    };
+  })
   .catch(err => console.error('Failed to load articles:', err));
 
 function openArticle(articleId) {
-  const a = articles[articleId];
-  if (!a) return;
-  document.getElementById('modalCategory').textContent = a.category;
+  const a = articleData[articleId];
+  if (!a) {
+    console.warn('Article not found:', articleId);
+    return;
+  }
+  document.getElementById('modalCategory').textContent = a.category || '';
   document.getElementById('modalTitle').textContent = a.title;
-  document.getElementById('modalReadTime').textContent = a.readTime;
+  document.getElementById('modalReadTime').textContent = a.readTime || '';
   document.getElementById('modalBody').innerHTML = a.content;
   document.getElementById('articleOverlay').classList.add('show');
   document.body.style.overflow = 'hidden';
