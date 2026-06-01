@@ -2,7 +2,8 @@ import os
 import math
 import sqlite3
 import logging
-from flask import Flask, render_template, request, redirect, g, session
+from flask import Flask, render_template, request, redirect, g, session, jsonify
+
 
 
 logging.basicConfig(level=logging.DEBUG)
@@ -193,15 +194,15 @@ def save_user():
     picture = data.get('picture', '')
     if not uid or not email:
         return {'success': False}, 400
-    conn = get_db()
-    c = conn.cursor()
-    if USE_SQLITE:
-        c.execute("INSERT OR IGNORE INTO users (uid, email, name, picture, created_at) VALUES (?, ?, ?, ?, datetime('now'))", (uid, email, name, picture))
-    else:
-        c.execute("INSERT INTO users (uid, email, name, picture, created_at) VALUES (%s, %s, %s, %s, NOW()) ON CONFLICT (uid) DO UPDATE SET email=%s, name=%s, picture=%s", (uid, email, name, picture, email, name, picture))
-    conn.commit()
-    conn.close()
-    return {'success': True}
+    try:
+        if USE_SQLITE:
+            query("INSERT OR IGNORE INTO users (uid, email, name, picture, created_at) VALUES (?, ?, ?, ?, datetime('now'))", [uid, email, name, picture])
+        else:
+            query("INSERT INTO users (uid, email, name, picture, created_at) VALUES (%s, %s, %s, %s, NOW()) ON CONFLICT (uid) DO UPDATE SET email=%s, name=%s, picture=%s", [uid, email, name, picture, email, name, picture])
+        return {'success': True}
+    except Exception as e:
+        print(f"Save user error: {e}")
+        return {'success': False, 'error': str(e)}, 500 
 
 @app.route('/logout')
 def logout():
