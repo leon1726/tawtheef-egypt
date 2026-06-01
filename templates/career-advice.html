@@ -1425,7 +1425,8 @@
 
 <!-- ARTICLE OVERLAY JAVASCRIPT -->
 <script>
-let articleData = {};
+let articleData = null;
+let loading = true;
 
 fetch('/static/articles.json')
   .then(response => response.json())
@@ -1435,16 +1436,22 @@ fetch('/static/articles.json')
       ...data.resources,
       ...data.interview_prep
     };
-    console.log('Articles loaded. Available keys:', Object.keys(articleData));
+    loading = false;
+    console.log('Articles loaded. Count:', Object.keys(articleData).length);
   })
-  .catch(err => console.error('Failed to load articles:', err));
+  .catch(err => {
+    console.error('Failed to load articles:', err);
+    loading = false;
+  });
 
 function openArticle(articleId) {
-  console.log('openArticle called with:', articleId);
+  if (loading || !articleData) {
+    console.warn('Articles still loading, please wait...');
+    return;
+  }
   const a = articleData[articleId];
   if (!a) {
     console.warn('Article not found:', articleId);
-    console.log('Available IDs:', Object.keys(articleData));
     return;
   }
   document.getElementById('modalCategory').textContent = a.category || '';
