@@ -319,20 +319,24 @@
   .ca-hero__grid, .ca-hero__orb, .ca-hero__orb--1, .ca-hero__orb--2, .ca-hero__accent { display: none !important; }
 
   .ca-hero-bg {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
     max-width: 100% !important;
-    max-height: 600px !important;
+    max-height: none !important;
     object-fit: cover !important;
-    object-position: center top !important;
+    object-position: center !important;
+    z-index: 0 !important;
+    opacity: 0.25 !important;
   }
   .ca-hero {
-    min-height: 500px !important;
+    min-height: auto !important;
+    position: relative !important;
   }
-
   .ca-hero__inner {
-    max-width: 800px;
-    margin: 0 auto;
-    display: block;
-    text-align: center;
+    position: relative !important;
+    z-index: 1 !important;
   }
 
   .ca-hero__eyebrow {
