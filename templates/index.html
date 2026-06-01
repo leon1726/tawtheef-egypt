@@ -1,6 +1,13 @@
 {% extends 'base.html' %}
 {% block extra_css %}
 <style>
+
+    .job-card, .sidebar, .ad, .cat-link, .empty { background: #1E2D4A; border-color: rgba(255,255,255,0.06); }
+.job-card .jc-title, .job-card .jc-title a, .cat-link, .empty h3 { color: #F8FAFC; }
+.job-card .jc-company { color: #94A3B8; }
+.cat-link:hover, .cat-link.on { background: rgba(212,169,77,0.08); }
+.tag { filter: brightness(0.9); }
+
 /* ── Hero overrides ── */
 .hero {
     background: linear-gradient(135deg, #0b1724 0%, #0f1f38 60%, #0d1a2e 100%);
