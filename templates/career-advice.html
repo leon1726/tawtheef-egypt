@@ -1761,20 +1761,12 @@
 
 <!-- ARTICLE OVERLAY JAVASCRIPT -->
 <script>
-const articles = {
-  ats_resume: {
-    category: 'Resume Writing',
-    title: 'How to Write a Resume That Gets Past ATS Systems in 2025',
-    readTime: '8 min read',
-    content: '<p>Your content here...</p>'
-  },
-  interview_questions: {
-    category: 'Interviews',
-    title: 'The 20 Most Common Interview Questions in Egypt',
-    readTime: '11 min read',
-    content: '<p>Interview content here...</p>'
-  }
-};
+let articles = {};
+
+fetch('/static/articles.json')
+  .then(response => response.json())
+  .then(data => { articles = data; })
+  .catch(err => console.error('Failed to load articles:', err));
 
 function openArticle(articleId) {
   const a = articles[articleId];
