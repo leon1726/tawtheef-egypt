@@ -36,7 +36,7 @@
             {% if total_pages > 1 %}<span>Page {{ page }} of {{ total_pages }}</span>{% endif %}
         </div>
 
-        <div class="ad"><strong>Advertisement · إعلان</strong>Your ad here</div>
+        <div class="ad"></div>
 
         {% if jobs %}
             {% for job in jobs %}
@@ -71,7 +71,7 @@
                 </div>
             </div>
             {% if loop.index == 5 or loop.index == 10 or loop.index == 15 %}
-            <div class="ad"><strong>Advertisement · إعلان</strong>Your ad here</div>
+            <div class="ad"></div>
             {% endif %}
             {% endfor %}
 
