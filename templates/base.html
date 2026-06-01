@@ -278,9 +278,9 @@
             <div class="logo-words"><span class="logo-en">Taw<span>theef</span></span><span class="logo-ar">توظيف مصر</span></div>
         </a>
         <div class="nav-links">
-            <a href="/" class="nav-link active">Find Jobs</a>
+            <a href="/" class="nav-link {% if request.path == '/' %}active{% endif %}">Find Jobs</a>
             <a href="/career-advice" class="nav-link {% if request.path == '/career-advice' %}active{% endif %}">Career Advice</a>
-            <a href="/search" class="nav-link">Categories</a>
+            <a href="/search" class="nav-link {% if request.path == '/search' %}active{% endif %}">Categories</a>
         </div>
         <form class="nav-form" action="/search" method="get">
             <input type="text" name="q" placeholder="Search jobs..." value="{{ request.args.get('q', '') }}">
