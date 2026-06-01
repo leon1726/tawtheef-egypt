@@ -195,19 +195,18 @@ def save_user():
     if not uid or not email:
         return {'success': False}, 400
     try:
+        conn = get_db()
+        cur = conn.cursor()
         if USE_SQLITE:
-            query("INSERT OR IGNORE INTO users (uid, email, name, picture, created_at) VALUES (?, ?, ?, ?, datetime('now'))", [uid, email, name, picture])
+            cur.execute("INSERT OR IGNORE INTO users (uid, email, name, picture, created_at) VALUES (?, ?, ?, ?, datetime('now'))", [uid, email, name, picture])
         else:
-            query("INSERT INTO users (uid, email, name, picture, created_at) VALUES (%s, %s, %s, %s, NOW()) ON CONFLICT (uid) DO UPDATE SET email=%s, name=%s, picture=%s", [uid, email, name, picture, email, name, picture])
+            cur.execute("INSERT INTO users (uid, email, name, picture, created_at) VALUES (%s, %s, %s, %s, NOW()) ON CONFLICT (uid) DO UPDATE SET email=%s, name=%s, picture=%s", [uid, email, name, picture, email, name, picture])
+        conn.commit()
+        cur.close()
         return {'success': True}
     except Exception as e:
         print(f"Save user error: {e}")
-        return {'success': False, 'error': str(e)}, 500 
-
-@app.route('/logout')
-def logout():
-    session.pop('user', None)
-    return redirect('/')
+        return {'success': False, 'error': str(e)}, 500
 
 
 if __name__ == '__main__':
