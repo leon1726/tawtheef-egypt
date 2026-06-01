@@ -2,7 +2,7 @@ import os
 import math
 import sqlite3
 import logging
-from flask import Flask, render_template, request, redirect, g
+from flask import Flask, render_template, request, redirect, g, session, 
 
 
 logging.basicConfig(level=logging.DEBUG)
@@ -156,6 +156,12 @@ def apply(job_id):
     return "Not found", 404
 
 
+@app.route('/career-advice')
+def career_advice():
+    return render_template('career-advice.html')
+
+
+
 @app.route('/login')
 def login_page():
     return render_template('login.html')
@@ -177,6 +183,25 @@ def api_set_session():
     }
     return {'success': True}
 
+
+@app.route('/api/auth/save-user', methods=['POST'])
+def save_user():
+    data = request.get_json()
+    uid = data.get('uid')
+    email = data.get('email')
+    name = data.get('name', '')
+    picture = data.get('picture', '')
+    if not uid or not email:
+        return {'success': False}, 400
+    conn = get_db()
+    c = conn.cursor()
+    if USE_SQLITE:
+        c.execute("INSERT OR IGNORE INTO users (uid, email, name, picture, created_at) VALUES (?, ?, ?, ?, datetime('now'))", (uid, email, name, picture))
+    else:
+        c.execute("INSERT INTO users (uid, email, name, picture, created_at) VALUES (%s, %s, %s, %s, NOW()) ON CONFLICT (uid) DO UPDATE SET email=%s, name=%s, picture=%s", (uid, email, name, picture, email, name, picture))
+    conn.commit()
+    conn.close()
+    return {'success': True}
 
 @app.route('/logout')
 def logout():

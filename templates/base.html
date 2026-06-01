@@ -279,7 +279,7 @@
         </a>
         <div class="nav-links">
             <a href="/" class="nav-link active">Find Jobs</a>
-            <a href="#" class="nav-link">Career Advice</a>
+            <a href="/career-advice" class="nav-link {% if request.path == '/career-advice' %}active{% endif %}">Career Advice</a>
             <a href="/search" class="nav-link">Categories</a>
         </div>
         <form class="nav-form" action="/search" method="get">
@@ -287,7 +287,7 @@
             <button type="submit" class="nav-btn">Go</button>
         </form>
         <div class="nav-right" id="navRight">
-            <a href="#" class="nav-post-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>Post a Job</a>
+
             <div id="authState">
                 <button class="nav-login" onclick="openAuth('login')">Login</button>
                 <button class="nav-signup" onclick="openAuth('signup')">Sign Up</button>
