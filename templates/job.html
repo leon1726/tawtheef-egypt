@@ -279,7 +279,7 @@
         {% if job.description and job.description|trim != '' %}
         <div class="sec-card">
             <div class="sec-title">Job Description <span class="ar">الوصف الوظيفي</span></div>
-            <div class="desc">{{ job.description }}</div>
+            <div class="desc">{{ job.description | safe }}</div>
         </div>
         {% endif %}
 
