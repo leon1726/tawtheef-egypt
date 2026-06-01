@@ -248,73 +248,20 @@
     background: var(--gold-pale);
   }
 
-  /* ============================================================
+   /* ============================================================
      SECTION 1 — HERO
   ============================================================ */
   .ca-hero {
     position: relative;
     background: var(--navy);
     overflow: hidden;
-    padding: 100px 2rem 80px;
+    padding: 60px 2rem 60px;
     text-align: center;
   }
 
-  /* Decorative grid lines */
-  .ca-hero__grid {
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
-    pointer-events: none;
-  }
+  .ca-hero__grid, .ca-hero__orb, .ca-hero__orb--1, .ca-hero__orb--2, .ca-hero__accent { display: none !important; }
 
-  /* Decorative glow orbs */
-  .ca-hero__orb {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(80px);
-    pointer-events: none;
-  }
-
-  .ca-hero__orb--1 {
-    width: 480px;
-    height: 480px;
-    top: -180px;
-    right: -120px;
-    background: rgba(180,140,60,0.12);
-  }
-
-  .ca-hero__orb--2 {
-    width: 320px;
-    height: 320px;
-    bottom: -100px;
-    left: -80px;
-    background: rgba(180,140,60,0.08);
-  }
-
-  /* Diagonal accent bar */
-  .ca-hero__accent {
-    position: absolute;
-    top: 0;
-    right: 240px;
-    width: 1px;
-    height: 100%;
-    background: linear-gradient(to bottom, transparent, rgba(180,140,60,0.3), transparent);
-  }
-
-.ca-hero__inner {
-    max-width: 1280px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 80px;
-    align-items: center;
-    text-align: left;
-}
-
-    .ca-hero-bg {
+  .ca-hero-bg {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -324,164 +271,56 @@
     opacity: 0.25;
   }
 
+  .ca-hero__inner {
+    max-width: 800px;
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+  }
+
   .ca-hero__eyebrow {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 12px;
-    margin-bottom: 28px;
+    margin-bottom: 20px;
   }
 
-  .ca-hero__eyebrow-line {
-    width: 36px;
-    height: 1px;
-    background: var(--gold);
-  }
-
-  .ca-hero__eyebrow-text {
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-  }
+  .ca-hero__eyebrow-line { width: 36px; height: 1px; background: var(--gold); }
+  .ca-hero__eyebrow-text { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
 
   .ca-hero__title {
     font-family: 'Playfair Display', Georgia, serif;
-    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-size: clamp(2rem, 4vw, 3.5rem);
     font-weight: 700;
     color: #fff;
     line-height: 1.1;
     margin: 0 0 8px;
-    letter-spacing: -0.01em;
-  }
-
-  .ca-hero__title-ar {
-    font-family: 'Cairo', sans-serif;
-    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-    font-weight: 300;
-    color: rgba(255,255,255,0.5);
-    margin: 0 0 24px;
-    direction: rtl;
-    text-align: left;
-  }
-
-  .ca-hero__desc {
-    font-size: 1.05rem;
-    color: rgba(255,255,255,0.65);
-    max-width: 560px;
-    line-height: 1.7;
-    margin-bottom: 40px;
-  }
-
-  /* Search bar */
-  .ca-hero__search {
-    display: flex;
-    max-width: 580px;
-    background: rgba(255,255,255,0.07);
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: var(--r);
-    overflow: hidden;
-    backdrop-filter: blur(12px);
-    transition: border-color 0.2s;
-  }
-
-  .ca-hero__search:focus-within {
-    border-color: var(--gold);
-  }
-
-  .ca-hero__search-icon {
-    display: flex;
-    align-items: center;
-    padding: 0 16px;
-    color: rgba(255,255,255,0.4);
-  }
-
-  .ca-hero__search input {
-    flex: 1;
-    background: none;
-    border: none;
-    outline: none;
-    padding: 15px 0;
-    color: #fff;
-    font-size: 0.95rem;
-    font-family: 'DM Sans', sans-serif;
-  }
-
-  .ca-hero__search input::placeholder {
-    color: rgba(255,255,255,0.35);
-  }
-
-  .ca-hero__search-btn {
-    padding: 12px 24px;
-    background: var(--gold);
-    color: #fff;
-    border: none;
-    font-size: 0.875rem;
-    font-weight: 600;
-    cursor: pointer;
-    font-family: 'DM Sans', sans-serif;
-    transition: background 0.2s;
-  }
-
-  .ca-hero__search-btn:hover {
-    background: var(--gold-h);
-  }
-
-  /* Trust indicators */
-  .ca-hero__trust {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin: 24px 0 48px;
-  }
-
-  .ca-hero__trust-item {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 0.8rem;
-    color: rgba(255,255,255,0.5);
-  }
-
-  .ca-hero__trust-dot {
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: var(--gold);
-  }
-
-  /* Stats row */
-  .ca-hero__stats {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1px;
-    max-width: 680px;
-    background: rgba(255,255,255,0.08);
-    border-radius: var(--r);
-    overflow: hidden;
-    border: 1px solid rgba(255,255,255,0.08);
-  }
-
-  .ca-hero__stat {
-    background: rgba(255,255,255,0.04);
-    padding: 20px 16px;
     text-align: center;
   }
 
-  .ca-hero__stat-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--gold);
-    line-height: 1;
-    margin-bottom: 4px;
-  }
+  .ca-hero__title-ar { font-family: 'Cairo', sans-serif; font-size: 1rem; font-weight: 300; color: rgba(255,255,255,0.5); margin: 0 0 16px; text-align: center; }
 
-  .ca-hero__stat-label {
-    font-size: 0.72rem;
-    color: rgba(255,255,255,0.45);
-    line-height: 1.3;
-  }
+  .ca-hero__desc { font-size: 0.9rem; color: rgba(255,255,255,0.65); max-width: 500px; line-height: 1.6; margin: 0 auto 28px; text-align: center; }
+
+  .ca-hero__search { display: flex; max-width: 480px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: var(--r); overflow: hidden; backdrop-filter: blur(12px); margin: 0 auto; }
+
+  .ca-hero__search-icon { display: flex; align-items: center; padding: 0 14px; color: rgba(255,255,255,0.4); }
+  .ca-hero__search input { flex: 1; background: none; border: none; outline: none; padding: 12px 0; color: #fff; font-size: 0.85rem; font-family: 'DM Sans', sans-serif; }
+  .ca-hero__search input::placeholder { color: rgba(255,255,255,0.35); }
+  .ca-hero__search-btn { padding: 10px 20px; background: var(--gold); color: #fff; border: none; font-size: 0.85rem; font-weight: 600; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+
+  .ca-hero__trust { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 16px 0 28px; }
+  .ca-hero__trust-item { display: flex; align-items: center; gap: 6px; font-size: 0.75rem; color: rgba(255,255,255,0.5); }
+  .ca-hero__trust-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); }
+
+  .ca-hero__stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; max-width: 520px; background: rgba(255,255,255,0.08); border-radius: var(--r); overflow: hidden; border: 1px solid rgba(255,255,255,0.08); margin: 0 auto; }
+  .ca-hero__stat { background: rgba(255,255,255,0.04); padding: 14px 12px; text-align: center; }
+  .ca-hero__stat-num { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--gold); line-height: 1; margin-bottom: 4px; }
+  .ca-hero__stat-label { font-size: 0.68rem; color: rgba(255,255,255,0.45); line-height: 1.3; }
+
+  .ca-hero__visual { display: none !important; }
+  .hero-card { display: none !important; }
 
   /* ============================================================
      SECTION 2 — FEATURED GUIDE
