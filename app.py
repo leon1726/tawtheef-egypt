@@ -2,7 +2,7 @@ import os
 import math
 import sqlite3
 import logging
-from flask import Flask, render_template, request, redirect, g, session, 
+from flask import Flask, render_template, request, redirect, g, session
 
 
 logging.basicConfig(level=logging.DEBUG)
