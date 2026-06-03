@@ -41,21 +41,20 @@
         {% if jobs %}
             {% for job in jobs %}
             <div class="job-card">
-<div class="jc-top" style="display:flex;align-items:flex-start;gap:12px;">
-    <div class="jc-logo" style="width:44px;height:44px;flex-shrink:0;border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;">
-        {% if job.logo_url %}
-        <img src="{{ job.logo_url }}" alt="{{ job.company }}" style="width:100%;height:100%;object-fit:contain;">
-        {% else %}
-        <span style="font-size:16px;font-weight:800;color:var(--muted);">{% if job.company %}{{ job.company[0]|upper }}{% else %}?{% endif %}</span>
-        {% endif %}
+    <div class="jc-top">
+        <div class="jc-logo">
+            {% if job.logo_url %}
+            <img src="{{ job.logo_url }}" alt="{{ job.company }}" style="width:100%;height:100%;object-fit:contain;">
+            {% else %}
+            {{ job.company[0]|upper if job.company else '?' }}
+            {% endif %}
+        </div>
+        <div class="jc-info">
+            <div class="jc-title"><a href="/job/{{ job.id }}">{{ job.title_ar if is_ar and job.title_ar else job.title }}</a></div>
+            <div class="jc-company">{{ job.company }}</div>
+        </div>
+        <a href="/apply/{{ job.id }}" class="apply-pill" target="_blank">{% if is_ar %}قدم الأن ↗{% else %}Apply Now ↗{% endif %}</a>
     </div>
-    <div>
-        <div class="jc-title"><a href="/job/{{ job.id }}">{{ job.title_ar if is_ar and job.title_ar else job.title }}</a></div>
-        <div class="jc-company">{{ job.company }}</div>
-    </div>
-</div>
-                    <a href="/apply/{{ job.id }}" class="apply-pill" target="_blank">{% if is_ar %}قدم الأن ↗{% else %}Apply Now ↗{% endif %}</a>
-                </div>
                 <div class="jc-meta">
                     <span class="jc-meta-item">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
