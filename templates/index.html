@@ -15,36 +15,37 @@
 <div class="hero">
     <img src="{{ url_for('static', filename='cairo-skyline.png') }}" class="hero-skyline" alt="">
     <div class="hero-inner">
-        <div class="hero-badge">Egypt's #1 Job Board · لوحة وظائف مصر</div>
-        <h1>Find Your Next<br>Job in <em>Egypt</em></h1>
+        <div class="hero-badge">{% if is_ar %}موقع التوظيف الأول في مصر{% else %}Egypt's #1 Job Board{% endif %} · لوحة وظائف مصر</div>
+        <h1>{% if is_ar %}اعثر على وظيفتك<br>القادمة في <em>مصر</em>{% else %}Find Your Next<br>Job in <em>Egypt</em>{% endif %}</h1>
         <p class="hero-ar">ابحث عن فرصتك القادمة في مصر</p>
-        <p class="hero-sub">Thousands of opportunities. Find the right fit for your career.</p>
+        <p class="hero-sub">{% if is_ar %}آلاف الفرص. اعثر على الوظيفة المناسبة لمسيرتك المهنية.{% else %}Thousands of opportunities. Find the right fit for your career.{% endif %}</p>
         <div class="hero-feature-badges">
-            <div class="hero-feature-badge"><span>●</span> 2,000+ Active Jobs</div>
-            <div class="hero-feature-badge"><span>●</span> 500+ Companies</div>
-            <div class="hero-feature-badge"><span>●</span> AI Powered Search</div>
+            <div class="hero-feature-badge"><span>●</span> {% if is_ar %}٢٠٠٠+ وظيفة نشطة{% else %}2,000+ Active Jobs{% endif %}</div>
+            <div class="hero-feature-badge"><span>●</span> {% if is_ar %}٥٠٠+ شركة{% else %}500+ Companies{% endif %}</div>
+            <div class="hero-feature-badge"><span>●</span> {% if is_ar %}بحث بالذكاء الاصطناعي{% else %}AI Powered Search{% endif %}</div>
         </div>
         <form action="/search" method="get">
+            <input type="hidden" name="lang" value="{{ lang }}">
             <div class="hero-search-wrap">
                 <div class="hero-search-field">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-                    <input type="text" name="q" placeholder="Job title, skill, or company...">
+                    <input type="text" name="q" placeholder="{% if is_ar %}المسمى الوظيفي، المهارة، أو الشركة...{% else %}Job title, skill, or company...{% endif %}">
                 </div>
                 <div class="hero-search-divider"></div>
                 <div class="hero-search-field">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
                     <select name="location">
-                        <option value="">All Egypt</option>
-                        <option value="Cairo">Cairo</option>
-                        <option value="Alexandria">Alexandria</option>
-                        <option value="Giza">Giza</option>
+                        <option value="">{% if is_ar %}كل مصر{% else %}All Egypt{% endif %}</option>
+                        <option value="Cairo">{% if is_ar %}القاهرة{% else %}Cairo{% endif %}</option>
+                        <option value="Alexandria">{% if is_ar %}الإسكندرية{% else %}Alexandria{% endif %}</option>
+                        <option value="Giza">{% if is_ar %}الجيزة{% else %}Giza{% endif %}</option>
                     </select>
                 </div>
                 <div class="hero-search-divider"></div>
                 <div class="hero-search-field">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
                     <select name="category">
-                        <option value="">All Categories</option>
+                        <option value="">{% if is_ar %}كل التصنيفات{% else %}All Categories{% endif %}</option>
                         <option value="IT / Software / Development">IT / Software</option>
                         <option value="Accounting / Finance">Accounting / Finance</option>
                         <option value="Marketing / PR / Advertising">Marketing</option>
@@ -53,11 +54,11 @@
                         <option value="Sales / Retail">Sales</option>
                     </select>
                 </div>
-                <button type="submit" class="hero-search-btn">Search Jobs →</button>
+                <button type="submit" class="hero-search-btn">{% if is_ar %}ابحث عن وظائف ←{% else %}Search Jobs →{% endif %}</button>
             </div>
         </form>
         <div class="hero-chips">
-            <span class="hero-chips-label">Popular:</span>
+            <span class="hero-chips-label">{% if is_ar %}الأكثر بحثاً:{% else %}Popular:{% endif %}</span>
             <a href="/search?q=Software+Engineer" class="hero-chip">Software Engineer</a>
             <a href="/search?q=Marketing" class="hero-chip">Marketing</a>
             <a href="/search?q=Data+Analyst" class="hero-chip">Data Analyst</a>
@@ -69,17 +70,17 @@
             <div class="hstat">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
                 <strong>{{ total }}</strong>
-                <span>Jobs Listed</span>
+                <span>{% if is_ar %}وظيفة متاحة{% else %}Jobs Listed{% endif %}</span>
             </div>
             <div class="hstat">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
                 <strong>26</strong>
-                <span>Categories</span>
+                <span>{% if is_ar %}تصنيف{% else %}Categories{% endif %}</span>
             </div>
             <div class="hstat">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 2a15 15 0 010 20"/><path d="M2 12h20"/></svg>
-                <strong>Egypt Wide</strong>
-                <span>Opportunities</span>
+                <strong>{% if is_ar %}مصر{% else %}Egypt Wide{% endif %}</strong>
+                <span>{% if is_ar %}فرص عمل{% else %}Opportunities{% endif %}</span>
             </div>
         </div>
     </div>
