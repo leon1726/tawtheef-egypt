@@ -20,43 +20,36 @@ app = Flask(__name__)
 
 app.secret_key = os.environ.get('SECRET_KEY', 'fallback-secret')
 TRANSLATIONS = {
-    'en': {
-        'home': 'Home',
-        'find_jobs': 'Find Jobs',
-        'career_advice': 'Career Advice',
-        'categories': 'Categories',
-        'search_placeholder': 'Search jobs...',
-        'login': 'Login',
-        'signup': 'Sign Up',
-        'logout': 'Logout',
-        'apply_now': 'Apply Now',
-        'latest_jobs': 'Latest Openings',
-        'featured_positions': 'Featured Positions',
-        'top_compensation': 'Top Compensation',
-        'browse_categories': 'Browse Categories',
-        'footer_text': 'Data from Wuzzuf.net',
-        'search': 'Search',
-        'go': 'Go',
-    },
-    'ar': {
-        'home': 'الرئيسية',
-        'find_jobs': 'البحث عن وظائف',
-        'career_advice': 'نصائح مهنية',
-        'categories': 'التصنيفات',
-        'search_placeholder': 'ابحث عن وظائف...',
-        'login': 'دخول',
-        'signup': 'تسجيل',
-        'logout': 'خروج',
-        'apply_now': 'تقدم الآن',
-        'latest_jobs': 'أحدث الوظائف',
-        'featured_positions': 'وظائف مميزة',
-        'top_compensation': 'أعلى الرواتب',
-        'browse_categories': 'تصفح التصنيفات',
-        'footer_text': 'بيانات من Wuzzuf.net',
-        'search': 'بحث',
-        'go': 'بحث',
-    }
-}
+'en': {
+    # ... existing ...
+    'welcome_back': 'Welcome back',
+    'sign_in_account': 'Sign in to your Tawtheef account',
+    'email_address': 'Email address',
+    'password': 'Password',
+    'forgot_password': 'Forgot password?',
+    'login_btn': 'Login →',
+    'or_continue': 'or continue with',
+    'continue_google': 'Continue with Google',
+    'create_account': 'Create account',
+    'join_thousands': 'Join thousands of job seekers in Egypt',
+    'full_name': 'Full name',
+    'signup_btn': 'Create Account →',
+},
+'ar': {
+    # ... existing ...
+    'welcome_back': 'مرحباً بعودتك',
+    'sign_in_account': 'سجل الدخول إلى حساب توظيف مصر',
+    'email_address': 'البريد الإلكتروني',
+    'password': 'كلمة المرور',
+    'forgot_password': 'نسيت كلمة المرور؟',
+    'login_btn': '← دخول',
+    'or_continue': 'أو تابع باستخدام',
+    'continue_google': 'تابع مع جوجل',
+    'create_account': 'إنشاء حساب',
+    'join_thousands': 'انضم إلى آلاف الباحثين عن عمل في مصر',
+    'full_name': 'الاسم الكامل',
+    'signup_btn': '← إنشاء حساب',
+}}
 
 @app.context_processor
 def inject_globals():
