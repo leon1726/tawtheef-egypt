@@ -1,5 +1,6 @@
 # sitemap.py
 import sqlite3
+from urllib.parse import quote
 
 DB_PATH = "jobs.db"
 BASE_URL = "https://tawtheef-egypt-production.up.railway.app"
@@ -49,7 +50,7 @@ def generate_sitemap():
     # Category pages
     c.execute("SELECT DISTINCT category FROM jobs")
     for row in c.fetchall():
-        cat = row[0]
+        cat = quote(row[0], safe='')
         urls.append(f"""  <url>
     <loc>{BASE_URL}/search?category={cat}</loc>
     <changefreq>daily</changefreq>
