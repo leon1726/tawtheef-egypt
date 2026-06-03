@@ -581,30 +581,45 @@
             footer: 'دعمك يساعدنا في الاستمرار.'
         };
 
-        async function checkAdBlocker() {
-            const bait = document.createElement('div');
-            bait.className = 'adsbox ad-banner advertisement';
-            bait.style.cssText = 'position:absolute;top:-9999px;left:-9999px;width:1px;height:1px;';
-            bait.innerHTML = '&nbsp;';
-            document.body.appendChild(bait);
-            await new Promise(r => setTimeout(r, 150));
-            const hidden = bait.offsetHeight === 0 ||
-                           window.getComputedStyle(bait).display === 'none' ||
-                           window.getComputedStyle(bait).visibility === 'hidden';
-            document.body.removeChild(bait);
-            if (hidden) return true;
+async function checkAdBlocker() {
+    // Method 1: DOM bait (catches uBlock, AdBlock, etc.)
+    const bait = document.createElement('div');
+    bait.className = 'adsbox ad-banner advertisement';
+    bait.style.cssText = 'position:absolute;top:-9999px;left:-9999px;width:1px;height:1px;';
+    bait.innerHTML = '&nbsp;';
+    document.body.appendChild(bait);
+    await new Promise(r => setTimeout(r, 150));
+    const hidden = bait.offsetHeight === 0 ||
+                   window.getComputedStyle(bait).display === 'none' ||
+                   window.getComputedStyle(bait).visibility === 'hidden';
+    document.body.removeChild(bait);
+    if (hidden) return true;
 
-            try {
-                const ctrl = new AbortController();
-                const tid = setTimeout(() => ctrl.abort(), 4000);
-                await fetch('https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js',
-                    { method: 'HEAD', mode: 'no-cors', cache: 'no-store', signal: ctrl.signal });
-                clearTimeout(tid);
-                return false;
-            } catch {
-                return true;
-            }
+    // Method 2: Multiple bait URLs (catches AdGuard, Brave, DNS blockers)
+    const baitUrls = [
+        'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js',
+        'https://static.ads-twitter.com/uwt.js',
+        'https://connect.facebook.net/en_US/fbevents.js',
+        'https://js.adsrvr.org/up_loader.1.1.0.js',
+        'https://acdn.adnxs.com/ast/ast.js'
+    ];
+
+    let blockedCount = 0;
+    await Promise.all(baitUrls.map(async (url) => {
+        try {
+            const ctrl = new AbortController();
+            const tid = setTimeout(() => ctrl.abort(), 3000);
+            await fetch(url, { method: 'HEAD', mode: 'no-cors', cache: 'no-store', signal: ctrl.signal });
+            clearTimeout(tid);
+        } catch {
+            blockedCount++;
         }
+    }));
+
+    // If majority are blocked, flag it (2+ out of 5 = blocked)
+    return blockedCount >= 2;
+}
+        
 
         function showWall() {
             if (wallShown || document.getElementById('adblock-wall')) return;
