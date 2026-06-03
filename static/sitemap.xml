@@ -136,7 +136,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://tawtheef-egypt-production.up.railway.app/search?category=R&D / Science</loc>
+    <loc>https://tawtheef-egypt-production.up.railway.app/search?category=R&amp;D / Science</loc>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
@@ -831,6 +831,16 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://tawtheef-egypt-production.up.railway.app/job/7212</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tawtheef-egypt-production.up.railway.app/job/7212?lang=ar</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://tawtheef-egypt-production.up.railway.app/job/5598</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
@@ -957,6 +967,16 @@
   </url>
   <url>
     <loc>https://tawtheef-egypt-production.up.railway.app/job/5251?lang=ar</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://tawtheef-egypt-production.up.railway.app/job/7220</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tawtheef-egypt-production.up.railway.app/job/7220?lang=ar</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -2617,6 +2637,16 @@
   </url>
   <url>
     <loc>https://tawtheef-egypt-production.up.railway.app/job/5358?lang=ar</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://tawtheef-egypt-production.up.railway.app/job/7221</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tawtheef-egypt-production.up.railway.app/job/7221?lang=ar</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -5681,6 +5711,16 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://tawtheef-egypt-production.up.railway.app/job/7216</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tawtheef-egypt-production.up.railway.app/job/7216?lang=ar</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://tawtheef-egypt-production.up.railway.app/job/1135</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
@@ -6397,6 +6437,16 @@
   </url>
   <url>
     <loc>https://tawtheef-egypt-production.up.railway.app/job/6043?lang=ar</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://tawtheef-egypt-production.up.railway.app/job/7227</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tawtheef-egypt-production.up.railway.app/job/7227?lang=ar</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -8137,6 +8187,16 @@
   </url>
   <url>
     <loc>https://tawtheef-egypt-production.up.railway.app/job/820?lang=ar</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://tawtheef-egypt-production.up.railway.app/job/7214</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tawtheef-egypt-production.up.railway.app/job/7214?lang=ar</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -10751,6 +10811,16 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://tawtheef-egypt-production.up.railway.app/job/7218</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tawtheef-egypt-production.up.railway.app/job/7218?lang=ar</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://tawtheef-egypt-production.up.railway.app/job/5525</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
@@ -11287,6 +11357,16 @@
   </url>
   <url>
     <loc>https://tawtheef-egypt-production.up.railway.app/job/715?lang=ar</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://tawtheef-egypt-production.up.railway.app/job/7226</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tawtheef-egypt-production.up.railway.app/job/7226?lang=ar</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -12367,6 +12447,16 @@
   </url>
   <url>
     <loc>https://tawtheef-egypt-production.up.railway.app/job/4405?lang=ar</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://tawtheef-egypt-production.up.railway.app/job/7211</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tawtheef-egypt-production.up.railway.app/job/7211?lang=ar</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -13931,6 +14021,16 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://tawtheef-egypt-production.up.railway.app/job/7219</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tawtheef-egypt-production.up.railway.app/job/7219?lang=ar</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://tawtheef-egypt-production.up.railway.app/job/867</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
@@ -14457,6 +14557,16 @@
   </url>
   <url>
     <loc>https://tawtheef-egypt-production.up.railway.app/job/941?lang=ar</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://tawtheef-egypt-production.up.railway.app/job/7210</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tawtheef-egypt-production.up.railway.app/job/7210?lang=ar</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -17831,6 +17941,16 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://tawtheef-egypt-production.up.railway.app/job/7225</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tawtheef-egypt-production.up.railway.app/job/7225?lang=ar</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://tawtheef-egypt-production.up.railway.app/job/101</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
@@ -18237,6 +18357,16 @@
   </url>
   <url>
     <loc>https://tawtheef-egypt-production.up.railway.app/job/144?lang=ar</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://tawtheef-egypt-production.up.railway.app/job/7209</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tawtheef-egypt-production.up.railway.app/job/7209?lang=ar</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -18767,6 +18897,16 @@
   </url>
   <url>
     <loc>https://tawtheef-egypt-production.up.railway.app/job/5852?lang=ar</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://tawtheef-egypt-production.up.railway.app/job/7223</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tawtheef-egypt-production.up.railway.app/job/7223?lang=ar</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -22571,6 +22711,16 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://tawtheef-egypt-production.up.railway.app/job/7215</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tawtheef-egypt-production.up.railway.app/job/7215?lang=ar</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://tawtheef-egypt-production.up.railway.app/job/223</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
@@ -23201,6 +23351,16 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://tawtheef-egypt-production.up.railway.app/job/7217</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tawtheef-egypt-production.up.railway.app/job/7217?lang=ar</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://tawtheef-egypt-production.up.railway.app/job/630</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
@@ -23287,6 +23447,16 @@
   </url>
   <url>
     <loc>https://tawtheef-egypt-production.up.railway.app/job/447?lang=ar</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://tawtheef-egypt-production.up.railway.app/job/7208</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tawtheef-egypt-production.up.railway.app/job/7208?lang=ar</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -23717,6 +23887,16 @@
   </url>
   <url>
     <loc>https://tawtheef-egypt-production.up.railway.app/job/5643?lang=ar</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://tawtheef-egypt-production.up.railway.app/job/7224</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tawtheef-egypt-production.up.railway.app/job/7224?lang=ar</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -24367,6 +24547,16 @@
   </url>
   <url>
     <loc>https://tawtheef-egypt-production.up.railway.app/job/6085?lang=ar</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://tawtheef-egypt-production.up.railway.app/job/7222</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tawtheef-egypt-production.up.railway.app/job/7222?lang=ar</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -25067,6 +25257,16 @@
   </url>
   <url>
     <loc>https://tawtheef-egypt-production.up.railway.app/job/824?lang=ar</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://tawtheef-egypt-production.up.railway.app/job/7213</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tawtheef-egypt-production.up.railway.app/job/7213?lang=ar</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
