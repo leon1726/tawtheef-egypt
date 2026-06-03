@@ -58,7 +58,7 @@
 <div class="jd-wrap">
     <div>
         <div class="jd-card">
-            <div class="jd-title">{{ job.title }}</div>
+            <div class="jd-title">{{ job.title_ar if is_ar and job.title_ar else job.title }}</div>
             <div class="jd-company">{{ job.company }}</div>
             <div class="jd-loc">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
@@ -135,7 +135,7 @@
         {% if job.description and job.description|trim != '' %}
         <div class="sec-card">
             <div class="sec-title">Job Description <span class="ar">الوصف الوظيفي</span></div>
-            <div class="desc">{{ job.description | safe }}</div>
+            <div class="desc">{{ (job.description_ar if is_ar and job.description_ar else job.description) | safe }}</div>
         </div>
         {% endif %}
 

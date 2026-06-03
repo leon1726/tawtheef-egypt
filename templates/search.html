@@ -43,7 +43,7 @@
             <div class="job-card">
                 <div class="jc-top">
                     <div>
-                        <div class="jc-title"><a href="/job/{{ job.id }}">{{ job.title }}</a></div>
+                        <div class="jc-title"><a href="/job/{{ job.id }}">{{ job.title_ar if is_ar and job.title_ar else job.title }}</a></div>
                         <div class="jc-company">{{ job.company }}</div>
                     </div>
                     <a href="/apply/{{ job.id }}" class="apply-pill" target="_blank">Apply · قدّم ↗</a>
@@ -51,7 +51,7 @@
                 <div class="jc-meta">
                     <span class="jc-meta-item">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-                        {{ job.location }}
+                        {{ job.location_ar if is_ar and job.location_ar else job.location }}
                     </span>
                     {% if job.experience and job.experience != '' and job.experience != 'N/A' %}
                     <span class="jc-meta-item">
