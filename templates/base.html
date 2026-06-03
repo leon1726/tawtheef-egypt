@@ -70,8 +70,9 @@
         .nav-signup:hover { background: var(--gold-h); }
         .nav-login { padding: 8px 18px; font-size: 13px; font-weight: 700; background: var(--gold); color: var(--navy); border: none; border-radius: var(--r-sm); cursor: pointer; white-space: nowrap; transition: all var(--t); }
         .nav-login:hover { background: var(--gold-h); }
-        .nav-lang-btn { padding: 6px 12px; font-size: 13px; font-weight: 700; color: #F8FAFC; border: 1px solid rgba(255,255,255,0.15); border-radius: var(--r-sm); transition: all var(--t); white-space: nowrap; margin-right: 8px; }
-       .nav-lang-btn:hover { border-color: var(--gold); color: var(--gold); background: rgba(212,169,77,0.08); }
+        .nav-lang-btn { display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; font-size: 12.5px; font-weight: 600; color: #94A3B8; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.10); border-radius: 100px; transition: all var(--t); white-space: nowrap; margin-right: 10px; letter-spacing: 0.3px; }
+        .nav-lang-btn:hover { color: #F8FAFC; background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.20); }
+        .nav-lang-btn .lang-flag { font-size: 15px; line-height: 1; }
         .nav-form { display: none; }
 
         /* ── LAYOUT ── */
@@ -301,9 +302,13 @@
         </form>
         <div class="nav-right" id="navRight">
             {% set new_args = request.args.to_dict() %}{% if is_ar %}{% set _ = new_args.pop('lang', None) %}{% else %}{% set _ = new_args.update({'lang': 'ar'}) %}{% endif %}
-            <a href="{{ request.path }}?{{ new_args | urlencode }}" class="nav-lang-btn">
-                {% if is_ar %}🇺🇸 EN{% else %}🇪🇬 AR{% endif %}
-            </a>
+<a href="{{ request.path }}?{{ new_args | urlencode }}" class="nav-lang-btn">
+    {% if is_ar %}
+    <span class="lang-flag">🇺🇸</span> English
+    {% else %}
+    <span class="lang-flag">🇪🇬</span> عربي
+    {% endif %}
+</a>
             <div id="authState">
 <button class="nav-login" onclick="openAuth('login')" style="margin-right:8px;">{{ t.login }}</button>
 <button class="nav-signup" onclick="openAuth('signup')">{{ t.signup }}</button>
