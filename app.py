@@ -102,29 +102,6 @@ DATABASE_URL = os.environ.get("DATABASE_URL")
 USE_SQLITE = DATABASE_URL is None
 SQLITE_PATH = "jobs.db"
 
-@app.route('/')
-def index():
-    try:
-        latest = query("SELECT * FROM jobs ORDER BY scraped_at DESC LIMIT 20")
-        hot = query("SELECT * FROM jobs WHERE skills IS NOT NULL AND skills != '' ORDER BY LENGTH(skills) DESC LIMIT 10")
-        top_paying = query("""
-            SELECT * FROM jobs 
-            WHERE salary IS NOT NULL 
-            AND salary != 'Confidential' 
-            AND salary != '' 
-            AND salary != 'Not specified'
-            AND LOWER(salary) NOT LIKE %s
-            ORDER BY scraped_at DESC 
-            LIMIT 10
-        """, ['%kpi%'])
-        categories = query("SELECT category, COUNT(*) as count FROM jobs GROUP BY category ORDER BY count DESC")
-        locations = query("SELECT DISTINCT location FROM jobs WHERE location IS NOT NULL AND location != '' ORDER BY location ASC")
-        total_result = query_one("SELECT COUNT(*) as count FROM jobs")
-        total = total_result['count'] if total_result else 0
-    except Exception as e:
-        return f"Database error: {e}", 500
-
-    return render_template('index.html', jobs=latest, hot_jobs=hot, top_paying=top_paying, categories=categories, total=total, locations=locations)
 
 def get_db():
     if 'db' not in g:
@@ -203,12 +180,13 @@ def index():
             LIMIT 10
         """, ['%kpi%'])
         categories = query("SELECT category, COUNT(*) as count FROM jobs GROUP BY category ORDER BY count DESC")
+        locations = query("SELECT DISTINCT location FROM jobs WHERE location IS NOT NULL AND location != '' ORDER BY location ASC")
         total_result = query_one("SELECT COUNT(*) as count FROM jobs")
         total = total_result['count'] if total_result else 0
     except Exception as e:
         return f"Database error: {e}", 500
 
-    return render_template('index.html', jobs=latest, hot_jobs=hot, top_paying=top_paying, categories=categories, total=total)
+    return render_template('index.html', jobs=latest, hot_jobs=hot, top_paying=top_paying, categories=categories, total=total, locations=locations)
 
 
 @app.route('/search')
