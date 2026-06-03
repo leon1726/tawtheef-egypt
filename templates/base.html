@@ -473,21 +473,190 @@
     </div>
 </div>
 
+<style>
+    body.wall-active { overflow: hidden !important; }
+    #adblock-wall {
+        position: fixed; inset: 0; z-index: 999999;
+        display: flex; justify-content: center; align-items: center;
+        padding: 20px; background: rgba(2, 7, 14, 0.92);
+        backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+        animation: wallFadeIn 0.25s ease;
+    }
+    .wall-card {
+        width: 100%; max-width: 500px;
+        background: #0b1524; border: 1px solid rgba(212, 175, 55, 0.25);
+        border-radius: 24px; padding: 44px 40px 36px; text-align: center;
+        animation: wallSlideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        position: relative; overflow: hidden;
+    }
+    .wall-card::after {
+        content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+        background: linear-gradient(90deg, transparent 0%, #d4af37 50%, transparent 100%);
+    }
+    .wall-icon-wrap {
+        width: 72px; height: 72px; margin: 0 auto 24px;
+        border-radius: 20px; background: rgba(212, 175, 55, 0.1);
+        border: 1px solid rgba(212, 175, 55, 0.2);
+        display: flex; align-items: center; justify-content: center; font-size: 32px;
+    }
+    .wall-tag {
+        display: inline-block; padding: 5px 14px; border-radius: 100px;
+        background: rgba(212, 175, 55, 0.08); border: 1px solid rgba(212, 175, 55, 0.18);
+        color: #c9a227; font-size: 11px; font-weight: 700;
+        letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px;
+    }
+    .wall-title { font-size: 1.75rem; font-weight: 700; color: #ffffff; margin-bottom: 12px; line-height: 1.2; }
+    .wall-desc { font-size: 0.95rem; color: #8a96a8; line-height: 1.7; margin-bottom: 28px; }
+    .wall-desc strong { color: #d4af37; font-weight: 600; }
+    .wall-steps {
+        background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+        border-radius: 14px; padding: 20px 22px; text-align: left; margin-bottom: 28px;
+    }
+    .wall-steps-label {
+        font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+        text-transform: uppercase; color: #c9a227; margin-bottom: 14px;
+    }
+    .wall-step { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px; }
+    .wall-step:last-child { margin-bottom: 0; }
+    .step-num {
+        flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%;
+        background: rgba(212, 175, 55, 0.15); border: 1px solid rgba(212, 175, 55, 0.25);
+        display: flex; align-items: center; justify-content: center;
+        font-size: 11px; font-weight: 700; color: #d4af37; margin-top: 1px;
+    }
+    .step-text { font-size: 0.875rem; color: #b0bac8; line-height: 1.6; }
+    .wall-btn-primary {
+        width: 100%; padding: 15px; border-radius: 12px; border: none;
+        cursor: pointer; font-size: 0.95rem; font-weight: 700;
+        background: linear-gradient(135deg, #f0c930, #c9971a); color: #07100d;
+        transition: all 0.2s ease; margin-bottom: 10px;
+    }
+    .wall-btn-primary:hover { transform: translateY(-1px); box-shadow: 0 12px 30px rgba(212, 175, 55, 0.22); }
+    .wall-notice { display: none; margin-top: 14px; font-size: 0.875rem; color: #4ade80; font-weight: 600; }
+    .wall-footer { margin-top: 18px; font-size: 0.8rem; color: #4a5568; }
+    @keyframes wallFadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes wallSlideUp {
+        from { opacity: 0; transform: translateY(24px) scale(0.98); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @media (max-width: 540px) {
+        .wall-card { padding: 32px 22px 28px; }
+        .wall-title { font-size: 1.4rem; }
+    }
+</style>
+
 <script>
-    (function() {
-        let adBlockEnabled = false;
-        const testAd = document.createElement('div'); testAd.innerHTML = '&nbsp;'; testAd.className = 'adsbox';
-        testAd.style.cssText = 'position:absolute;left:-9999px;top:-9999px;height:1px;width:1px';
-        document.body.appendChild(testAd);
-        window.setTimeout(function() {
-            if (testAd.offsetHeight === 0) adBlockEnabled = true; testAd.remove();
-            if (adBlockEnabled) {
-                const overlay = document.createElement('div');
-                overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;display:flex;align-items:center;justify-content:center;font-family:var(--font);';
-                overlay.innerHTML = '<div style="background:var(--white);border-radius:var(--r-lg);padding:40px 32px;max-width:460px;text-align:center;margin:20px;box-shadow:0 20px 60px rgba(0,0,0,0.3);"><div style="font-size:48px;margin-bottom:16px;">🔇</div><h2 style="font-size:20px;font-weight:800;color:var(--head);margin-bottom:8px;">Ad Blocker Detected</h2><p style="font-size:14px;color:var(--muted);margin-bottom:24px;line-height:1.6;">We noticed you\'re using an ad blocker.<br>Ads help keep Tawtheef Egypt free for everyone.<br>Please disable your ad blocker to continue.</p><button onclick="this.parentElement.parentElement.remove()" style="background:var(--gold);color:var(--navy);border:none;padding:12px 28px;border-radius:var(--r-sm);font-family:var(--font);font-size:14px;font-weight:700;cursor:pointer;">I\'ve disabled my ad blocker →</button><p style="font-size:11px;color:var(--muted);margin-top:14px;">Then refresh the page</p></div>';
-                document.body.appendChild(overlay);
+    (function () {
+        let wallShown = false;
+        let checkInterval = null;
+
+        const isEnglish = document.documentElement.lang === 'en' ||
+                         (navigator.language || '').startsWith('en');
+
+        const txt = isEnglish ? {
+            tag:    'Tawtheef Egypt',
+            title:  'Ad Blocker Detected',
+            desc:   'Ads help us keep this site <strong>completely free</strong> for everyone. Please disable your ad blocker to continue.',
+            label:  'How to disable',
+            steps:  [
+                'Click the extension icon (AdBlock, uBlock Origin, etc.) in your browser toolbar',
+                'Select <em>"Disable on this site"</em> or <em>"Pause on this site"</em>',
+                'Click the button below to refresh and continue'
+            ],
+            btn:    '🔄 Refresh Page',
+            notice: '✓ Ad blocker disabled — reloading...',
+            footer: 'Your support keeps this site free for everyone.'
+        } : {
+            tag:    'توظيف مصر',
+            title:  'تم اكتشاف مانع إعلانات',
+            desc:   'الإعلانات تساعدنا في إبقاء الموقع <strong>مجانيًا للجميع</strong>. يرجى تعطيل مانع الإعلانات للمتابعة.',
+            label:  'كيفية التعطيل',
+            steps:  [
+                'انقر على أيقونة الإضافة (AdBlock أو uBlock Origin ...) في شريط المتصفح',
+                'اختر <em>"تعطيل على هذا الموقع"</em> أو <em>"إيقاف مؤقت على هذا الموقع"</em>',
+                'انقر على الزر أدناه لتحديث الصفحة والمتابعة'
+            ],
+            btn:    '🔄 تحديث الصفحة',
+            notice: '✓ تم تعطيل مانع الإعلانات — جارٍ إعادة التحميل...',
+            footer: 'دعمك يساعدنا في الاستمرار.'
+        };
+
+        async function checkAdBlocker() {
+            const bait = document.createElement('div');
+            bait.className = 'adsbox ad-banner advertisement';
+            bait.style.cssText = 'position:absolute;top:-9999px;left:-9999px;width:1px;height:1px;';
+            bait.innerHTML = '&nbsp;';
+            document.body.appendChild(bait);
+            await new Promise(r => setTimeout(r, 150));
+            const hidden = bait.offsetHeight === 0 ||
+                           window.getComputedStyle(bait).display === 'none' ||
+                           window.getComputedStyle(bait).visibility === 'hidden';
+            document.body.removeChild(bait);
+            if (hidden) return true;
+
+            try {
+                const ctrl = new AbortController();
+                const tid = setTimeout(() => ctrl.abort(), 4000);
+                await fetch('https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js',
+                    { method: 'HEAD', mode: 'no-cors', cache: 'no-store', signal: ctrl.signal });
+                clearTimeout(tid);
+                return false;
+            } catch {
+                return true;
             }
-        }, 200);
+        }
+
+        function showWall() {
+            if (wallShown || document.getElementById('adblock-wall')) return;
+            wallShown = true;
+            document.body.classList.add('wall-active');
+
+            const wall = document.createElement('div');
+            wall.id = 'adblock-wall';
+            wall.innerHTML = `
+                <div class="wall-card" dir="${isEnglish ? 'ltr' : 'rtl'}">
+                    <div class="wall-icon-wrap">🛡️</div>
+                    <div class="wall-tag">${txt.tag}</div>
+                    <h2 class="wall-title">${txt.title}</h2>
+                    <p class="wall-desc">${txt.desc}</p>
+                    <div class="wall-steps">
+                        <div class="wall-steps-label">${txt.label}</div>
+                        ${txt.steps.map((s, i) => `
+                        <div class="wall-step">
+                            <div class="step-num">${i + 1}</div>
+                            <div class="step-text">${s}</div>
+                        </div>`).join('')}
+                    </div>
+                    <button class="wall-btn-primary" onclick="location.reload()">${txt.btn}</button>
+                    <div id="wall-notice" class="wall-notice">${txt.notice}</div>
+                    <div class="wall-footer">${txt.footer}</div>
+                </div>
+            `;
+            document.body.appendChild(wall);
+
+            clearInterval(checkInterval);
+            checkInterval = setInterval(async () => {
+                const blocked = await checkAdBlocker();
+                if (!blocked) {
+                    const notice = document.getElementById('wall-notice');
+                    if (notice) notice.style.display = 'block';
+                    clearInterval(checkInterval);
+                    setTimeout(() => location.reload(), 1400);
+                }
+            }, 3000);
+        }
+
+        async function init() {
+            let blocked = false;
+            for (let i = 0; i < 3; i++) {
+                blocked = await checkAdBlocker();
+                if (!blocked) break;
+                if (i < 2) await new Promise(r => setTimeout(r, 800));
+            }
+            if (blocked) showWall();
+        }
+
+        window.addEventListener('DOMContentLoaded', init);
     })();
 </script>
 
