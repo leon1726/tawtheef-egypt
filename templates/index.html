@@ -90,10 +90,6 @@
 {% block content %}
 <div class="grid">
     <aside class="sidebar sidebar-desktop">
-        <div style="padding:10px 14px; text-align:center;">
-            <script>atOptions={'key':'b1409f5fdeb6cd8e02d4c96526854341','format':'iframe','height':250,'width':300,'params':{}};</script>
-            <script src="https://www.highperformanceformat.com/b1409f5fdeb6cd8e02d4c96526854341/invoke.js"></script>
-        </div>
         <div class="sidebar-head">{% if is_ar %}التصنيفات{% else %}Categories{% endif %} <span class="ar">{% if is_ar %}Categories{% else %}التصنيفات{% endif %}</span></div>
         <div class="cat-list">
             {% for cat in categories %}
@@ -101,6 +97,10 @@
                 <span>{{ cat.category }}</span><span class="cat-n">{{ cat.count }}</span>
             </a>
             {% endfor %}
+        </div>
+        <div style="padding:10px 14px; text-align:center;">
+            <script>atOptions={'key':'b1409f5fdeb6cd8e02d4c96526854341','format':'iframe','height':250,'width':300,'params':{}};</script>
+            <script src="https://www.highperformanceformat.com/b1409f5fdeb6cd8e02d4c96526854341/invoke.js"></script>
         </div>
     </aside>
 
@@ -115,7 +115,7 @@
                         <div class="jc-title"><a href="/job/{{ job.id }}">{{ job.title_ar if is_ar and job.title_ar else job.title }}</a></div>
                         <div class="jc-company">{{ job.company }}</div>
                     </div>
-                    <a href="/apply/{{ job.id }}" class="apply-pill" target="_blank">{% if is_ar %}تقدم الآن{% else %}Apply{% endif %} · قدّم ↗</a>
+                   <a href="/apply/{{ job.id }}" class="apply-pill" target="_blank">  {% if is_ar %}قدم الأن ↗ {% else %}Apply Now ↗{% endif %}</a>
                 </div>
                 <div class="jc-meta">
                     <span class="jc-meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>{{ job.location_ar if is_ar and job.location_ar else job.location }}</span>
