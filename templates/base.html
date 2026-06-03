@@ -7,10 +7,12 @@
     <meta name="description" content="{% block meta_desc %}Tawtheef Egypt - Find jobs in Egypt. توظيف مصر - أحدث الوظائف في مصر{% endblock %}">
     <meta name="robots" content="index, follow">
     <meta property="og:title" content="{% block og_title %}Tawtheef Egypt | توظيف مصر{% endblock %}">
-    <meta property="og:description" content="{% block og_desc %}Find your next career move in Egypt. Browzse thousands of jobs across all industries.{% endblock %}">
+    <meta property="og:description" content="{% block og_desc %}Find your next career move in Egypt. Browse thousands of jobs across all industries.{% endblock %}">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ request.url }}">
     <link rel="canonical" href="{{ request.url }}">
+    <link rel="canonical" href="{{ request.url }}">
+    {% block extra_head %}{% endblock %}
     <title>{% block title %}Tawtheef Egypt | توظيف مصر{% endblock %}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -270,7 +272,7 @@
         @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } .sidebar-desktop { display: none; } .mobile-cat-btn { display: flex; } .mobile-ad { display: block; } .nav-links, .nav-right { display: none; } .nav-form { display: flex; flex: 1; gap: 6px; max-width: 320px; margin-left: auto; } .nav-form input { flex: 1; min-width: 0; background: rgba(255,255,255,0.04); border: 1.5px solid rgba(255,255,255,0.08); border-radius: var(--r-sm); padding: 8px 12px; font-family: var(--font); font-size: 13px; color: #F8FAFC; outline: none; } .nav-form input::placeholder { color: var(--muted); } .nav-btn { padding: 8px 14px; background: var(--gold); color: var(--navy); border: none; border-radius: var(--r-sm); font-family: var(--font); font-size: 13px; font-weight: 700; cursor: pointer; flex-shrink: 0; white-space: nowrap; } .hero h1 { font-size: 28px; } .hero-search-wrap { flex-direction: column !important; } .hero-skyline { width: 80%; opacity: 0.2; } }
 
         /* ── MOBILE ── */
-        @media (max-width: 640px) { .page { padding: 16px 0 60px; } .ph h1 { font-size: 19px; } .job-card { padding: 14px 16px; } .jc-top { flex-direction: column; gap: 8px; } .apply-pill { width: 100%; justify-content: center; } .sbar { display: none; } .rmeta { flex-direction: column; gap: 3px; font-size: 12px; align-items: flex-start; } .bc { font-size: 11.5px; } footer { font-size: 11.5px; } .hero { padding: 50px 16px 70px; } .hero h1 { font-size: 24px; } .hero-feature-badges { gap: 6px; } .hero-feature-badge { font-size: 10px; padding: 4px 10px; } .hero-stats-bar { gap: 20px; } }
+        @media (max-width: 640px) { .page { padding: 16px 0 60px; } .ph h1 { font-size: 19px; } .job-card { padding: 14px 16px; } .jc-top { flex-direction: column; gap: 8px; } .apply-pill { width: 100%; justify-content: center; } .sbar { display: flex; } .rmeta { flex-direction: column; gap: 3px; font-size: 12px; align-items: flex-start; } .bc { font-size: 11.5px; } footer { font-size: 11.5px; } .hero { padding: 50px 16px 70px; } .hero h1 { font-size: 24px; } .hero-feature-badges { gap: 6px; } .hero-feature-badge { font-size: 10px; padding: 4px 10px; } .hero-stats-bar { gap: 20px; } }
     
 
 
@@ -295,7 +297,7 @@
 <nav class="nav">
     <div class="nav-wrap">
         <a href="/{% if is_ar %}?lang=ar{% endif %}" class="logo">
-            <div class="logo-icon"><img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" class="logo-symbol"></div>
+            <div class="logo-icon"><img src="{{ url_for('static', filename='logo.png') }}" alt="Tawtheef Egypt Logo" class="logo-symbol" loading="lazy"></div>
             <div class="logo-words">
                 <span class="logo-en">Taw<span>theef</span></span>
                 <span class="logo-ar">توظيف مصر</span>

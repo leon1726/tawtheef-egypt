@@ -5,6 +5,32 @@
 {% block og_desc %}{{ job.title }} at {{ job.company }} in {{ job.location }}. {{ job.experience or '' }} {{ job.career_level or '' }}. Apply now!{% endblock %}
 
 {% block extra_css %}
+
+{% block extra_head %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "JobPosting",
+  "title": "{{ job.title }}",
+  "description": "{{ job.description | striptags | truncate(500) if job.description else job.title }}",
+  "hiringOrganization": {
+    "@type": "Organization",
+    "name": "{{ job.company }}"
+  },
+  "jobLocation": {
+    "@type": "Place",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "{{ job.location }}",
+      "addressCountry": "EG"
+    }
+  },
+  "datePosted": "{{ job.posted_date }}",
+  "employmentType": "FULL_TIME"
+}
+</script>
+{% endblock %}
+
 <style>
     .jd-wrap { display: grid; grid-template-columns: 1fr 268px; gap: 20px; align-items: start; }
     .jd-card { background: #1E2D4A; border-radius: var(--r-lg); border: 1px solid rgba(255,255,255,0.06); padding: 26px 28px; box-shadow: var(--sh); margin-bottom: 14px; }
