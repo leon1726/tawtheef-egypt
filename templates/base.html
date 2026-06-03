@@ -587,7 +587,7 @@
         };
 
 async function checkAdBlocker() {
-    // Method 1: DOM bait (catches uBlock, AdBlock, etc.)
+    // Method 1: DOM bait — catches uBlock, AdBlock, AdBlock Plus
     const bait = document.createElement('div');
     bait.className = 'adsbox ad-banner advertisement';
     bait.style.cssText = 'position:absolute;top:-9999px;left:-9999px;width:1px;height:1px;';
@@ -600,17 +600,27 @@ async function checkAdBlocker() {
     document.body.removeChild(bait);
     if (hidden) return true;
 
-    // Method 2: Multiple bait URLs (catches AdGuard, Brave, DNS blockers)
+    // Method 2: Self-hosted bait script — catches AdGuard (it blocks files named like ads)
+    // You must create this file on YOUR server: /ads/ad-banner.js
+    // The file content can be empty or just: var _adLoaded = true;
+    const selfHosted = await new Promise(resolve => {
+        const s = document.createElement('script');
+        s.src = '/ads/ad-banner.js?_=' + Date.now();
+        s.onload = () => { resolve(false); s.remove(); };  // loaded = not blocked
+        s.onerror = () => { resolve(true); s.remove(); };  // failed = blocked
+        document.head.appendChild(s);
+    });
+    if (selfHosted) return true;
+
+    // Method 3: External ad network requests — catches DNS-level blockers
     const baitUrls = [
         'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js',
         'https://static.ads-twitter.com/uwt.js',
-        'https://connect.facebook.net/en_US/fbevents.js',
-        'https://js.adsrvr.org/up_loader.1.1.0.js',
-        'https://acdn.adnxs.com/ast/ast.js'
+        'https://connect.facebook.net/en_US/fbevents.js'
     ];
 
     let blockedCount = 0;
-    await Promise.all(baitUrls.map(async (url) => {
+    await Promise.all(baitUrls.map(async url => {
         try {
             const ctrl = new AbortController();
             const tid = setTimeout(() => ctrl.abort(), 3000);
@@ -620,8 +630,6 @@ async function checkAdBlocker() {
             blockedCount++;
         }
     }));
-
-    // If majority are blocked, flag it (2+ out of 5 = blocked)
     return blockedCount >= 2;
 }
         
