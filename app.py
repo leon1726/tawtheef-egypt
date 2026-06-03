@@ -168,26 +168,25 @@ def health():
 @app.route('/')
 def index():
     try:
-        latest = query("SELECT * FROM jobs ORDER BY scraped_at DESC LIMIT 20")
-        hot = query("SELECT * FROM jobs WHERE skills IS NOT NULL AND skills != '' ORDER BY LENGTH(skills) DESC LIMIT 10")
-        top_paying = query("""
-            SELECT * FROM jobs 
-            WHERE salary IS NOT NULL 
-            AND salary != 'Confidential' 
-            AND salary != '' 
-            AND salary != 'Not specified'
-            AND LOWER(salary) NOT LIKE %s
-            ORDER BY scraped_at DESC 
-            LIMIT 10
-        """, ['%kpi%'])
+        category = request.args.get('category', '').strip()
+        
+        where_clause = ""
+        params = []
+        if category:
+            where_clause = "WHERE category = %s"
+            params = [category]
+        
+        latest = query(f"SELECT * FROM jobs {where_clause} ORDER BY scraped_at DESC LIMIT 20", params)
+        hot = query(f"SELECT * FROM jobs WHERE skills IS NOT NULL AND skills != '' {'AND category = %s' if category else ''} ORDER BY LENGTH(skills) DESC LIMIT 10", [category] if category else [])
+        top_paying = query(f"SELECT * FROM jobs WHERE salary IS NOT NULL AND salary != 'Confidential' AND salary != '' AND salary != 'Not specified' AND LOWER(salary) NOT LIKE %s {'AND category = %s' if category else ''} ORDER BY scraped_at DESC LIMIT 10", ['%kpi%'] + ([category] if category else []))
+        
         categories = query("SELECT category, COUNT(*) as count FROM jobs GROUP BY category ORDER BY count DESC")
-        locations = query("SELECT DISTINCT location FROM jobs WHERE location IS NOT NULL AND location != '' ORDER BY location ASC")
-        total_result = query_one("SELECT COUNT(*) as count FROM jobs")
+        total_result = query_one(f"SELECT COUNT(*) as count FROM jobs {where_clause}", params)
         total = total_result['count'] if total_result else 0
     except Exception as e:
         return f"Database error: {e}", 500
 
-    return render_template('index.html', jobs=latest, hot_jobs=hot, top_paying=top_paying, categories=categories, total=total, locations=locations)
+    return render_template('index.html', jobs=latest, hot_jobs=hot, top_paying=top_paying, categories=categories, total=total, selected_category=category)
 
 
 @app.route('/search')

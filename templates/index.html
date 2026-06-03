@@ -101,17 +101,17 @@
     <div class="section-header">
         <h2>{{ t.featured_positions }}</h2>
 <div class="cat-pills-wrap">
-    <a href="/search" class="cat-pill active">{% if is_ar %}الكل{% else %}All{% endif %}</a>
-    <a href="/search?category=IT / Software / Development" class="cat-pill">IT / Software</a>
-    <a href="/search?category=Engineering / Construction / Civil / Architecture" class="cat-pill">Engineering</a>
-    <a href="/search?category=Marketing / PR / Advertising" class="cat-pill">Marketing</a>
-    <a href="/search?category=Medical / Healthcare" class="cat-pill">Healthcare</a>
-    <a href="/search?category=Sales / Retail" class="cat-pill">Sales</a>
-    <a href="/search?category=Accounting / Finance" class="cat-pill">Finance</a>
-    <a href="/search?category=Administration" class="cat-pill">Admin</a>
-    <a href="/search?category=Hospitality / Hotels / Food / Services" class="cat-pill">Hospitality</a>
-    <a href="/search?category=Customer / Service" class="cat-pill">Customer Service</a>
-    <a href="/search?category=Human / Resources" class="cat-pill">HR</a>
+    <a href="/" class="cat-pill {% if not selected_category %}active{% endif %}">{% if is_ar %}الكل{% else %}All{% endif %}</a>
+    <a href="/?category=IT / Software / Development" class="cat-pill {% if selected_category == 'IT / Software / Development' %}active{% endif %}">IT / Software</a>
+    <a href="/?category=Engineering / Construction / Civil / Architecture" class="cat-pill {% if selected_category == 'Engineering / Construction / Civil / Architecture' %}active{% endif %}">Engineering</a>
+    <a href="/?category=Marketing / PR / Advertising" class="cat-pill {% if selected_category == 'Marketing / PR / Advertising' %}active{% endif %}">Marketing</a>
+    <a href="/?category=Medical / Healthcare" class="cat-pill {% if selected_category == 'Medical / Healthcare' %}active{% endif %}">Healthcare</a>
+    <a href="/?category=Sales / Retail" class="cat-pill {% if selected_category == 'Sales / Retail' %}active{% endif %}">Sales</a>
+    <a href="/?category=Accounting / Finance" class="cat-pill {% if selected_category == 'Accounting / Finance' %}active{% endif %}">Finance</a>
+    <a href="/?category=Administration" class="cat-pill {% if selected_category == 'Administration' %}active{% endif %}">Admin</a>
+    <a href="/?category=Hospitality / Hotels / Food / Services" class="cat-pill {% if selected_category == 'Hospitality / Hotels / Food / Services' %}active{% endif %}">Hospitality</a>
+    <a href="/?category=Customer / Service" class="cat-pill {% if selected_category == 'Customer / Service' %}active{% endif %}">Customer Service</a>
+    <a href="/?category=Human / Resources" class="cat-pill {% if selected_category == 'Human / Resources' %}active{% endif %}">HR</a>
 </div>
     </div>
     <p style="color:#94A3B8;font-size:13px;margin-bottom:20px;">{% if is_ar %}أكثر الوظائف طلباً مع متطلبات شاملة{% else %}Most in-demand roles with comprehensive requirements{% endif %}</p>
