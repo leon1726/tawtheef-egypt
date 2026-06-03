@@ -7,13 +7,14 @@
     text-align: left;
     overflow: hidden;
     position: relative;
+    min-height: 400px;
 }
 </style>
 {% endblock %}
 {% block title %}Tawtheef Egypt | توظيف مصر — Latest Jobs{% endblock %}
 {% block hero %}
 <div class="hero">
-    <img src="{{ url_for('static', filename='cairo-skyline.png') }}" class="hero-skyline" alt="">
+    <img src="{{ url_for('static', filename='cairo-skyline.png') }}" class="hero-skyline" alt="" fetchpriority="high" loading="eager">
     <div class="hero-inner">
         <div class="hero-badge">{% if is_ar %}موقع التوظيف الأول في مصر{% else %}Egypt's #1 Job Board{% endif %} · لوحة وظائف مصر</div>
         <h1>{% if is_ar %}اعثر على وظيفتك<br>القادمة في <em>مصر</em>{% else %}Find Your Next<br>Job in <em>Egypt</em>{% endif %}</h1>
