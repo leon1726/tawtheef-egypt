@@ -75,6 +75,10 @@
     .jd-wrap { display: flex; flex-direction: column; }
     .aside-sticky { order: -1; position: static; margin-bottom: 16px; }
 }
+@media (max-width: 860px) {
+    .mobile-only { display: block !important; }
+    .desktop-apply { display: none; }
+}
 </style>
 {% endblock %}
 
@@ -83,6 +87,12 @@
     <a href="/">Home</a> ›
     <a href="/search?category={{ job.category }}">{{ job.category }}</a> ›
     <span>{{ job.title[:50] }}{% if job.title|length > 50 %}...{% endif %}</span>
+</div>
+
+<div class="apply-card mobile-only" style="display:none;">
+    <h3>Ready to apply?</h3>
+    <p><span>هل أنت مستعد للتقديم؟</span></p>
+    <a href="/apply/{{ job.id }}" class="apply-main" target="_blank">{% if is_ar %}قدم الأن على wuzzuf ↗{% else %}Apply Now on Wuzzuf ↗{% endif %}</a>
 </div>
 
 <div class="jd-wrap">
@@ -179,12 +189,14 @@
         {% endif %}
     </div>
 
-    <div class="aside-sticky">
+<div class="aside-sticky">
+    <div class="desktop-apply">
         <div class="apply-card">
             <h3>Ready to apply?</h3>
             <p><span>هل أنت مستعد للتقديم؟</span></p>
             <a href="/apply/{{ job.id }}" class="apply-main" target="_blank">{% if is_ar %}قدم الأن على wuzzuf ↗{% else %}Apply Now on Wuzzuf ↗{% endif %}</a>
         </div>
+    </div>
 
         <div class="sum-card">
             <div class="sum-title">Find Related Jobs</div>
