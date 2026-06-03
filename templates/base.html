@@ -558,33 +558,45 @@
         const isEnglish = document.documentElement.lang === 'en' ||
                          (navigator.language || '').startsWith('en');
 
-        const txt = isEnglish ? {
-            tag:    'Tawtheef Egypt',
-            title:  'Ad Blocker Detected',
-            desc:   'Ads help us keep this site <strong>completely free</strong> for everyone. Please disable your ad blocker to continue.',
-            label:  'How to disable',
-            steps:  [
-                'Click the extension icon (AdBlock, uBlock Origin, etc.) in your browser toolbar',
-                'Select <em>"Disable on this site"</em> or <em>"Pause on this site"</em>',
-                'Click the button below to refresh and continue'
-            ],
-            btn:    '🔄 Refresh Page',
-            notice: '✓ Ad blocker disabled — reloading...',
-            footer: 'Your support keeps this site free for everyone.'
-        } : {
-            tag:    'توظيف مصر',
-            title:  'تم اكتشاف مانع إعلانات',
-            desc:   'الإعلانات تساعدنا في إبقاء الموقع <strong>مجانيًا للجميع</strong>. يرجى تعطيل مانع الإعلانات للمتابعة.',
-            label:  'كيفية التعطيل',
-            steps:  [
-                'انقر على أيقونة الإضافة (AdBlock أو uBlock Origin ...) في شريط المتصفح',
-                'اختر <em>"تعطيل على هذا الموقع"</em> أو <em>"إيقاف مؤقت على هذا الموقع"</em>',
-                'انقر على الزر أدناه لتحديث الصفحة والمتابعة'
-            ],
-            btn:    '🔄 تحديث الصفحة',
-            notice: '✓ تم تعطيل مانع الإعلانات — جارٍ إعادة التحميل...',
-            footer: 'دعمك يساعدنا في الاستمرار.'
-        };
+        const isMobile = /Android|iPhone|iPad|iPod|Samsung|Mobile/i.test(navigator.userAgent);
+
+const txt = isEnglish ? {
+    tag:    'Tawtheef Egypt',
+    title:  'Ad Blocker Detected',
+    desc:   'Ads help us keep this site <strong>completely free</strong> for everyone. Please disable your ad blocker to continue.',
+    label:  'How to disable',
+    steps: isMobile ? [
+        'Open your browser menu (three dots ⋮)',
+        'Go to <em>Settings → Site settings</em> or <em>Extensions</em>',
+        'Disable your ad blocker for this site',
+        'Tap the button below to refresh and continue'
+    ] : [
+        'Click the extension icon (AdBlock, uBlock Origin, etc.) in your browser toolbar',
+        'Select <em>"Disable on this site"</em> or <em>"Pause on this site"</em>',
+        'Click the button below to refresh and continue'
+    ],
+    btn:    '🔄 Refresh Page',
+    notice: '✓ Ad blocker disabled — reloading...',
+    footer: 'Your support keeps this site free for everyone.'
+} : {
+    tag:    'توظيف مصر',
+    title:  'تم اكتشاف مانع إعلانات',
+    desc:   'الإعلانات تساعدنا في إبقاء الموقع <strong>مجانيًا للجميع</strong>. يرجى تعطيل مانع الإعلانات للمتابعة.',
+    label:  'كيفية التعطيل',
+    steps: isMobile ? [
+        'افتح قائمة المتصفح (النقاط الثلاث ⋮)',
+        'اذهب إلى <em>الإعدادات ← إعدادات الموقع</em> أو <em>الإضافات</em>',
+        'قم بتعطيل مانع الإعلانات لهذا الموقع',
+        'اضغط على الزر أدناه لتحديث الصفحة والمتابعة'
+    ] : [
+        'انقر على أيقونة الإضافة (AdBlock أو uBlock Origin ...) في شريط المتصفح',
+        'اختر <em>"تعطيل على هذا الموقع"</em> أو <em>"إيقاف مؤقت على هذا الموقع"</em>',
+        'انقر على الزر أدناه لتحديث الصفحة والمتابعة'
+    ],
+    btn:    '🔄 تحديث الصفحة',
+    notice: '✓ تم تعطيل مانع الإعلانات — جارٍ إعادة التحميل...',
+    footer: 'دعمك يساعدنا في الاستمرار.'
+};
 
 async function checkAdBlocker() {
     // Method 1: DOM bait — catches uBlock, AdBlock, AdBlock Plus
