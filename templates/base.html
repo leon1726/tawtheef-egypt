@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="{{ lang }}" {% if is_ar %}dir="rtl"{% endif %}>
 <head>
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://www.highperformanceformat.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="google-site-verification" content="b2tBxoD-YNqfen_GG32DAMyzB0NMAoD5S3F_ntzXqOE" />
@@ -15,7 +18,7 @@
     {% block extra_head %}{% endblock %}
     <title>{% block title %}Tawtheef Egypt | توظيف مصر{% endblock %}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         html, body { max-width: 100%; overflow-x: hidden; }
