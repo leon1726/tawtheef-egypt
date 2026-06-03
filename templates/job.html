@@ -87,7 +87,7 @@
             <div class="jd-title">{{ job.title_ar if is_ar and job.title_ar else job.title }}</div>
             {% if job.logo_url %}
 <div style="margin-bottom:12px;">
-    <img src="{{ job.logo_url }}" alt="{{ job.company }}" style="max-height:60px;max-width:150px;object-fit:contain;">
+    <img src="{{ job.logo_url }}" alt="{{ job.company }}" style="max-height:60px;max-width:150px;object-fit:contain;background:#fff;border-radius:8px;padding:6px;">
 </div>
 {% endif %}
             <div class="jd-loc">
