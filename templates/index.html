@@ -113,8 +113,12 @@
     <a href="/?category=Customer / Service" class="cat-pill {% if selected_category == 'Customer / Service' %}active{% endif %}">Customer Service</a>
     <a href="/?category=Human / Resources" class="cat-pill {% if selected_category == 'Human / Resources' %}active{% endif %}">HR</a>
 </div>
-    </div>
-    <p style="color:#94A3B8;font-size:13px;margin-bottom:20px;">{% if is_ar %}أكثر الوظائف طلباً مع متطلبات شاملة{% else %}Most in-demand roles with comprehensive requirements{% endif %}</p>
+</div>
+{% if selected_category %}
+<p style="color:#94A3B8;font-size:13px;margin-bottom:20px;">{{ total }} {% if is_ar %}وظيفة في{% else %}jobs found in{% endif %} <strong style="color:#F8FAFC;">{{ selected_category }}</strong></p>
+{% else %}
+<p style="color:#94A3B8;font-size:13px;margin-bottom:20px;">{% if is_ar %}أكثر الوظائف طلباً مع متطلبات شاملة{% else %}Most in-demand roles with comprehensive requirements{% endif %}</p>
+{% endif %}
 
     {% if hot_jobs %}
     <div class="jobs-grid">
