@@ -39,11 +39,11 @@
                 <div class="hero-search-field">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
                     <select name="location">
-                        <option value="">{% if is_ar %}كل مصر{% else %}All Egypt{% endif %}</option>
-                        <option value="Cairo">{% if is_ar %}القاهرة{% else %}Cairo{% endif %}</option>
-                        <option value="Alexandria">{% if is_ar %}الإسكندرية{% else %}Alexandria{% endif %}</option>
-                        <option value="Giza">{% if is_ar %}الجيزة{% else %}Giza{% endif %}</option>
-                    </select>
+                          <option value="">{% if is_ar %}كل مصر{% else %}All Egypt{% endif %}</option>
+                          {% for loc in locations %}
+                        <option value="{{ loc.location }}">{{ loc.location }}</option>
+                       {% endfor %}
+                 </select>
                 </div>
                 <div class="hero-search-divider"></div>
                 <div class="hero-search-field">
