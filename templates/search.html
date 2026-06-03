@@ -46,7 +46,7 @@
                         <div class="jc-title"><a href="/job/{{ job.id }}">{{ job.title_ar if is_ar and job.title_ar else job.title }}</a></div>
                         <div class="jc-company">{{ job.company }}</div>
                     </div>
-                    <a href="/apply/{{ job.id }}" class="apply-pill" target="_blank">Apply · قدّم ↗</a>
+                    <a href="/apply/{{ job.id }}" class="apply-pill" target="_blank">{% if is_ar %}قدم الأن ↗{% else %}Apply Now ↗{% endif %}</a>
                 </div>
                 <div class="jc-meta">
                     <span class="jc-meta-item">

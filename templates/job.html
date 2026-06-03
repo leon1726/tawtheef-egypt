@@ -149,7 +149,7 @@
         <div class="apply-card">
             <h3>Ready to apply?</h3>
             <p><span>هل أنت مستعد للتقديم؟</span></p>
-            <a href="/apply/{{ job.id }}" class="apply-main" target="_blank">Apply Now on Wuzzuf →</a>
+            <a href="/apply/{{ job.id }}" class="apply-main" target="_blank">{% if is_ar %}قدم الأن على wuzzuf ↗{% else %}Apply Now on Wuzzuf ↗{% endif %}</a>
         </div>
 
         <div class="sum-card">
