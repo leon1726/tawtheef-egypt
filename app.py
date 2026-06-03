@@ -8,9 +8,9 @@ from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from flask_wtf.csrf import CSRFProtect
 
-csrf = CSRFProtect(app)
 
-limiter = Limiter(app=app, key_func=get_remote_address)
+
+
 
 
 logging.basicConfig(level=logging.DEBUG)
@@ -88,6 +88,10 @@ TRANSLATIONS = {
         'signup_btn': '← إنشاء حساب',
     }
 }
+
+limiter = Limiter(app=app, key_func=get_remote_address)
+csrf = CSRFProtect(app)
+
 
 @app.context_processor
 def inject_globals():
