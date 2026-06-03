@@ -275,19 +275,16 @@
 
 
 
+
+
 [dir="rtl"] body { font-family: var(--font-ar); }
-/* Navbar: keep logo on LEFT, nav-right on RIGHT always */
-[dir="rtl"] .nav-wrap { flex-direction: row; }
-[dir="rtl"] .nav-links { flex-direction: row-reverse; }
-[dir="rtl"] .nav-right { flex-direction: row; margin-left: auto; margin-right: 0; }
-/* Sidebar category active indicator */
+[dir="rtl"] .nav-wrap { flex-direction: row-reverse; }
+[dir="rtl"] .nav-links { flex-direction: row; }
+[dir="rtl"] .nav-right { flex-direction: row-reverse; margin-right: auto; margin-left: 0; }
 [dir="rtl"] .cat-link { border-left: none; border-right: 3px solid transparent; }
 [dir="rtl"] .cat-link:hover, [dir="rtl"] .cat-link.on { border-right-color: var(--gold); }
-/* Job card: keep logo LEFT, button RIGHT always */
 [dir="rtl"] .jc-top { flex-direction: row; }
-/* Hero text align right in Arabic */
 [dir="rtl"] .hero { text-align: right; }
-
 
     </style>
     {% block extra_css %}{% endblock %}
