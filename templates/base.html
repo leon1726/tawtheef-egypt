@@ -599,50 +599,82 @@ const txt = isEnglish ? {
 };
 
 async function checkAdBlocker() {
-    // Method 1: DOM bait — catches uBlock, AdBlock, AdBlock Plus
-    const bait = document.createElement('div');
-    bait.className = 'adsbox ad-banner advertisement';
-    bait.style.cssText = 'position:absolute;top:-9999px;left:-9999px;width:1px;height:1px;';
-    bait.innerHTML = '&nbsp;';
-    document.body.appendChild(bait);
-    await new Promise(r => setTimeout(r, 150));
-    const hidden = bait.offsetHeight === 0 ||
-                   window.getComputedStyle(bait).display === 'none' ||
-                   window.getComputedStyle(bait).visibility === 'hidden';
-    document.body.removeChild(bait);
-    if (hidden) return true;
 
-    // Method 2: Self-hosted bait script — catches AdGuard (it blocks files named like ads)
-    // You must create this file on YOUR server: /ads/ad-banner.js
-    // The file content can be empty or just: var _adLoaded = true;
+    // ── METHOD 1: Multiple DOM baits (different class names from different filter lists)
+    // Catches: uBlock Origin, AdBlock, AdBlock Plus, AdGuard extension (cosmetic filters)
+    const baitClasses = [
+        'adsbox ad-banner advertisement',     // EasyList
+        'ad-zone ad-container adsbygoogle',   // Google / EasyList
+        'banner_ad pub_300x250 pub_300x250m', // IAB standard sizes
+    ];
+
+    for (const cls of baitClasses) {
+        const bait = document.createElement('div');
+        bait.className = cls;
+        bait.style.cssText = 'position:absolute;top:-9999px;left:-9999px;width:1px;height:1px;pointer-events:none;';
+        bait.innerHTML = '&nbsp;';
+        document.body.appendChild(bait);
+        await new Promise(r => setTimeout(r, 100));
+        const cs = window.getComputedStyle(bait);
+        const blocked = bait.offsetHeight === 0 || bait.offsetWidth === 0 ||
+                        cs.display === 'none' || cs.visibility === 'hidden' ||
+                        cs.opacity === '0';
+        document.body.removeChild(bait);
+        if (blocked) return true;
+    }
+
+    // ── METHOD 2: Self-hosted bait script (MOST reliable for AdGuard extension)
+    // Requires /ads/ad-banner.js on your server with content: var _adLoaded=true;
     const selfHosted = await new Promise(resolve => {
         const s = document.createElement('script');
         s.src = '/ads/ad-banner.js?_=' + Date.now();
-        s.onload = () => { resolve(false); s.remove(); };  // loaded = not blocked
-        s.onerror = () => { resolve(true); s.remove(); };  // failed = blocked
+        s.onload = () => { resolve(false); s.remove(); };
+        s.onerror = () => { resolve(true); s.remove(); };
         document.head.appendChild(s);
     });
     if (selfHosted) return true;
 
-    // Method 3: External ad network requests — catches DNS-level blockers
+    // ── METHOD 3: Bait image (catches blockers that block ad images but not scripts)
+    // Create /ads/banner.gif on your server (any 1x1 transparent gif)
+    const baitImg = await new Promise(resolve => {
+        const img = new Image();
+        img.src = '/ads/banner.gif?_=' + Date.now();
+        img.onload = () => resolve(img.naturalWidth > 0 ? false : true);
+        img.onerror = () => resolve(true);
+        setTimeout(() => resolve(false), 3000); // timeout = not blocked
+    });
+    if (baitImg) return true;
+
+    // ── METHOD 4: External network probes (catches AdGuard DNS, Brave, NextDNS)
+    // Run all in parallel, use majority vote to avoid geo-block false positives
     const baitUrls = [
         'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js',
+        'https://www.googletagmanager.com/gtag/js?id=AW-000000',
+        'https://connect.facebook.net/en_US/fbevents.js',
         'https://static.ads-twitter.com/uwt.js',
-        'https://connect.facebook.net/en_US/fbevents.js'
+        'https://js.adsrvr.org/up_loader.1.1.0.js',
+        'https://acdn.adnxs.com/ast/ast.js'
     ];
 
     let blockedCount = 0;
+    let resolvedCount = 0;
     await Promise.all(baitUrls.map(async url => {
         try {
             const ctrl = new AbortController();
             const tid = setTimeout(() => ctrl.abort(), 3000);
             await fetch(url, { method: 'HEAD', mode: 'no-cors', cache: 'no-store', signal: ctrl.signal });
             clearTimeout(tid);
-        } catch {
-            blockedCount++;
+            resolvedCount++;
+        } catch (e) {
+            // Only count as blocked if it's not a timeout (timeout = slow network, not blocker)
+            if (e.name !== 'AbortError') blockedCount++;
         }
     }));
-    return blockedCount >= 2;
+
+    // Need 4+ blocked AND at least 1 resolved to rule out full network failure
+    // If ALL fail, it's likely a bad connection not an adblocker
+    if (resolvedCount === 0) return false; // full network failure, don't false-positive
+    return blockedCount >= 4;
 }
         
 
