@@ -98,10 +98,12 @@
 <div class="grid-full">
     <div class="stats-subtitle">{{ total }}+ jobs · 500+ companies · {% if is_ar %}تحديث يومي{% else %}updated daily{% endif %}</div>
 
-    <div class="section-header">
-        <h2>{{ t.featured_positions }}</h2>
-<div class="cat-pills-wrap">
-    <a href="/" class="cat-pill {% if not selected_category %}active{% endif %}">{% if is_ar %}الكل{% else %}All{% endif %}</a>
+<div class="section-header">
+    <h2>{{ t.featured_positions }}</h2>
+    <div class="cat-scroll-wrap">
+        <button class="cat-scroll-btn left" onclick="scrollPills(-200)">‹</button>
+        <div class="cat-pills-wrap" id="catPillsWrap">
+            <a href="/" class="cat-pill {% if not selected_category %}active{% endif %}">{% if is_ar %}الكل{% else %}All{% endif %}</a>
     <a href="/?category=IT / Software / Development" class="cat-pill {% if selected_category == 'IT / Software / Development' %}active{% endif %}">IT / Software</a>
     <a href="/?category=Engineering / Construction / Civil / Architecture" class="cat-pill {% if selected_category == 'Engineering / Construction / Civil / Architecture' %}active{% endif %}">Engineering</a>
     <a href="/?category=Marketing / PR / Advertising" class="cat-pill {% if selected_category == 'Marketing / PR / Advertising' %}active{% endif %}">Marketing</a>
@@ -128,7 +130,9 @@
     <a href="/?category=Fashion" class="cat-pill {% if selected_category == 'Fashion' %}active{% endif %}">Fashion</a>
     <a href="/?category=R&D / Science" class="cat-pill {% if selected_category == 'R&D / Science' %}active{% endif %}">R&D</a>
     <a href="/?category=Sports / and / Leisure" class="cat-pill {% if selected_category == 'Sports / and / Leisure' %}active{% endif %}">Sports</a>
-   </div>
+        </div>
+        <button class="cat-scroll-btn right" onclick="scrollPills(200)">›</button>
+    </div>
 </div>
 {% if selected_category %}
 <p style="color:#94A3B8;font-size:13px;margin-bottom:20px;">{{ total }} {% if is_ar %}وظيفة في{% else %}jobs found in{% endif %} <strong style="color:#F8FAFC;">{{ selected_category }}</strong></p>
@@ -237,4 +241,9 @@
     {% endfor %}
     </div>
 </div>
+<script>
+function scrollPills(amount) {
+    document.getElementById('catPillsWrap').scrollBy({ left: amount, behavior: 'smooth' });
+}
+</script>
 {% endblock %}
