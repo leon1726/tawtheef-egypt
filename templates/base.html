@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ lang }}" {% if is_ar %}dir="rtl"{% endif %}>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -7,7 +7,7 @@
     <meta name="description" content="{% block meta_desc %}Tawtheef Egypt - Find jobs in Egypt. توظيف مصر - أحدث الوظائف في مصر{% endblock %}">
     <meta name="robots" content="index, follow">
     <meta property="og:title" content="{% block og_title %}Tawtheef Egypt | توظيف مصر{% endblock %}">
-    <meta property="og:description" content="{% block og_desc %}Find your next career move in Egypt. Browse thousands of jobs across all industries.{% endblock %}">
+    <meta property="og:description" content="{% block og_desc %}Find your next career move in Egypt. Browzse thousands of jobs across all industries.{% endblock %}">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ request.url }}">
     <link rel="canonical" href="{{ request.url }}">
@@ -264,6 +264,16 @@
 
         /* ── MOBILE ── */
         @media (max-width: 640px) { .page { padding: 16px 0 60px; } .ph h1 { font-size: 19px; } .job-card { padding: 14px 16px; } .jc-top { flex-direction: column; gap: 8px; } .apply-pill { width: 100%; justify-content: center; } .sbar { display: none; } .rmeta { flex-direction: column; gap: 3px; font-size: 12px; align-items: flex-start; } .bc { font-size: 11.5px; } footer { font-size: 11.5px; } .hero { padding: 50px 16px 70px; } .hero h1 { font-size: 24px; } .hero-feature-badges { gap: 6px; } .hero-feature-badge { font-size: 10px; padding: 4px 10px; } .hero-stats-bar { gap: 20px; } }
+    
+
+    [dir="rtl"] body { font-family: var(--font-ar); }
+[dir="rtl"] .nav-wrap, [dir="rtl"] .nav-links, [dir="rtl"] .nav-right { flex-direction: row-reverse; }
+[dir="rtl"] .cat-link { border-left: none; border-right: 3px solid transparent; }
+[dir="rtl"] .cat-link:hover, [dir="rtl"] .cat-link.on { border-right-color: var(--gold); }
+[dir="rtl"] .jc-top { flex-direction: row-reverse; }
+[dir="rtl"] .hero { text-align: right; }
+
+
     </style>
     {% block extra_css %}{% endblock %}
 </head>
@@ -280,33 +290,27 @@
             </div>
         </a>
         <div class="nav-links">
-            {% if is_ar %}
-            <a href="/?lang=ar" class="nav-link {% if request.path == '/' %}active{% endif %}">الرئيسية</a>
-            <a href="/career-advice?lang=ar" class="nav-link {% if request.path == '/career-advice' %}active{% endif %}">نصائح مهنية</a>
-            <a href="/search?lang=ar" class="nav-link {% if request.path == '/search' %}active{% endif %}">تصفح الوظائف</a>
-            {% else %}
-            <a href="/" class="nav-link {% if request.path == '/' %}active{% endif %}">Find Jobs</a>
-            <a href="/career-advice" class="nav-link {% if request.path == '/career-advice' %}active{% endif %}">Career Advice</a>
-            <a href="/search" class="nav-link {% if request.path == '/search' %}active{% endif %}">Categories</a>
-            {% endif %}
+            <a href="/{% if is_ar %}?lang=ar{% endif %}" class="nav-link {% if request.path == '/' %}active{% endif %}">{{ t.home }}</a>
+            <a href="/career-advice{% if is_ar %}?lang=ar{% endif %}" class="nav-link {% if request.path == '/career-advice' %}active{% endif %}">{{ t.career_advice }}</a>
+            <a href="/search{% if is_ar %}?lang=ar{% endif %}" class="nav-link {% if request.path == '/search' %}active{% endif %}">{{ t.categories }}</a>
         </div>
         <form class="nav-form" action="/search" method="get">
             <input type="hidden" name="lang" value="{{ lang }}">
-            <input type="text" name="q" placeholder="{% if is_ar %}ابحث عن وظائف...{% else %}Search jobs...{% endif %}" value="{{ request.args.get('q', '') }}">
-            <button type="submit" class="nav-btn">{% if is_ar %}بحث{% else %}Go{% endif %}</button>
+            <input type="text" name="q" placeholder="{{ t.search_placeholder }}..." value="{{ request.args.get('q', '') }}">
+            <button type="submit" class="nav-btn">{{ t.go }}</button>
         </form>
         <div class="nav-right" id="navRight">
-            <a href="{{ request.path }}{% if is_ar %}{% else %}?lang=ar{% endif %}{% if request.args.get('q') %}&q={{ request.args.get('q') }}{% endif %}{% if request.args.get('category') %}&category={{ request.args.get('category') }}{% endif %}" class="nav-lang-btn" title="{% if is_ar %}English{% else %}العربية{% endif %}">
+            {% set new_args = request.args.to_dict() %}{% if is_ar %}{% set _ = new_args.pop('lang', None) %}{% else %}{% set _ = new_args.update({'lang': 'ar'}) %}{% endif %}
+            <a href="{{ request.path }}?{{ new_args | urlencode }}" class="nav-lang-btn">
                 {% if is_ar %}🇺🇸 EN{% else %}🇪🇬 AR{% endif %}
             </a>
             <div id="authState">
-                <button class="nav-login" onclick="openAuth('login')">{% if is_ar %}دخول{% else %}Login{% endif %}</button>
-                <button class="nav-signup" onclick="openAuth('signup')">{% if is_ar %}تسجيل{% else %}Sign Up{% endif %}</button>
+                <button class="nav-login" onclick="openAuth('login')">{{ t.login }}</button>
+                <button class="nav-signup" onclick="openAuth('signup')">{{ t.signup }}</button>
             </div>
         </div>
     </div>
 </nav>
-
 {% block hero %}{% endblock %}
 
 <div class="wrap page">
@@ -329,7 +333,7 @@
     <script src="https://www.highperformanceformat.com/397822ac95e63c1a331926eb353a041a/invoke.js"></script>
 </div>
 
-<footer><span class="ar">توظيف مصر</span> · Tawtheef Egypt · {% if is_ar %}بيانات من Wuzzuf.net{% else %}Data from Wuzzuf.net{% endif %}</footer>
+<footer><span class="ar">توظيف مصر</span> · Tawtheef Egypt · {{ t.footer_text }}</footer>
 
 <div class="auth-overlay" id="authOverlay">
     <div class="auth-card">
