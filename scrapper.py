@@ -233,7 +233,7 @@ class WuzzufCategoryScraper:
 
         return self.jobs
 
-    def _parse_card(self, card, category_name):
+def _parse_card(self, card, category_name):
         try:
             title = ""
             title_el = card.query_selector("h2 a") or card.query_selector("h2")
@@ -285,7 +285,7 @@ class WuzzufCategoryScraper:
             if link in self.seen_links:
                 return None
 
- self.seen_links.add(link)
+            self.seen_links.add(link)
 
             title_ar = ""
             location_ar = ""
