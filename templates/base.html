@@ -638,13 +638,28 @@ async function saveUserToBackend(user) {
     } catch (err) { console.warn('Could not save user to backend:', err); }
 }
 
+async function setSession(user) {
+    try {
+        const idToken = await user.getIdToken();
+        await fetch('/api/auth/session', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ idToken })
+        });
+    } catch (err) { console.warn('Could not set session:', err); }
+}
+
 window.doLogin = async function() {
     const email = document.getElementById('login-email').value.trim();
     const password = document.getElementById('login-password').value;
     hideError('login-error');
     if (!email || !password) { showError('login-error', 'Please fill in all fields.'); return; }
     setLoading('login-btn', true);
-    try { await signInWithEmailAndPassword(auth, email, password); closeAuth(); }
+    try {
+        const cred = await signInWithEmailAndPassword(auth, email, password);
+        await setSession(cred.user);
+        closeAuth();
+    }
     catch (e) { showError('login-error', getFirebaseError(e.code)); }
     finally { setLoading('login-btn', false); }
 };
@@ -660,6 +675,7 @@ window.doSignup = async function() {
         const cred = await createUserWithEmailAndPassword(auth, email, password);
         await updateProfile(cred.user, { displayName: name });
         await saveUserToBackend({ ...cred.user, displayName: name });
+        await setSession(cred.user);
         closeAuth();
     } catch (e) { showError('signup-error', getFirebaseError(e.code)); }
     finally { setLoading('signup-btn', false); }
@@ -669,7 +685,12 @@ window.doGoogle = async function() {
     const activePanel = document.querySelector('.auth-panel.active');
     const errorId = activePanel && activePanel.id === 'panel-signup' ? 'signup-error' : 'login-error';
     hideError('login-error'); hideError('signup-error');
-    try { const result = await signInWithPopup(auth, provider); await saveUserToBackend(result.user); closeAuth(); }
+    try {
+        const result = await signInWithPopup(auth, provider);
+        await saveUserToBackend(result.user);
+        await setSession(result.user);
+        closeAuth();
+    }
     catch (e) { if (e.code !== 'auth/popup-closed-by-user' && e.code !== 'auth/cancelled-popup-request') { showError(errorId, getFirebaseError(e.code)); } }
 };
 

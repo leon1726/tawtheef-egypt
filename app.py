@@ -17,6 +17,12 @@ try:
 except ImportError:
     PSYCOPG2_AVAILABLE = False
 
+    import firebase_admin
+from firebase_admin import auth as firebase_auth, credentials
+
+cred = credentials.Certificate(os.environ.get('FIREBASE_SERVICE_ACCOUNT_JSON'))
+firebase_admin.initialize_app(cred)
+
 app = Flask(__name__)
 
 app.secret_key = os.environ.get('SECRET_KEY')
@@ -315,11 +321,15 @@ def api_set_session():
     data = request.get_json()
     if not data:
         return {'success': False, 'error': 'No data'}, 400
+    try:
+        decoded = firebase_auth.verify_id_token(data.get('idToken', ''))
+    except Exception:
+        return {'success': False, 'error': 'Invalid token'}, 401
     session['user'] = {
-        'uid': data.get('uid'),
-        'email': data.get('email'),
-        'name': data.get('name', ''),
-        'picture': data.get('picture', '')
+        'uid': decoded['uid'],
+        'email': decoded.get('email', ''),
+        'name': decoded.get('name', ''),
+        'picture': decoded.get('picture', '')
     }
     return {'success': True}
 
