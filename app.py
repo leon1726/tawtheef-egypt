@@ -17,10 +17,10 @@ try:
 except ImportError:
     PSYCOPG2_AVAILABLE = False
 
-    import firebase_admin
+import json
+import firebase_admin
 from firebase_admin import auth as firebase_auth, credentials
 
-import json
 service_account_info = json.loads(os.environ.get('FIREBASE_SERVICE_ACCOUNT_JSON'))
 cred = credentials.Certificate(service_account_info)
 firebase_admin.initialize_app(cred)
