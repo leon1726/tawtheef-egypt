@@ -10,13 +10,19 @@
     <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="google-site-verification" content="b2tBxoD-YNqfen_GG32DAMyzB0NMAoD5S3F_ntzXqOE" />
+    {% if is_ar %}
+    <meta name="description" content="{% block meta_desc_ar %}توظيف مصر - ابحث عن أحدث الوظائف في مصر. تصفح آلاف الوظائف في جميع المجالات والتصنيفات.{% endblock %}">
+    <meta property="og:title" content="{% block og_title_ar %}توظيف مصر | Tawtheef Egypt{% endblock %}">
+    <meta property="og:description" content="{% block og_desc_ar %}ابحث عن وظيفتك القادمة في مصر. تصفح آلاف الوظائف في جميع المجالات.{% endblock %}">
+    <meta property="og:locale" content="ar_EG">
+    {% else %}
     <meta name="description" content="{% block meta_desc %}Tawtheef Egypt - Find jobs in Egypt. توظيف مصر - أحدث الوظائف في مصر{% endblock %}">
-    <meta name="robots" content="index, follow">
     <meta property="og:title" content="{% block og_title %}Tawtheef Egypt | توظيف مصر{% endblock %}">
     <meta property="og:description" content="{% block og_desc %}Find your next career move in Egypt. Browse thousands of jobs across all industries.{% endblock %}">
+    {% endif %}
+    <meta name="robots" content="index, follow">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ request.url }}">
-    <link rel="canonical" href="{{ request.url }}">
     <link rel="canonical" href="{{ request.url }}">
     {% block extra_head %}{% endblock %}
     <title>{% block title %}Tawtheef Egypt | توظيف مصر{% endblock %}</title>
