@@ -6,7 +6,7 @@ from functools import wraps
 from flask import Flask, render_template, request, redirect, g, session, jsonify
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
-from flask_wtf.csrf import CSRFProtect, csrf_exempt
+from flask_wtf.csrf import CSRFProtect
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -92,6 +92,7 @@ TRANSLATIONS = {
     }
 }
 
+app.config['WTF_CSRF_EXEMPT_LIST'] = ['/api/auth/session', '/api/auth/save-user']
 limiter = Limiter(app=app, key_func=get_remote_address)
 csrf = CSRFProtect(app)
 
@@ -315,7 +316,6 @@ def signup_page():
 
 
 @app.route('/api/auth/session', methods=['POST'])
-@csrf_exempt
 @limiter.limit("10 per minute")
 def api_set_session():
     data = request.get_json()
@@ -335,7 +335,6 @@ def api_set_session():
 
 
 @app.route('/api/auth/save-user', methods=['POST'])
-@csrf_exempt
 @limiter.limit("10 per minute")
 def save_user():
     data = request.get_json()
