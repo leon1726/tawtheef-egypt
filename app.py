@@ -6,12 +6,7 @@ from functools import wraps
 from flask import Flask, render_template, request, redirect, g, session, jsonify
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
-from flask_wtf.csrf import CSRFProtect
-
-
-
-
-
+from flask_wtf.csrf import CSRFProtect, csrf_exempt
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -24,8 +19,10 @@ except ImportError:
 
 app = Flask(__name__)
 
+app.secret_key = os.environ.get('SECRET_KEY')
+if not app.secret_key:
+    raise RuntimeError("SECRET_KEY environment variable is not set!")
 
-app.secret_key = os.environ.get('SECRET_KEY', 'fallback-secret')
 TRANSLATIONS = {
     'en': {
         'home': 'Home',
@@ -92,7 +89,16 @@ TRANSLATIONS = {
 limiter = Limiter(app=app, key_func=get_remote_address)
 csrf = CSRFProtect(app)
 
+# ── Security headers on every response ────────────────────────────────────────
+@app.after_request
+def security_headers(response):
+    response.headers['X-Frame-Options'] = 'DENY'
+    response.headers['X-Content-Type-Options'] = 'nosniff'
+    response.headers['Referrer-Policy'] = 'strict-origin-when-cross-origin'
+    response.headers['X-XSS-Protection'] = '1; mode=block'
+    return response
 
+# ── Inject globals into all templates ─────────────────────────────────────────
 @app.context_processor
 def inject_globals():
     lang = request.args.get('lang', 'en')
@@ -109,11 +115,13 @@ def inject_globals():
         'FIREBASE_MESSAGING_SENDER_ID': os.environ.get('FIREBASE_MESSAGING_SENDER_ID', ''),
         'FIREBASE_APP_ID': os.environ.get('FIREBASE_APP_ID', ''),
     }
+
 DATABASE_URL = os.environ.get("DATABASE_URL")
 USE_SQLITE = DATABASE_URL is None
 SQLITE_PATH = "jobs.db"
 
 
+# ── DB helpers ─────────────────────────────────────────────────────────────────
 def get_db():
     if 'db' not in g:
         if USE_SQLITE:
@@ -161,6 +169,35 @@ def query_one(sql, params=None):
         return cur.fetchone()
 
 
+def init_users_table():
+    try:
+        conn = get_db()
+        cur = conn.cursor()
+        if USE_SQLITE:
+            cur.execute("""
+                CREATE TABLE IF NOT EXISTS users (
+                    uid TEXT PRIMARY KEY,
+                    email TEXT UNIQUE NOT NULL,
+                    name TEXT,
+                    picture TEXT,
+                    created_at TEXT
+                )
+            """)
+        else:
+            cur.execute("""
+                CREATE TABLE IF NOT EXISTS users (
+                    uid TEXT PRIMARY KEY,
+                    email TEXT UNIQUE NOT NULL,
+                    name TEXT,
+                    picture TEXT,
+                    created_at TIMESTAMP DEFAULT NOW()
+                )
+            """)
+        conn.commit()
+    except Exception as e:
+        print(f"init_users_table error: {e}")
+
+
 def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
@@ -170,6 +207,7 @@ def login_required(f):
     return decorated_function
 
 
+# ── Routes ─────────────────────────────────────────────────────────────────────
 @app.route('/health')
 def health():
     return "OK"
@@ -179,7 +217,7 @@ def health():
 def index():
     try:
         category = request.args.get('category', '').strip()
-        
+
         if category:
             latest = query("SELECT * FROM jobs WHERE category = %s ORDER BY scraped_at DESC LIMIT 20", [category])
             hot = query("SELECT * FROM jobs WHERE skills IS NOT NULL AND skills != '' AND category = %s ORDER BY LENGTH(skills) DESC LIMIT 10", [category])
@@ -190,16 +228,18 @@ def index():
             hot = query("SELECT * FROM jobs WHERE skills IS NOT NULL AND skills != '' ORDER BY LENGTH(skills) DESC LIMIT 10")
             top_paying = query("SELECT * FROM jobs WHERE salary IS NOT NULL AND salary != 'Confidential' AND salary != '' AND salary != 'Not specified' AND LOWER(salary) NOT LIKE %s ORDER BY scraped_at DESC LIMIT 10", ['%kpi%'])
             total_result = query_one("SELECT COUNT(*) as count FROM jobs")
-        
+
         overall_total_result = query_one("SELECT COUNT(*) as count FROM jobs")
         overall_total = overall_total_result['count'] if overall_total_result else 0
-        
         categories = query("SELECT category, COUNT(*) as count FROM jobs GROUP BY category ORDER BY count DESC")
         total = total_result['count'] if total_result else 0
     except Exception as e:
         return f"Database error: {e}", 500
 
-    return render_template('index.html', jobs=latest, hot_jobs=hot, top_paying=top_paying, categories=categories, total=total, overall_total=overall_total, selected_category=category)
+    return render_template('index.html', jobs=latest, hot_jobs=hot, top_paying=top_paying,
+                           categories=categories, total=total, overall_total=overall_total,
+                           selected_category=category)
+
 
 @app.route('/search')
 @limiter.limit("30 per minute")
@@ -207,7 +247,10 @@ def search():
     try:
         q = request.args.get('q', '').strip()
         category = request.args.get('category', '').strip()
-        page = max(1, int(request.args.get('page', 1)))
+        try:
+            page = max(1, int(request.args.get('page', 1)))
+        except (ValueError, TypeError):
+            page = 1
         per_page = 20
         offset = (page - 1) * per_page
 
@@ -245,7 +288,7 @@ def job_detail(job_id):
 @app.route('/apply/<int:job_id>')
 def apply(job_id):
     job = query_one("SELECT link FROM jobs WHERE id = %s", (job_id,))
-    if job:
+    if job and job['link'] and job['link'].startswith('https://wuzzuf.net'):
         return redirect(job['link'])
     return "Not found", 404
 
@@ -255,12 +298,9 @@ def career_advice():
     return render_template('career-advice.html')
 
 
-
 @app.route('/login')
 def login_page():
     return render_template('login.html')
-
-
 
 
 @app.route('/signup')
@@ -269,8 +309,12 @@ def signup_page():
 
 
 @app.route('/api/auth/session', methods=['POST'])
+@csrf_exempt
+@limiter.limit("10 per minute")
 def api_set_session():
     data = request.get_json()
+    if not data:
+        return {'success': False, 'error': 'No data'}, 400
     session['user'] = {
         'uid': data.get('uid'),
         'email': data.get('email'),
@@ -281,21 +325,31 @@ def api_set_session():
 
 
 @app.route('/api/auth/save-user', methods=['POST'])
+@csrf_exempt
+@limiter.limit("10 per minute")
 def save_user():
     data = request.get_json()
+    if not data:
+        return {'success': False, 'error': 'No data'}, 400
     uid = data.get('uid')
     email = data.get('email')
     name = data.get('name', '')
     picture = data.get('picture', '')
     if not uid or not email:
-        return {'success': False}, 400
+        return {'success': False, 'error': 'Missing uid or email'}, 400
     try:
         conn = get_db()
         cur = conn.cursor()
         if USE_SQLITE:
-            cur.execute("INSERT OR IGNORE INTO users (uid, email, name, picture, created_at) VALUES (?, ?, ?, ?, datetime('now'))", [uid, email, name, picture])
+            cur.execute(
+                "INSERT OR IGNORE INTO users (uid, email, name, picture, created_at) VALUES (?, ?, ?, ?, datetime('now'))",
+                [uid, email, name, picture]
+            )
         else:
-            cur.execute("INSERT INTO users (uid, email, name, picture, created_at) VALUES (%s, %s, %s, %s, NOW()) ON CONFLICT (uid) DO UPDATE SET email=%s, name=%s, picture=%s", [uid, email, name, picture, email, name, picture])
+            cur.execute(
+                "INSERT INTO users (uid, email, name, picture, created_at) VALUES (%s, %s, %s, %s, NOW()) ON CONFLICT (uid) DO UPDATE SET email=%s, name=%s, picture=%s",
+                [uid, email, name, picture, email, name, picture]
+            )
         conn.commit()
         cur.close()
         return {'success': True}
@@ -303,10 +357,15 @@ def save_user():
         print(f"Save user error: {e}")
         return {'success': False, 'error': str(e)}, 500
 
+
 @app.route('/sitemap.xml')
 def sitemap():
     return app.send_static_file('sitemap.xml')
 
+
+# ── Startup ────────────────────────────────────────────────────────────────────
+with app.app_context():
+    init_users_table()
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
