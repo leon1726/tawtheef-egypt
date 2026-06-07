@@ -20,7 +20,9 @@ except ImportError:
     import firebase_admin
 from firebase_admin import auth as firebase_auth, credentials
 
-cred = credentials.Certificate(os.environ.get('FIREBASE_SERVICE_ACCOUNT_JSON'))
+import json
+service_account_info = json.loads(os.environ.get('FIREBASE_SERVICE_ACCOUNT_JSON'))
+cred = credentials.Certificate(service_account_info)
 firebase_admin.initialize_app(cred)
 
 app = Flask(__name__)
