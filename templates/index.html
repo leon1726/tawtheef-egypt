@@ -163,7 +163,7 @@
                 <span class="tag t-date">{{ job.posted_date }}</span>
             </div>
         </div>
-        {% if loop.index == 5 %}<div class="ad"><script>atOptions={'key':'cc432909594119547953a02597dab708','format':'iframe','height':90,'width':728,'params':{}};</script><script src="https://www.highperformanceformat.com/cc432909594119547953a02597dab708/invoke.js"></script></div>{% endif %}
+        
         {% endfor %}
 
         <!-- Promo Card -->
@@ -203,12 +203,12 @@
                 <span class="tag t-date">{{ job.posted_date }}</span>
             </div>
         </div>
-        {% if loop.index == 5 %}<div class="ad"><script>atOptions={'key':'cc432909594119547953a02597dab708','format':'iframe','height':90,'width':728,'params':{}};</script><script src="https://www.highperformanceformat.com/cc432909594119547953a02597dab708/invoke.js"></script></div>{% endif %}
+        
         {% endfor %}
     </div>
     {% else %}<div class="empty"><p>No salary data available yet.</p></div>{% endif %}
 
-    <div class="ad" style="margin-top:8px;"><script>atOptions={'key':'cc432909594119547953a02597dab708','format':'iframe','height':90,'width':728,'params':{}};</script><script src="https://www.highperformanceformat.com/cc432909594119547953a02597dab708/invoke.js"></script></div>
+    
 
     <div class="section-header" style="margin-top:32px;">
         <h2>{{ t.latest_jobs }}</h2>
@@ -235,7 +235,6 @@
             {% if job.posted_date %}<span class="tag t-date">{{ job.posted_date }}</span>{% endif %}
         </div>
     </div>
-    {% if loop.index == 5 or loop.index == 10 or loop.index == 15 %}<div class="ad"><script>atOptions={'key':'cc432909594119547953a02597dab708','format':'iframe','height':90,'width':728,'params':{}};</script><script src="https://www.highperformanceformat.com/cc432909594119547953a02597dab708/invoke.js"></script></div>{% endif %}
     {% endfor %}
     </div>
 </div>
