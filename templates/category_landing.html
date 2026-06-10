@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% block title %}{{ page.title }} | Tawtheef Egypt{% endblock %}
+{% block meta_desc %}{{ page.description }}{% endblock %}
+{% block og_title %}{{ page.title }} | Tawtheef Egypt{% endblock %}
+{% block og_desc %}{{ page.description }}{% endblock %}
+
+{% block extra_head %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "{{ page.title }}",
+  "description": "{{ page.description }}",
+  "url": "https://tawtheef-egypt-production.up.railway.app/jobs/{{ slug }}",
+  "numberOfItems": {{ total }},
+  "itemListElement": [
+    {% for job in jobs[:10] %}
+    {
+      "@type": "ListItem",
+      "position": {{ loop.index }},
+      "url": "https://tawtheef-egypt-production.up.railway.app/job/{{ job.id }}"
+    }{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ]
+}
+</script>
+<style>
+    .landing-hero { background: linear-gradient(135deg, #0D1B2E 0%, #1E2D4A 100%); border-radius: var(--r-lg); padding: 40px 36px; margin-bottom: 24px; border: 1px solid rgba(255,255,255,0.06); }
+    .landing-hero h1 { font-size: 28px; font-weight: 800; color: #F8FAFC; margin-bottom: 10px; letter-spacing: -0.5px; }
+    .landing-hero p { font-size: 14px; color: #94A3B8; line-height: 1.7; max-width: 680px; }
+    .landing-hero .stats { display: flex; gap: 24px; margin-top: 20px; flex-wrap: wrap; }
+    .landing-hero .stat { font-size: 13px; color: var(--muted); font-weight: 500; }
+    .landing-hero .stat strong { color: var(--gold); font-size: 20px; font-weight: 800; display: block; }
+    .landing-grid { display: grid; gap: 12px; }
+    .job-card { background: #1E2D4A; border-radius: var(--r); border: 1px solid rgba(255,255,255,0.06); padding: 18px 20px; display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; transition: all var(--t); text-decoration: none; }
+    .job-card:hover { border-color: var(--gold); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+    .job-card-left { flex: 1; }
+    .job-card-title { font-size: 15px; font-weight: 700; color: #F8FAFC; margin-bottom: 4px; line-height: 1.3; }
+    .job-card-company { font-size: 13px; color: #94A3B8; font-weight: 500; margin-bottom: 8px; }
+    .job-card-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .job-card-right { flex-shrink: 0; text-align: right; }
+    .job-card-date { font-size: 11px; color: var(--muted); font-weight: 500; }
+    .apply-btn { display: inline-block; background: var(--gold); color: var(--navy); font-size: 12px; font-weight: 800; padding: 7px 14px; border-radius: var(--r-sm); margin-top: 8px; transition: all var(--t); }
+    .apply-btn:hover { background: var(--gold-h); }
+    .related-searches { background: #1E2D4A; border-radius: var(--r); border: 1px solid rgba(255,255,255,0.06); padding: 20px; margin-top: 24px; }
+    .related-searches h3 { font-size: 13px; font-weight: 700; color: #F8FAFC; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 14px; }
+    .related-links { display: flex; flex-wrap: wrap; gap: 8px; }
+    .related-link-pill { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); color: #94A3B8; font-size: 13px; font-weight: 500; padding: 6px 14px; border-radius: 20px; text-decoration: none; transition: all var(--t); }
+    .related-link-pill:hover { border-color: var(--gold); color: var(--gold); background: rgba(212,169,77,0.08); }
+    .empty-state { text-align: center; padding: 60px 20px; color: var(--muted); }
+    @media (max-width: 600px) {
+        .landing-hero { padding: 24px 18px; }
+        .landing-hero h1 { font-size: 22px; }
+        .job-card { flex-direction: column; }
+        .job-card-right { text-align: left; }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="bc">
+    <a href="/">Home</a> ›
+    <span>{{ page.title }}</span>
+</div>
+
+<div class="landing-hero">
+    <h1>{{ page.title }}</h1>
+    {% if is_ar %}
+    <h2 style="font-size:18px; font-weight:700; color:var(--gold); margin-bottom:10px; font-family:var(--font-ar);">{{ page.title_ar }}</h2>
+    {% endif %}
+    <p>{{ page.description }}</p>
+    <div class="stats">
+        <div class="stat"><strong>{{ total }}+</strong> Jobs Found</div>
+        <div class="stat"><strong>Egypt</strong> Location</div>
+        <div class="stat"><strong>Daily</strong> Updated</div>
+    </div>
+</div>
+
+<div class="landing-grid">
+    {% if jobs %}
+        {% for job in jobs %}
+        <a href="/job/{{ job.id }}" class="job-card">
+            <div class="job-card-left">
+                <div class="job-card-title">{{ job.title }}</div>
+                <div class="job-card-company">{{ job.company }} — {{ job.location }}</div>
+                <div class="job-card-tags">
+                    <span class="tag t-cat">{{ job.category }}</span>
+                    {% if job.salary and job.salary|trim != '' and job.salary != 'Confidential' and 'kpi' not in job.salary.lower() %}
+                    <span class="tag t-sal">{{ job.salary }}</span>
+                    {% endif %}
+                    {% if job.experience and job.experience != 'N/A' %}
+                    <span class="tag" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:#94A3B8;font-size:11px;padding:3px 10px;border-radius:20px;">{{ job.experience }}</span>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="job-card-right">
+                {% if job.posted_date %}
+                <div class="job-card-date">{{ job.posted_date }}</div>
+                {% endif %}
+                <span class="apply-btn">View Job →</span>
+            </div>
+        </a>
+        {% endfor %}
+    {% else %}
+    <div class="empty-state">
+        <p>No jobs found right now. Check back soon!</p>
+    </div>
+    {% endif %}
+</div>
+
+<div class="related-searches">
+    <h3>Related Searches</h3>
+    <div class="related-links">
+        {% for slug_key, p in [
+            ('elevator-jobs-egypt', 'Elevator Jobs'),
+            ('electrical-maintenance-jobs-egypt', 'Electrical Maintenance'),
+            ('technical-office-jobs-egypt', 'Technical Office Engineer'),
+            ('digital-marketing-jobs-egypt', 'Digital Marketing'),
+            ('it-software-jobs-egypt', 'IT & Software'),
+            ('sales-jobs-egypt', 'Sales Jobs'),
+            ('accounting-finance-jobs-egypt', 'Accounting & Finance'),
+            ('customer-service-jobs-egypt', 'Customer Service')
+        ] %}
+        <a href="/jobs/{{ slug_key }}" class="related-link-pill">{{ p }}</a>
+        {% endfor %}
+        <a href="/search" class="related-link-pill">All Jobs in Egypt</a>
+    </div>
+</div>
+{% endblock %}

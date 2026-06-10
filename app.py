@@ -368,6 +368,108 @@ def save_user():
         print(f"Save user error: {e}")
         return {'success': False, 'error': str(e)}, 500
 
+LANDING_PAGES = {
+    'elevator-jobs-egypt': {
+        'title': 'Elevator Jobs in Egypt',
+        'title_ar': 'وظائف مصاعد في مصر',
+        'h1': 'Elevator Jobs in Egypt',
+        'description': 'Browse the latest elevator engineer, technician, and sales jobs in Egypt. Find elevator installation, maintenance, and sales engineer positions at top companies across Cairo, Giza, and Alexandria.',
+        'keywords': ['elevator', 'lift', 'escalator'],
+        'category': None,
+    },
+    'electrical-maintenance-jobs-egypt': {
+        'title': 'Electrical Maintenance Jobs in Egypt',
+        'title_ar': 'وظائف صيانة كهربائية في مصر',
+        'h1': 'Electrical Maintenance Jobs in Egypt',
+        'description': 'Find electrical maintenance engineer and technician jobs in Egypt. Browse positions at factories, facilities, and construction companies across Cairo and beyond.',
+        'keywords': ['electrical maintenance', 'electrical engineer', 'maintenance engineer'],
+        'category': 'Engineering / Construction / Civil / Architecture',
+    },
+    'technical-office-jobs-egypt': {
+        'title': 'Technical Office Engineer Jobs in Egypt',
+        'title_ar': 'وظائف مهندس مكتب فني في مصر',
+        'h1': 'Technical Office Engineer Jobs in Egypt',
+        'description': 'Explore technical office engineer and manager jobs in Egypt. Find quantity surveying, BOQ, and site engineering roles at leading construction and contracting companies.',
+        'keywords': ['technical office', 'technical office engineer', 'quantity survey'],
+        'category': 'Engineering / Construction / Civil / Architecture',
+    },
+    'digital-marketing-jobs-egypt': {
+        'title': 'Digital Marketing Jobs in Egypt',
+        'title_ar': 'وظائف تسويق رقمي في مصر',
+        'h1': 'Digital Marketing Jobs in Egypt',
+        'description': 'Browse digital marketing specialist, manager, and executive jobs in Egypt. Find SEO, social media, content, and performance marketing roles at top Egyptian companies.',
+        'keywords': ['digital marketing', 'social media', 'seo', 'content marketing'],
+        'category': 'Marketing / PR / Advertising',
+    },
+    'it-software-jobs-egypt': {
+        'title': 'IT & Software Developer Jobs in Egypt',
+        'title_ar': 'وظائف تكنولوجيا المعلومات في مصر',
+        'h1': 'IT & Software Jobs in Egypt',
+        'description': 'Find software developer, web developer, and IT engineer jobs in Egypt. Browse backend, frontend, full stack, and mobile development positions at tech companies in Cairo.',
+        'keywords': ['software', 'developer', 'programming', 'backend', 'frontend', 'flutter', 'react'],
+        'category': 'IT / Software / Development',
+    },
+    'sales-jobs-egypt': {
+        'title': 'Sales Jobs in Egypt',
+        'title_ar': 'وظائف مبيعات في مصر',
+        'h1': 'Sales Jobs in Egypt',
+        'description': 'Browse sales representative, sales engineer, and account manager jobs in Egypt. Find B2B, retail, and outdoor sales positions at leading companies across Egypt.',
+        'keywords': ['sales', 'sales engineer', 'account manager', 'sales representative'],
+        'category': 'Sales / Retail',
+    },
+    'accounting-finance-jobs-egypt': {
+        'title': 'Accounting & Finance Jobs in Egypt',
+        'title_ar': 'وظائف محاسبة ومالية في مصر',
+        'h1': 'Accounting & Finance Jobs in Egypt',
+        'description': 'Find accountant, financial analyst, and CFO jobs in Egypt. Browse junior and senior accounting, auditing, and finance roles at top Egyptian companies.',
+        'keywords': ['accountant', 'accounting', 'finance', 'financial analyst', 'audit'],
+        'category': 'Accounting / Finance',
+    },
+    'customer-service-jobs-egypt': {
+        'title': 'Customer Service Jobs in Egypt',
+        'title_ar': 'وظائف خدمة عملاء في مصر',
+        'h1': 'Customer Service Jobs in Egypt',
+        'description': 'Browse call center, customer support, and customer service representative jobs in Egypt. Find remote and on-site roles at leading companies in Cairo and Giza.',
+        'keywords': ['customer service', 'call center', 'customer support', 'chat support'],
+        'category': 'Customer / Service',
+    },
+}
+
+
+@app.route('/jobs/<slug>')
+def category_landing(slug):
+    page_data = LANDING_PAGES.get(slug)
+    if not page_data:
+        return "Page not found", 404
+
+    try:
+        where = "WHERE 1=1"
+        params = []
+
+        if page_data['category']:
+            where += " AND category = %s"
+            params.append(page_data['category'])
+
+        keyword_conditions = []
+        for kw in page_data['keywords']:
+            keyword_conditions.append("(title ILIKE %s OR description ILIKE %s OR skills ILIKE %s)")
+            params += [f'%{kw}%', f'%{kw}%', f'%{kw}%']
+
+        if keyword_conditions:
+            where += " AND (" + " OR ".join(keyword_conditions) + ")"
+
+        jobs = query(f"SELECT * FROM jobs {where} ORDER BY scraped_at DESC LIMIT 30", params)
+        total_result = query_one(f"SELECT COUNT(*) as count FROM jobs {where}", params)
+        total = total_result['count'] if total_result else 0
+
+    except Exception as e:
+        return f"Error: {e}", 500
+
+    return render_template('category_landing.html',
+                           page=page_data,
+                           slug=slug,
+                           jobs=jobs,
+                           total=total)
 
 @app.route('/sitemap.xml')
 def sitemap():
