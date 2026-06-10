@@ -1123,7 +1123,10 @@
 
   <!-- SECTION 1 — HERO -->
   <section class="ca-hero">
-    <img src="{{ url_for('static', filename='cairo-skyline.png') }}" class="ca-hero-bg" alt="">
+    <picture>
+        <source srcset="{{ url_for('static', filename='cairo-skyline.webp') }}" type="image/webp">
+        <img src="{{ url_for('static', filename='cairo-skyline.png') }}" class="ca-hero-bg" alt="">
+    </picture>
     <div class="ca-hero__inner">
       <div class="ca-hero__eyebrow">
         <span class="ca-hero__eyebrow-line"></span>
