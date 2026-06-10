@@ -473,7 +473,57 @@ def category_landing(slug):
 
 @app.route('/sitemap.xml')
 def sitemap():
-    return app.send_static_file('sitemap.xml')
+    from flask import Response
+    import datetime
+
+    base_url = 'https://tawtheef-egypt-production.up.railway.app'
+    today = datetime.date.today().isoformat()
+
+    urls = []
+
+    # Static pages
+    static_pages = [
+        ('/', '1.0', 'daily'),
+        ('/search', '0.8', 'daily'),
+        ('/career-advice', '0.6', 'weekly'),
+    ]
+    for path, priority, freq in static_pages:
+        urls.append(f"""  <url>
+    <loc>{base_url}{path}</loc>
+    <changefreq>{freq}</changefreq>
+    <priority>{priority}</priority>
+    <lastmod>{today}</lastmod>
+  </url>""")
+
+    # Landing pages
+    for slug in LANDING_PAGES:
+        urls.append(f"""  <url>
+    <loc>{base_url}/jobs/{slug}</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <lastmod>{today}</lastmod>
+  </url>""")
+
+    # All job pages from DB
+    try:
+        jobs = query("SELECT id, scraped_at FROM jobs ORDER BY scraped_at DESC")
+        for job in jobs:
+            lastmod = str(job['scraped_at'])[:10] if job['scraped_at'] else today
+            urls.append(f"""  <url>
+    <loc>{base_url}/job/{job['id']}</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>{lastmod}</lastmod>
+  </url>""")
+    except Exception as e:
+        pass
+
+    xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
+    xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+    xml += '\n'.join(urls)
+    xml += '\n</urlset>'
+
+    return Response(xml, mimetype='application/xml')
 
 
 # ── Startup ────────────────────────────────────────────────────────────────────
