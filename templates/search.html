@@ -1,10 +1,13 @@
 {% extends 'base.html' %}
+{% block title %}{% if q %}{{ q }} Jobs{% elif category %}{{ category }} Jobs{% else %}All Jobs{% endif %} — Tawtheef Egypt{% endblock %}
+{% block title_ar %}{% if q %}وظائف {{ q }}{% elif category %}وظائف {{ category }}{% else %}كل الوظائف{% endif %} — توظيف مصر{% endblock %}
+{% block og_title %}{% if q %}{{ q }} Jobs{% elif category %}{{ category }} Jobs{% else %}All Jobs{% endif %} — Tawtheef Egypt{% endblock %}
+{% block og_title_ar %}{% if q %}وظائف {{ q }}{% elif category %}وظائف {{ category }}{% else %}كل الوظائف{% endif %} — توظيف مصر{% endblock %}
 {% block meta_desc %}{% if q %}{{ q }} jobs in Egypt{% elif category %}{{ category }} jobs in Egypt{% else %}Browse all jobs in Egypt{% endif %}. Find your next career on Tawtheef Egypt.{% endblock %}
-{% block og_title %}{% if q %}{{ q }}{% elif category %}{{ category }}{% else %}All Jobs{% endif %} — Tawtheef Egypt{% endblock %}
+{% block meta_desc_ar %}{% if q %}وظائف {{ q }} في مصر{% elif category %}وظائف {{ category }} في مصر{% else %}تصفح كل الوظائف في مصر{% endif %}. اعثر على وظيفتك القادمة على توظيف مصر.{% endblock %}
 {% block og_desc %}Browse {% if q %}{{ q }}{% elif category %}{{ category }}{% else %}all{% endif %} jobs in Egypt. {{ total }} positions available.{% endblock %}
-{% block title %}{% if q %}{{ q }}{% elif category %}{{ category }}{% else %}All Jobs{% endif %} — Tawtheef Egypt{% endblock %}
-
 {% block content %}
+
 <div class="grid">
     <aside class="sidebar sidebar-desktop">
         <div class="sidebar-head">Filter by Category <span class="ar">تصفية حسب التصنيف</span></div>
