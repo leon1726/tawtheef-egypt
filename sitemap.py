@@ -3,7 +3,7 @@ import sqlite3
 from urllib.parse import quote
 
 DB_PATH = "jobs.db"
-BASE_URL = "https://tawtheef-egypt-production.up.railway.app"
+BASE_URL = "https://tawtheef-egypt.site"
 
 def generate_sitemap():
     conn = sqlite3.connect(DB_PATH)
