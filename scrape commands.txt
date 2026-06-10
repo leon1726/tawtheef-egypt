@@ -1,0 +1,6 @@
+python scrapper.py --pages 3; python scrapper.py --enrich
+
+
+migrate db to neon
+$env:DATABASE_URL = "postgresql://neondb_owner:npg_t7oKaQpW2VPj@ep-super-dew-aq8hf1ps.c-8.us-east-1.aws.neon.tech/neondb?sslmode=require"
+python scrapper.py --migrate --sqlite-path jobs.db

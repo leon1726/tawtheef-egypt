@@ -20,10 +20,16 @@
     <meta property="og:title" content="{% block og_title %}Tawtheef Egypt | توظيف مصر{% endblock %}">
     <meta property="og:description" content="{% block og_desc %}Find your next career move in Egypt. Browse thousands of jobs across all industries.{% endblock %}">
     {% endif %}
-    <meta name="robots" content="index, follow">
+    {% set _page_num = request.args.get('page', '1') | int %}
+    {% set _clean_url = request.url.replace('?lang=ar', '').replace('&lang=ar', '') %}
+    {% if _page_num > 50 %}
+    <meta name="robots" content="noindex, nofollow">
+    {% else %}
+    <meta name="robots" content="index, follow">    
+    {% endif %}
     <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ request.url }}">
-    <link rel="canonical" href="{{ request.url }}">
+    <meta property="og:url" content="{{ _clean_url }}">
+    <link rel="canonical" href="{{ _clean_url }}">
     {% block extra_head %}{% endblock %}
     <title>{% block title %}Tawtheef Egypt | توظيف مصر{% endblock %}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">

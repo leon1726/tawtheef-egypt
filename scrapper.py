@@ -9,6 +9,7 @@ from datetime import datetime
 from urllib.parse import urljoin
 from playwright.sync_api import sync_playwright
 from deep_translator import GoogleTranslator
+import os
 
 translator = GoogleTranslator(source="en", target="ar")
 
@@ -66,6 +67,9 @@ def get_db():
         return conn
     else:
         return psycopg2.connect(DATABASE_URL)
+
+
+
 
 
 def init_db():
@@ -355,6 +359,14 @@ class WuzzufCategoryScraper:
         try:
             page.goto(job_url, wait_until="domcontentloaded", timeout=12000)
             page.wait_for_timeout(1500)
+            
+            # Scrape logo
+            try:
+                logo_el = page.query_selector('img[src*="logo"], img[alt*="logo"], .company-logo img, img.css-1d44yfr')
+                if logo_el:
+                    details["logo_url"] = logo_el.get_attribute('src')
+            except Exception:
+                pass
 
             labels = page.query_selector_all("span.css-720fa0")
             values = page.query_selector_all("span.css-2rozun")
@@ -535,26 +547,28 @@ def enrich_jobs(max_jobs=None, delay=2):
                     c.execute("""
                         UPDATE jobs
                         SET description=?, skills=?, job_type=?, experience=?,
-                            career_level=?, education=?, salary=?, details_scraped=1
+                            career_level=?, education=?, salary=?, logo_url=?,
+                            details_scraped=1
                         WHERE id=?
                     """, (
                         details.get("description", ""), details.get("skills", ""),
                         details.get("job_type", ""), details.get("experience", ""),
                         details.get("career_level", ""), details.get("education", ""),
-                        details.get("salary", ""), job_id,
+                        details.get("salary", ""), details.get("logo_url", ""), job_id,
                     ))
                 else:
                     c.execute("""
                         UPDATE jobs
                         SET description=%s, description_ar=%s, skills=%s, job_type=%s,
                             experience=%s, career_level=%s, education=%s, salary=%s,
-                            details_scraped=1
+                            logo_url=%s, details_scraped=1
                         WHERE id=%s
                     """, (
                         details.get("description", ""), details.get("description_ar", ""),
                         details.get("skills", ""), details.get("job_type", ""),
                         details.get("experience", ""), details.get("career_level", ""),
-                        details.get("education", ""), details.get("salary", ""), job_id,
+                        details.get("education", ""), details.get("salary", ""),
+                        details.get("logo_url", ""), job_id,
                     ))
                 conn.commit()
                 conn.close()
@@ -650,6 +664,51 @@ def migrate_from_sqlite(sqlite_path="jobs.db"):
     pg_conn.close()
     print(f"[✓] Migrated {migrated}/{len(jobs)} jobs.")
 
+def backfill_arabic():
+    conn = get_db()
+    c = conn.cursor()
+    c.execute("SELECT id, title, location, description FROM jobs WHERE title_ar IS NULL OR title_ar = ''")
+    jobs = c.fetchall()
+    conn.close()
+    
+    total = len(jobs)
+    print(f"[*] Backfilling Arabic for {total} jobs...")
+    
+    updated = 0
+    for i, row in enumerate(jobs):
+        job_id, title, location, description = row[0], row[1], row[2], row[3]
+        title_ar = ""
+        location_ar = ""
+        description_ar = ""
+        try:
+            title_ar = translator.translate(title) if title else ""
+        except Exception:
+            pass
+        try:
+            location_ar = translator.translate(location) if location else ""
+        except Exception:
+            pass
+        try:
+            description_ar = translator.translate(description[:4500]) if description else ""
+        except Exception:
+            pass
+        
+        conn = get_db()
+        c = conn.cursor()
+        c.execute("""
+            UPDATE jobs SET title_ar=%s, location_ar=%s, description_ar=%s
+            WHERE id=%s
+        """, (title_ar, location_ar, description_ar, job_id))
+        conn.commit()
+        conn.close()
+        updated += 1
+        
+        if (i + 1) % 50 == 0:
+            print(f"    [{i+1}/{total}] done...")
+        time.sleep(0.3)
+    
+    print(f"[✓] Backfilled {updated} jobs.")
+
 
 def export_csv():
     conn = get_db()
@@ -688,6 +747,7 @@ if __name__ == "__main__":
     parser.add_argument("--enrich-max", type=int, default=None, help="Max jobs to enrich")
     parser.add_argument("--schedule", action="store_true", help="Run auto-scraper on schedule")
     parser.add_argument("--interval", type=int, default=6, help="Hours between scheduled runs")
+    parser.add_argument("--backfill-arabic", action="store_true", help="Backfill Arabic translations for existing jobs")
 
     args = parser.parse_args()
 
@@ -696,8 +756,10 @@ if __name__ == "__main__":
     elif args.migrate:
         init_db()
         migrate_from_sqlite(args.sqlite_path)
+    elif args.backfill_arabic:
+        backfill_arabic()
     elif args.schedule:
-        start_scheduler(interval_hours=args.interval)
+        start_scheduler(interval_hours=args.interval)    
     elif args.enrich:
         enrich_jobs(max_jobs=args.enrich_max)
     elif args.export_csv:
