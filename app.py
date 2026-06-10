@@ -491,7 +491,7 @@ def sitemap():
     from flask import Response
     import datetime
 
-    base_url = 'https://tawtheef-egypt-production.up.railway.app'
+    base_url = 'https://tawtheef-egypt.site'
     today = datetime.date.today().isoformat()
 
     urls = []
