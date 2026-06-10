@@ -220,31 +220,21 @@
     </div>
 
         <div class="sum-card">
-            <div class="sum-title">Find Related Jobs</div>
-            <div>
-                <a href="/search?category={{ job.category }}" class="related-link">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
-                    All {{ job.category }} jobs
+            <div class="sum-title">Related Jobs</div>
+            {% if related %}
+                {% for r in related %}
+                <a href="/job/{{ r.id }}" class="related-link" style="flex-direction:column; align-items:flex-start; gap:2px; padding: 10px 8px; border-bottom: 1px solid rgba(255,255,255,0.04);">
+                    <span style="color:#F8FAFC; font-weight:700; font-size:13px; line-height:1.3;">{{ r.title[:50] }}{% if r.title|length > 50 %}...{% endif %}</span>
+                    <span style="color:var(--muted); font-size:11px; font-weight:500;">{{ r.company }} · {{ r.location }}</span>
+                    {% if r.salary and r.salary|trim != '' and r.salary != 'Confidential' and 'kpi' not in r.salary.lower() %}
+                    <span style="color:var(--gold); font-size:11px; font-weight:600;">{{ r.salary }}</span>
+                    {% endif %}
                 </a>
-                {% if job.location %}
-                <a href="/search?q={{ job.title.split(' ')[:3]|join(' ') }}&location={{ job.location.split(',')[0].strip() }}" class="related-link">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-                    {{ job.title.split(' ')[:3]|join(' ') }} in {{ job.location.split(',')[0].strip() }}
-                </a>
-                <a href="/search?q={{ job.title.split(' ')[:2]|join(' ') }}" class="related-link">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-                    {{ job.title.split(' ')[:3]|join(' ') }} in Egypt
-                </a>
-                {% endif %}
-                <a href="/search?q={{ job.category.split('/')[0].strip() }}" class="related-link">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-                    {{ job.category.split('/')[0].strip() }} jobs in Egypt
-                </a>
-                <a href="/search" class="related-link">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-                    All jobs in Egypt
-                </a>
-            </div>
+                {% endfor %}
+            {% endif %}
+            <a href="/search?category={{ job.category }}" class="related-link" style="margin-top:8px; color:var(--gold); font-weight:700;">
+                View all {{ job.category.split('/')[0].strip() }} jobs →
+            </a>
         </div>
 
         <div class="sum-card">

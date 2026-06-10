@@ -291,7 +291,22 @@ def job_detail(job_id):
     job = query_one("SELECT * FROM jobs WHERE id = %s", (job_id,))
     if not job:
         return "Job not found", 404
-    return render_template('job.html', job=job)
+
+    # Related jobs: same category, exclude current job
+    related = query(
+        "SELECT id, title, company, location, salary, experience, category FROM jobs WHERE category = %s AND id != %s ORDER BY scraped_at DESC LIMIT 6",
+        (job['category'], job_id)
+    )
+
+    # If not enough, fill with same location
+    if len(related) < 3:
+        location_jobs = query(
+            "SELECT id, title, company, location, salary, experience, category FROM jobs WHERE location ILIKE %s AND id != %s AND id NOT IN %s ORDER BY scraped_at DESC LIMIT 6",
+            (f"%{job['location'].split(',')[0].strip()}%", job_id, tuple([j['id'] for j in related] + [0]))
+        )
+        related = (related + location_jobs)[:6]
+
+    return render_template('job.html', job=job, related=related)
 
 
 @app.route('/apply/<int:job_id>')
