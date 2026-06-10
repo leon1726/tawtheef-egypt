@@ -21,7 +21,7 @@
     <meta property="og:description" content="{% block og_desc %}Find your next career move in Egypt. Browse thousands of jobs across all industries.{% endblock %}">
     {% endif %}
     {% set _page_num = request.args.get('page', '1') | int %}
-    {% set _clean_url = request.url.replace('?lang=ar', '').replace('&lang=ar', '') %}
+    {% set _clean_url = request.url.replace('?lang=ar', '').replace('&lang=ar', '').replace('http://', 'https://') %}
     {% if _page_num > 50 %}
     <meta name="robots" content="noindex, nofollow">
     {% else %}
