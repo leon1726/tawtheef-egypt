@@ -786,3 +786,13 @@ if __name__ == "__main__":
         c.execute("SELECT COUNT(DISTINCT link) FROM jobs")
         print(f"\n[✓] Total unique jobs: {c.fetchone()[0]}")
         conn.close()
+
+        # Ping Google to re-crawl sitemap after scrape
+        try:
+            import urllib.request
+            sitemap_url = "https://tawtheef-egypt-production.up.railway.app/sitemap.xml"
+            ping_url = f"https://www.google.com/ping?sitemap={sitemap_url}"
+            urllib.request.urlopen(ping_url, timeout=10)
+            print("[✓] Google sitemap ping sent")
+        except Exception as e:
+            print(f"[!] Sitemap ping failed: {e}")
