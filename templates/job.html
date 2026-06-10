@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
-{% block title %}{{ job.title }} - {{ job.company }} | {{ job.location }} | Tawtheef Egypt{% endblock %}
-{% block meta_desc %}{{ job.title }} at {{ job.company }} in {{ job.location }}, Egypt. {% if job.experience and job.experience != 'N/A' %}Experience: {{ job.experience }}. {% endif %}{% if job.salary and job.salary != 'Confidential' and job.salary|trim != '' %}Salary: {{ job.salary }}. {% endif %}Apply now on Tawtheef Egypt — وظائف مصر.{% endblock %}
-{% block og_title %}{{ job.title }} - {{ job.company }} | {{ job.location }}{% endblock %}
-{% block og_desc %}{{ job.title }} at {{ job.company }} in {{ job.location }}. {% if job.experience and job.experience != 'N/A' %}{{ job.experience }} experience required. {% endif %}Apply now on Tawtheef Egypt!{% endblock %}
+{% set _city = job.location.split(',')[0].strip() %}
+{% block title %}{{ job.title[:50] }} - {{ job.company[:30] }} | {{ _city }} | Tawtheef{% endblock %}
+{% block meta_desc %}{{ job.title }} at {{ job.company }} in {{ _city }}, Egypt. {% if job.experience and job.experience != 'N/A' and job.experience != '0' %}Experience: {{ job.experience }}. {% endif %}{% if job.salary and job.salary != 'Confidential' and job.salary|trim != '' and job.salary != '0' and 'kpi' not in job.salary.lower() %}Salary: {{ job.salary }}. {% endif %}Apply now on Tawtheef Egypt.{% endblock %}
+{% block og_title %}{{ job.title[:50] }} - {{ job.company[:30] }} | {{ _city }}{% endblock %}
+{% block og_desc %}{{ job.title }} at {{ job.company }} in {{ _city }}, Egypt. {% if job.experience and job.experience != 'N/A' and job.experience != '0' %}{{ job.experience }} experience required. {% endif %}Apply now on Tawtheef Egypt!{% endblock %}
 
 {% block extra_css %}
 
