@@ -94,7 +94,7 @@ TRANSLATIONS = {
     }
 }
 
-app.config['WTF_CSRF_EXEMPT_LIST'] = ['/api/auth/session', '/api/auth/save-user']
+app.config['WTF_CSRF_EXEMPT_LIST'] = ['/api/auth/session', '/api/auth/save-user', '/sitemap.xml', '/robots.txt']
 limiter = Limiter(app=app, key_func=get_remote_address)
 csrf = CSRFProtect(app)
 
@@ -487,6 +487,7 @@ def category_landing(slug):
                            total=total)
 
 @app.route('/sitemap.xml')
+@limiter.exempt
 def sitemap():
     from flask import Response
     import datetime
