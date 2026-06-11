@@ -312,7 +312,7 @@ def job_detail(job_id):
 @app.route('/apply/<int:job_id>')
 def apply(job_id):
     job = query_one("SELECT link FROM jobs WHERE id = %s", (job_id,))
-    if job and job['link'] and job['link'].startswith('https://wuzzuf.net'):
+    if job and job['link'] and 'wuzzuf.net' in job['link']:
         return redirect(job['link'])
     return "Not found", 404
 
