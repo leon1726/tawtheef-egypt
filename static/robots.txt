@@ -5,9 +5,8 @@ Disallow: /api/
 Disallow: /login
 Disallow: /signup
 
-# Block deep pagination to save crawl budget
 Disallow: /search?*page=2[0-9]*
 Disallow: /search?*page=[3-9][0-9]*
 Disallow: /search?*page=[1-9][0-9][0-9]*
 
-Sitemap: https://tawtheef-egypt-production.up.railway.app/sitemap.xml
+Sitemap: https://tawtheef-egypt.site/sitemap.xml
