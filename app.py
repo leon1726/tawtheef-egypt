@@ -497,12 +497,6 @@ def sitemap():
     from flask import Response
     import datetime
 
-@app.route('/sitemap.xml')
-@limiter.exempt
-def sitemap():
-    from flask import Response
-    import datetime
-
     base_url = 'https://tawtheef-egypt.site'
     today = datetime.date.today().isoformat()
 
