@@ -486,6 +486,17 @@ def category_landing(slug):
                            jobs=jobs,
                            total=total)
 
+@app.route('/robots.txt')
+def robots():
+    from flask import send_from_directory
+    return send_from_directory('static', 'robots.txt')
+
+@app.route('/sitemap.xml')
+@limiter.exempt
+def sitemap():
+    from flask import Response
+    import datetime
+
 @app.route('/sitemap.xml')
 @limiter.exempt
 def sitemap():
