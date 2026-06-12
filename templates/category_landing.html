@@ -11,14 +11,14 @@
   "@type": "ItemList",
   "name": "{{ page.title }}",
   "description": "{{ page.description }}",
-  "url": "https://tawtheef-egypt-production.up.railway.app/jobs/{{ slug }}",
+  "url": "https://tawtheef-egypt.site/jobs/{{ slug }}",
   "numberOfItems": {{ total }},
   "itemListElement": [
     {% for job in jobs[:10] %}
     {
       "@type": "ListItem",
       "position": {{ loop.index }},
-      "url": "https://tawtheef-egypt-production.up.railway.app/job/{{ job.id }}"
+      "url": "https://tawtheef-egypt.site/job/{{ job.id }}"
     }{% if not loop.last %},{% endif %}
     {% endfor %}
   ]

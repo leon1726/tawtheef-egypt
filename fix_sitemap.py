@@ -1,7 +1,7 @@
 import sqlite3
 from urllib.parse import quote
 
-BASE = 'https://tawtheef-egypt-production.up.railway.app'
+BASE = 'https://tawtheef-egypt.site'
 conn = sqlite3.connect('jobs.db')
 c = conn.cursor()
 

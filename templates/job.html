@@ -33,7 +33,7 @@
   },
   "datePosted": "{{ job.posted_date or job.scraped_at[:10] }}",
   "employmentType": "FULL_TIME",
-  "url": "https://tawtheef-egypt-production.up.railway.app/job/{{ job.id }}"{% if job.experience and job.experience != 'N/A' %},
+  "url": "https://tawtheef-egypt.site/job/{{ job.id }}"{% if job.experience and job.experience != 'N/A' %},
   "experienceRequirements": "{{ job.experience }}"{% endif %}{% if job.education and job.education != 'N/A' %},
   "educationRequirements": "{{ job.education }}"{% endif %}{% if job.salary and job.salary|trim != '' and job.salary != 'Confidential' and 'kpi' not in job.salary.lower() %},
   "baseSalary": {
